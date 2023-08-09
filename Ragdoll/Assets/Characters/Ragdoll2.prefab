@@ -461,7 +461,6 @@ GameObject:
   - component: {fileID: 1748127509294057173}
   - component: {fileID: 374660429004626360}
   - component: {fileID: 7776233025461722295}
-  - component: {fileID: 8651546201121441198}
   m_Layer: 6
   m_Name: RightForeArm
   m_TagString: Untagged
@@ -636,7 +635,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.13419385
+  m_Radius: 0.3
   m_Center: {x: 0.000000017533125, y: 0.4826206, z: 0.00000006431258}
 --- !u!114 &7776233025461722295
 MonoBehaviour:
@@ -652,22 +651,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
   breakForce: 9000
-  isGrabbing: 0
---- !u!138 &8651546201121441198
-FixedJoint:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1738888501877705056}
-  m_ConnectedBody: {fileID: 0}
-  m_ConnectedArticulationBody: {fileID: 0}
-  m_BreakForce: 10000
-  m_BreakTorque: Infinity
-  m_EnableCollision: 0
-  m_EnablePreprocessing: 1
-  m_MassScale: 1
-  m_ConnectedMassScale: 1
 --- !u!1 &1872619798302283507
 GameObject:
   m_ObjectHideFlags: 0
@@ -2505,7 +2488,6 @@ GameObject:
   - component: {fileID: 6932230737497460109}
   - component: {fileID: 8910116986035192550}
   - component: {fileID: 6281387911570999503}
-  - component: {fileID: 581729605169585467}
   m_Layer: 6
   m_Name: LeftForeArm
   m_TagString: Untagged
@@ -2680,7 +2662,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.13419385
+  m_Radius: 0.3
   m_Center: {x: 0.000000017533125, y: 0.4826206, z: 0.00000006431258}
 --- !u!114 &6281387911570999503
 MonoBehaviour:
@@ -2696,22 +2678,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
   breakForce: 9000
-  isGrabbing: 0
---- !u!138 &581729605169585467
-FixedJoint:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7407603125278037454}
-  m_ConnectedBody: {fileID: 0}
-  m_ConnectedArticulationBody: {fileID: 0}
-  m_BreakForce: 10000
-  m_BreakTorque: Infinity
-  m_EnableCollision: 0
-  m_EnablePreprocessing: 1
-  m_MassScale: 1
-  m_ConnectedMassScale: 1
 --- !u!1 &7836118380683673409
 GameObject:
   m_ObjectHideFlags: 0

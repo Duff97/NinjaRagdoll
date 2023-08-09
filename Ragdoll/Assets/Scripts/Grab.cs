@@ -5,28 +5,37 @@ using UnityEngine;
 public class Grab : MonoBehaviour
 {
     private GameObject grabbedObj;
-    private FixedJoint joint;
+    private GameObject targetObj;
+    private Rigidbody rb;
 
     [Header("References")]
     public Animator animator;
 
+    [Header("Parameters")]
+    public int breakForce = 9000;
+    public float massScale = 0.1f;
 
-    public bool isGrabbing;
+    private FixedJoint joint;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        joint = GetComponent<FixedJoint>();
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        isGrabbing = animator.GetBool("IsGrabbing");
         if (!animator.GetBool("IsGrabbing"))
         {
+            targetObj = null;
+        }
+
+        if (targetObj != grabbedObj)
+        {
             ReleaseObj();
+            GrabObj(targetObj);
         }
     }
 
@@ -34,7 +43,7 @@ public class Grab : MonoBehaviour
     {
         if (animator.GetBool("IsGrabbing") && grabbedObj == null)
         {
-            GrabObj(other.gameObject);
+            targetObj = other.gameObject;
         }
     }
 
@@ -42,25 +51,27 @@ public class Grab : MonoBehaviour
     {
         if (grabbedObj == other.gameObject)
         {
-            ReleaseObj();
+            targetObj = null;
         }
     }
 
     private void GrabObj (GameObject go)
     {
-        Rigidbody rigidbody = go.GetComponent<Rigidbody>();
-        if (rigidbody != null)
+        if (go != null && go.GetComponent<Rigidbody>() != null)
         {
             grabbedObj = go;
-            joint.connectedBody = rigidbody;
+            joint = go.AddComponent<FixedJoint>();
+            joint.connectedBody = rb;
+            joint.breakForce = breakForce;
+            joint.connectedMassScale = massScale;
         }
     }
 
     private void ReleaseObj() { 
         if (grabbedObj != null)
         {
+            Destroy(joint);
             grabbedObj = null;
-            joint.connectedBody = null;
         }
     }
 }
