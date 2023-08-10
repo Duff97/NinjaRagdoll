@@ -41,6 +41,7 @@ public class ThirdPersonCam : MonoBehaviour
     [SerializeField] private Animator animator;
 
     public float rotationSpeed;
+    public bool hasAuthority = false;
 
     // Start is called before the first frame update
     void Start()
@@ -82,32 +83,38 @@ public class ThirdPersonCam : MonoBehaviour
 
     private void MyInput()
     {
-        horizontalInput = Input.GetAxisRaw("Horizontal");
-        verticalInput = Input.GetAxisRaw("Vertical");
-
-        // when to jump
-        if (Input.GetKey(jumpKey) && readyToJump && grounded)
+        if (hasAuthority)
         {
-            readyToJump = false;
+            horizontalInput = Input.GetAxisRaw("Horizontal");
+            verticalInput = Input.GetAxisRaw("Vertical");
 
-             Jump();
+            // when to jump
+            if (Input.GetKey(jumpKey) && readyToJump && grounded)
+            {
+                readyToJump = false;
 
-            Invoke(nameof(ResetJump), jumpCooldown);
+                Jump();
+
+                Invoke(nameof(ResetJump), jumpCooldown);
+            }
+
+            animator.SetBool("IsGrabbing", Input.GetKey(grabKey));
         }
-
-        animator.SetBool("IsGrabbing", Input.GetKey(grabKey));
     }
 
     private void MovePlayer()
     {
-        // calculate movement direction
-        moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
+        if (hasAuthority)
+        {
+            // calculate movement direction
+            moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
-        Vector3 viewDir = playerObj.position - new Vector3(transform.position.x, playerObj.position.y, transform.position.z);
-        orientation.forward = viewDir.normalized;
+            Vector3 viewDir = playerObj.position - new Vector3(transform.position.x, playerObj.position.y, transform.position.z);
+            orientation.forward = viewDir.normalized;
 
-        if (moveDirection != Vector3.zero)
-            playerObj.forward = Vector3.Slerp(playerObj.forward, moveDirection.normalized, Time.deltaTime * rotationSpeed);
+            if (moveDirection != Vector3.zero)
+                playerObj.forward = Vector3.Slerp(playerObj.forward, moveDirection.normalized, Time.deltaTime * rotationSpeed); 
+        }
 
         // on ground
         if (grounded)
@@ -144,6 +151,9 @@ public class ThirdPersonCam : MonoBehaviour
 
     private void Animate()
     {
-        animator.SetBool("IsRunning", horizontalInput != 0 || verticalInput != 0);
+        if (hasAuthority)
+        {
+            animator.SetBool("IsRunning", horizontalInput != 0 || verticalInput != 0);
+        }
     }
 }
