@@ -55,17 +55,13 @@ public class ThirdPersonCam : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
 
         // ground check
-        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.3f, whatIsGround);
+        grounded = Physics.Raycast(playerObj.transform.position, Vector3.down, playerHeight * 0.5f + 0.3f, whatIsGround);
 
-        if (!ragdoll.movementDisabled)
-        {
-            MyInput();
-            //SpeedControl();
-            Animate();
-        }
+        
+        MyInput();
+        Animate();
 
 
         // handle drag
@@ -83,7 +79,7 @@ public class ThirdPersonCam : MonoBehaviour
 
     private void MyInput()
     {
-        if (hasAuthority)
+        if (hasAuthority && !ragdoll.movementDisabled)
         {
             horizontalInput = Input.GetAxisRaw("Horizontal");
             verticalInput = Input.GetAxisRaw("Vertical");
@@ -104,7 +100,7 @@ public class ThirdPersonCam : MonoBehaviour
 
     private void MovePlayer()
     {
-        if (hasAuthority)
+        if (hasAuthority && !ragdoll.movementDisabled)
         {
             // calculate movement direction
             moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
@@ -113,27 +109,16 @@ public class ThirdPersonCam : MonoBehaviour
             orientation.forward = viewDir.normalized;
 
             if (moveDirection != Vector3.zero)
-                playerObj.forward = Vector3.Slerp(playerObj.forward, moveDirection.normalized, Time.deltaTime * rotationSpeed); 
-        }
+            {
+                playerObj.forward = Vector3.Slerp(playerObj.forward, moveDirection.normalized, Time.deltaTime * rotationSpeed);
+                // on ground
+                if (grounded)
+                    rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
 
-        // on ground
-        if (grounded)
-            rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
-
-        // in air
-        else if (!grounded)
-            rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
-    }
-
-    private void SpeedControl()
-    {
-        Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
-
-        // limit velocity if needed
-        if (flatVel.magnitude > moveSpeed)
-        {
-            Vector3 limitedVel = flatVel.normalized * moveSpeed;
-            rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
+                // in air
+                else if (!grounded)
+                    rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
+            }
         }
     }
 
