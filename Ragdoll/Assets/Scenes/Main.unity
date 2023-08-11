@@ -263,7 +263,7 @@ ConstantForce:
   m_Enabled: 1
   m_Force: {x: 0, y: 0, z: 0}
   m_RelativeForce: {x: 0, y: 0, z: 0}
-  m_Torque: {x: 0, y: 50000, z: 0}
+  m_Torque: {x: 0, y: 0, z: 0}
   m_RelativeTorque: {x: 0, y: 0, z: 0}
 --- !u!1 &705507993
 GameObject:
@@ -436,8 +436,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.04763198, y: -0.0000000021483566, z: 1.02446746e-10, w: 0.99886495}
-  m_LocalPosition: {x: 2.0606725, y: 8.702555, z: -6.2704153}
+  m_LocalRotation: {x: 0.33793336, y: -0.6516365, z: 0.40273347, w: 0.5467877}
+  m_LocalPosition: {x: 3.665678, y: 20.75, z: 2.3219953}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

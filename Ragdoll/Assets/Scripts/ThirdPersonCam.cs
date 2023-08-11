@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,6 +22,7 @@ public class ThirdPersonCam : MonoBehaviour
     [Header("Keybinds")]
     public KeyCode jumpKey = KeyCode.Space;
     public KeyCode grabKey = KeyCode.Mouse0;
+    public KeyCode spineControlKey = KeyCode.LeftShift;
 
     [Header("Ground Check")]
     public float playerHeight;
@@ -39,9 +41,15 @@ public class ThirdPersonCam : MonoBehaviour
     public LimbManager ragdoll;
     
     [SerializeField] private Animator animator;
+    private CinemachineFreeLook cinemachine;
 
     public float rotationSpeed;
     public bool hasAuthority = false;
+
+    private void Awake()
+    {
+        cinemachine = GetComponent<CinemachineFreeLook>();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -74,6 +82,7 @@ public class ThirdPersonCam : MonoBehaviour
 
     private void FixedUpdate()
     {
+        ToggleCameraRotation();
         MovePlayer();
     }
 
@@ -105,6 +114,7 @@ public class ThirdPersonCam : MonoBehaviour
             // calculate movement direction
             moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
+            
             Vector3 viewDir = playerObj.position - new Vector3(transform.position.x, playerObj.position.y, transform.position.z);
             orientation.forward = viewDir.normalized;
 
@@ -139,6 +149,22 @@ public class ThirdPersonCam : MonoBehaviour
         if (hasAuthority)
         {
             animator.SetBool("IsRunning", horizontalInput != 0 || verticalInput != 0);
+        }
+    }
+
+    private void ToggleCameraRotation()
+    {
+        if (Input.GetKey(spineControlKey))
+        {
+            cinemachine.m_YAxis.m_InputAxisName = "";
+            cinemachine.m_XAxis.m_InputAxisName = "";
+            cinemachine.m_YAxis.m_InputAxisValue = 0f;
+            cinemachine.m_XAxis.m_InputAxisValue = 0f;
+        }
+        else
+        {
+            cinemachine.m_YAxis.m_InputAxisName = "Mouse Y";
+            cinemachine.m_XAxis.m_InputAxisName = "Mouse X";
         }
     }
 }

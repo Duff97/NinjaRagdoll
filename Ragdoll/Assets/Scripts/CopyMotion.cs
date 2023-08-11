@@ -18,13 +18,9 @@ public class CopyMotion : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (targetLimb == null)
-            this.enabled = false;
-        else
-        {
-            this.configurableJoint = GetComponent<ConfigurableJoint>();
-            this.targetInitialRotation = targetLimb.transform.localRotation;
-        }
+        
+        this.configurableJoint = GetComponent<ConfigurableJoint>();
+        this.targetInitialRotation = targetLimb.transform.localRotation;
     }
 
     private void FixedUpdate()
