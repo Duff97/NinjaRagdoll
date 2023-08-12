@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,8 +8,7 @@ public class SpineControl : MonoBehaviour
 {
     [Header("Parameters")]
     [SerializeField] private int rotationSpeed;
-    [SerializeField] private float maxHorizontalRotation;
-    [SerializeField] private float maxVerticalRotation;
+    [SerializeField] private float maxRotation;
 
     [Header("KeyBinds")]
     [SerializeField] private KeyCode spineControlKey = KeyCode.LeftShift;
@@ -54,9 +54,11 @@ public class SpineControl : MonoBehaviour
 
     private void MovePlayer()
     {
-        Vector3 rotation = new Vector3(verticalInput, horizontalInput, 0).normalized;
+        Vector3 rotation = new Vector3(verticalInput, horizontalInput, 0);
         Quaternion targetRotation = Quaternion.Euler(rotation) * transform.localRotation;
-        transform.localRotation = Quaternion.Slerp(transform.localRotation, targetRotation, Time.deltaTime * rotationSpeed);
+        rotation = targetRotation.eulerAngles;
+        rotation.z = 0;
+        transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.Euler(rotation), Time.deltaTime * rotationSpeed);
     }
 
     private void ControlRotation()
@@ -64,34 +66,36 @@ public class SpineControl : MonoBehaviour
         float horizontalRotation = transform.localRotation.eulerAngles.y;
         float verticalRotation = transform.localRotation.eulerAngles.x;
 
-        bool exceededLimits = false;
-
-        // Check horizontal rotation limit
         if (horizontalRotation > 180f)
         {
             horizontalRotation -= 360f;
         }
-        if (Mathf.Abs(horizontalRotation) > maxHorizontalRotation)
-        {
-            horizontalRotation = Mathf.Sign(horizontalRotation) * maxHorizontalRotation;
-            exceededLimits = true;
-        }
-
-        // Check vertical rotation limit
         if (verticalRotation > 180f)
         {
             verticalRotation -= 360f;
         }
-        if (Mathf.Abs(verticalRotation) > maxVerticalRotation)
+
+        // Calculate the total combined rotation angle
+        float combinedRotation = Mathf.Sqrt(horizontalRotation * horizontalRotation + verticalRotation * verticalRotation);
+
+        bool exceededLimit = false;
+
+        if (combinedRotation > maxRotation)
         {
-            verticalRotation = Mathf.Sign(verticalRotation) * maxVerticalRotation;
-            exceededLimits = true;
+            // Calculate the scale factor to bring the combined rotation within limits
+            float scaleFactor = maxRotation / combinedRotation;
+
+            // Scale the horizontal and vertical rotations
+            horizontalRotation *= scaleFactor;
+            verticalRotation *= scaleFactor;
+
+            exceededLimit = true;
         }
 
-        if (exceededLimits)
+        if (exceededLimit)
         {
             Quaternion targetRotation = Quaternion.Euler(verticalRotation, horizontalRotation, 0f);
-            transform.localRotation = Quaternion.Slerp(transform.localRotation, targetRotation, Time.deltaTime * rotationSpeed);
+            transform.localRotation = targetRotation;
         }
     }
 

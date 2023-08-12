@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 504305805093746038}
   - component: {fileID: 2120215094995352093}
   - component: {fileID: 3593983913536286772}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: LeftForeArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -203,9 +203,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f30e9652dcd6c424eb73d93bde0b4e9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  grabbedObj: {fileID: 0}
   animator: {fileID: 1898732654248199796}
-  breakForce: 8000
-  massScale: 0.7
+  breakForce: 100000
+  massScale: 0.1
 --- !u!1 &1842361671695631
 GameObject:
   m_ObjectHideFlags: 0
@@ -1604,9 +1605,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4197c84d32b08b49a688b44c1125987, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 300
-  maxHorizontalRotation: 90
-  maxVerticalRotation: 60
+  rotationSpeed: 3000
+  maxRotation: 89
   spineControlKey: 304
   ragdoll: {fileID: 2006456812837842975}
   hasAuthority: 0
@@ -4857,7 +4857,7 @@ GameObject:
   - component: {fileID: 293982525203775354}
   - component: {fileID: 7671170082797876403}
   - component: {fileID: 5567209975618305384}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: RightArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5161,7 +5161,7 @@ GameObject:
   - component: {fileID: 9117824283104296494}
   - component: {fileID: 7203670303604760899}
   - component: {fileID: 946080179533227084}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: RightForeArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5349,9 +5349,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f30e9652dcd6c424eb73d93bde0b4e9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  grabbedObj: {fileID: 0}
   animator: {fileID: 1898732654248199796}
-  breakForce: 8000
-  massScale: 0.7
+  breakForce: 100000
+  massScale: 0.1
 --- !u!1 &9145220627082699169
 GameObject:
   m_ObjectHideFlags: 0

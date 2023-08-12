@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Grab : MonoBehaviour
 {
-    private GameObject grabbedObj;
+    public GameObject grabbedObj;
     private GameObject targetObj;
     private Rigidbody rb;
 
