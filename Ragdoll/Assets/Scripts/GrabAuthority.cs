@@ -7,22 +7,22 @@ public class GrabAuthority : NetworkBehaviour
 {
     private NetworkIdentity identity;
 
+    
+
     private void Awake()
     {
         identity = GetComponent<NetworkIdentity>();
     }
 
+
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(isClient);
-        if (isClient)
-        {
-            CmdAssignNetworkAuthority(other.gameObject.GetComponent<NetworkIdentity>());
-        }
+        Grab grab = other.gameObject.GetComponent<Grab>();
+        CmdAssignNetworkAuthority(grab.identity);
     }
 
 
-    [Command]
+    [Command(requiresAuthority=false)]
     public void CmdAssignNetworkAuthority(NetworkIdentity clientId)
     {
         //If -> cube has a owner && owner isn't the actual owner

@@ -13,6 +13,7 @@ public class Grab : MonoBehaviour
     [Header("References")]
     public Animator animator;
     public Transform throwOrigin;
+    public NetworkIdentity identity;
 
     [Header("Parameters")]
     public int breakForce;

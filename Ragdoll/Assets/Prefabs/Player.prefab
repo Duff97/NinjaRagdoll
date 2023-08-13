@@ -206,6 +206,7 @@ MonoBehaviour:
   grabbedObj: {fileID: 0}
   animator: {fileID: 1898732654248199796}
   throwOrigin: {fileID: 6969783007314517662}
+  identity: {fileID: 6867432515056353932}
   breakForce: 100000
   massScale: 10
   throwImpulse: 200
@@ -5356,6 +5357,7 @@ MonoBehaviour:
   grabbedObj: {fileID: 0}
   animator: {fileID: 1898732654248199796}
   throwOrigin: {fileID: 6969783007314517662}
+  identity: {fileID: 6867432515056353932}
   breakForce: 100000
   massScale: 10
   throwImpulse: 200
