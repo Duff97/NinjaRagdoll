@@ -6,7 +6,6 @@ using UnityEngine;
 public class GrabAuthority : NetworkBehaviour
 {
     private NetworkIdentity identity;
-
     
 
     private void Awake()
@@ -18,13 +17,13 @@ public class GrabAuthority : NetworkBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Grab grab = other.gameObject.GetComponent<Grab>();
-        CmdAssignNetworkAuthority(grab.identity);
     }
 
 
     [Command(requiresAuthority=false)]
     public void CmdAssignNetworkAuthority(NetworkIdentity clientId)
     {
+        
         //If -> cube has a owner && owner isn't the actual owner
         if (identity.connectionToClient != null && identity.connectionToClient != clientId.connectionToClient)
         {
@@ -37,6 +36,7 @@ public class GrabAuthority : NetworkBehaviour
         {
             // Add client as owner
             identity.AssignClientAuthority(clientId.connectionToClient);
+            Debug.Log("Authority assigned to " + clientId.connectionToClient.ToString());
         }
     }
 }

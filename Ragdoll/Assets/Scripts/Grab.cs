@@ -14,6 +14,7 @@ public class Grab : MonoBehaviour
     public Animator animator;
     public Transform throwOrigin;
     public NetworkIdentity identity;
+    public LimbManager limbManager;
 
     [Header("Parameters")]
     public int breakForce;
@@ -76,6 +77,7 @@ public class Grab : MonoBehaviour
             joint = go.AddComponent<FixedJoint>();
             joint.connectedBody = rb;
             joint.massScale = massScale;
+            limbManager.IgnoreCollision(grabbedObj.GetComponent<Collider>(), true);
 
         }
     }
@@ -83,6 +85,7 @@ public class Grab : MonoBehaviour
     private void ReleaseObj() { 
         if (grabbedObj != null)
         {
+            limbManager.IgnoreCollision(grabbedObj.GetComponent<Collider>(), false);
             Destroy(joint);
             grabbedObj = null;
             targetObj = null;

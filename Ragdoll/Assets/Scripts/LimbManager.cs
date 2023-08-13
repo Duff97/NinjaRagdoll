@@ -105,4 +105,16 @@ public class LimbManager : MonoBehaviour
             }
         }
     }
+
+    public void IgnoreCollision(Collider collider, bool ignore)
+    {
+        foreach (var joint in joints)
+        {
+            if (joint.gameObject.layer == LayerMask.NameToLayer("Character"))
+            {
+                Collider limb = joint.GetComponent<Collider>();
+                Physics.IgnoreCollision(collider, limb, ignore);
+            }
+        }
+    }
 }
