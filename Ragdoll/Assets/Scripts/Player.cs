@@ -15,5 +15,6 @@ public class Player : NetworkBehaviour
         cameraHolder.GetComponent<CinemachineFreeLook>().Priority = 10;
         cameraHolder.GetComponent<ThirdPersonCam>().hasAuthority = true;
         spineControl.hasAuthority = true;
+        
     }
 }

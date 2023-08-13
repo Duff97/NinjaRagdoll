@@ -1,3 +1,4 @@
+using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,13 +8,20 @@ public class Grab : MonoBehaviour
     public GameObject grabbedObj;
     private GameObject targetObj;
     private Rigidbody rb;
+    private SphereCollider trigger;
 
     [Header("References")]
     public Animator animator;
+    public Transform throwOrigin;
 
     [Header("Parameters")]
-    public int breakForce = 9000;
-    public float massScale = 0.1f;
+    public int breakForce;
+    public int massScale;
+    public int throwImpulse;
+    public float throwCD;
+
+    [Header("Inputs")]
+    public KeyCode throwInput = KeyCode.Mouse1;
 
     private FixedJoint joint;
 
@@ -22,6 +30,7 @@ public class Grab : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        trigger = GetComponent<SphereCollider>();
     }
 
     // Update is called once per frame
@@ -37,11 +46,14 @@ public class Grab : MonoBehaviour
             ReleaseObj();
             GrabObj(targetObj);
         }
+
+        if (Input.GetKey(throwInput))
+            throwObj();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (animator.GetBool("IsGrabbing") && grabbedObj == null)
+        if (animator.GetBool("IsGrabbing") && grabbedObj == null && other.gameObject.layer == LayerMask.NameToLayer("Grabbable"))
         {
             targetObj = other.gameObject;
         }
@@ -57,13 +69,13 @@ public class Grab : MonoBehaviour
 
     private void GrabObj (GameObject go)
     {
-        if (go != null && go.GetComponent<Rigidbody>() != null)
+        if (go != null)
         {
             grabbedObj = go;
             joint = go.AddComponent<FixedJoint>();
             joint.connectedBody = rb;
-            joint.breakForce = breakForce;
-            joint.connectedMassScale = massScale;
+            joint.massScale = massScale;
+
         }
     }
 
@@ -72,6 +84,24 @@ public class Grab : MonoBehaviour
         {
             Destroy(joint);
             grabbedObj = null;
+            targetObj = null;
         }
+    }
+
+    private void throwObj()
+    {
+        if (grabbedObj != null)
+        {
+            Vector3 throwDirection = throwOrigin.forward;
+            grabbedObj.GetComponent<Rigidbody>().AddForce(throwDirection * (-throwImpulse), ForceMode.Impulse);
+            trigger.enabled = false;
+            Invoke("ActivateGrab", throwCD);
+            ReleaseObj();
+        }    
+    }
+
+    private void ActivateGrab()
+    {
+        trigger.enabled = true;
     }
 }
