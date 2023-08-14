@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class CopyMotion : MonoBehaviour
 {
@@ -13,8 +14,8 @@ public class CopyMotion : MonoBehaviour
     private ConfigurableJoint configurableJoint;
 
     private Quaternion targetInitialRotation;
-    
-    
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +26,7 @@ public class CopyMotion : MonoBehaviour
 
     private void FixedUpdate()
     {
+            
         configurableJoint.targetRotation = copyRotation();
     }
 

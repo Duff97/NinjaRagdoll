@@ -65,9 +65,9 @@ Rigidbody:
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!153 &80798112065661616
 ConfigurableJoint:
   m_ObjectHideFlags: 0
@@ -675,9 +675,9 @@ Rigidbody:
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!153 &9162036766363883718
 ConfigurableJoint:
   m_ObjectHideFlags: 0
@@ -1715,9 +1715,9 @@ Rigidbody:
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!153 &6557273064735454367
 ConfigurableJoint:
   m_ObjectHideFlags: 0
@@ -1903,9 +1903,9 @@ Rigidbody:
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!153 &6436201180351260107
 ConfigurableJoint:
   m_ObjectHideFlags: 0
@@ -2484,9 +2484,6 @@ MonoBehaviour:
   maxDrive: 600
   driveResetCooldown: 3
   driveResetVelocity: 3
-  characterLayer:
-    serializedVersion: 2
-    m_Bits: 64
 --- !u!1 &5240628662762537141
 GameObject:
   m_ObjectHideFlags: 0
@@ -2902,9 +2899,9 @@ Rigidbody:
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!153 &5630000619534113337
 ConfigurableJoint:
   m_ObjectHideFlags: 0
@@ -4308,7 +4305,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7407185904439351371}
-  m_LocalRotation: {x: 0.09252102, y: 0.00000001765986, z: -0.0000000016409466, w: 0.99571073}
+  m_LocalRotation: {x: 0.09252102, y: -0.000000017659854, z: 0.0000000016409462, w: 0.99571073}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4916,9 +4913,9 @@ Rigidbody:
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!153 &7671170082797876403
 ConfigurableJoint:
   m_ObjectHideFlags: 0
@@ -5220,9 +5217,9 @@ Rigidbody:
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!153 &1358316032357522091
 ConfigurableJoint:
   m_ObjectHideFlags: 0
@@ -5498,9 +5495,9 @@ Rigidbody:
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!153 &2133676894139336421
 ConfigurableJoint:
   m_ObjectHideFlags: 0

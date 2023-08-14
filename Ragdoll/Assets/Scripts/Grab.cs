@@ -15,6 +15,7 @@ public class Grab : MonoBehaviour
     public Transform throwOrigin;
     public NetworkIdentity identity;
     public LimbManager limbManager;
+    private Player player;
 
     [Header("Parameters")]
     public int breakForce;
@@ -26,6 +27,7 @@ public class Grab : MonoBehaviour
     public KeyCode throwInput = KeyCode.Mouse1;
 
     private FixedJoint joint;
+    bool grabDisabled;
 
 
     // Start is called before the first frame update
@@ -33,11 +35,13 @@ public class Grab : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         trigger = GetComponent<SphereCollider>();
+        player = identity.GetComponent<Player>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        trigger.enabled = animator.GetBool("IsGrabbing") && !grabDisabled;
         if (!animator.GetBool("IsGrabbing"))
         {
             targetObj = null;
@@ -98,7 +102,8 @@ public class Grab : MonoBehaviour
         {
             Vector3 throwDirection = throwOrigin.forward;
             grabbedObj.GetComponent<Rigidbody>().AddForce(throwDirection * (-throwImpulse), ForceMode.Impulse);
-            trigger.enabled = false;
+            //player.CmdAddForceToBody(throwDirection * (-throwImpulse), grabbedObj.GetComponent<NetworkIdentity>());
+            grabDisabled = true;
             Invoke("ActivateGrab", throwCD);
             ReleaseObj();
         }    
@@ -106,6 +111,6 @@ public class Grab : MonoBehaviour
 
     private void ActivateGrab()
     {
-        trigger.enabled = true;
+        grabDisabled = false;
     }
 }
