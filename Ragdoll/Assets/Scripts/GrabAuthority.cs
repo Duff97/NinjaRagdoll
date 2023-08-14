@@ -6,36 +6,26 @@ using UnityEngine;
 public class GrabAuthority : NetworkBehaviour
 {
     private NetworkIdentity identity;
-    private Rigidbody rb;
+    public float grabbableCD = 1.5f;
+    
+    [SyncVar]
+    public bool grabDisabled;
     
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody>();
         identity = GetComponent<NetworkIdentity>();
     }
 
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Hand"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Hand") && !grabDisabled && isClient)
         {
             Grab grab = other.gameObject.GetComponent<Grab>();
             CmdAssignNetworkAuthority(grab.identity);
         }
     }
-
-    /*public override void OnStartAuthority()
-    {
-        base.OnStartAuthority();
-        rb.isKinematic = false;
-    }
-
-    public override void OnStopAuthority()
-    {
-        base.OnStopAuthority();
-        rb.isKinematic = true;
-    }*/
 
 
     [Command(requiresAuthority=false)]
@@ -58,5 +48,14 @@ public class GrabAuthority : NetworkBehaviour
         }
     }
 
-    //TODO Commande qui replique la velocite dune collision sur un autre joueur
+    [Command(requiresAuthority=false)]
+    public void CmdStartGrabCD()
+    {
+        grabDisabled = true;
+        Invoke("ActivateGrab", grabbableCD);
+    }
+
+    private void ActivateGrab() {
+        grabDisabled = false;
+    }
 }

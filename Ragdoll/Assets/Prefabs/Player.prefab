@@ -190,7 +190,7 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.3
-  m_Center: {x: 0.000000017533125, y: 0.4826206, z: 0.00000006431258}
+  m_Center: {x: 0.000000017533125, y: 0.7, z: 0.00000006431258}
 --- !u!114 &3593983913536286772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -208,10 +208,8 @@ MonoBehaviour:
   throwOrigin: {fileID: 6969783007314517662}
   identity: {fileID: 6867432515056353932}
   limbManager: {fileID: 2006456812837842975}
-  breakForce: 100000
-  massScale: 10
-  throwImpulse: 300
-  throwCD: 0.5
+  throwImpulse: 30
+  maxGrabVelocity: 0
   throwInput: 324
 --- !u!1 &1842361671695631
 GameObject:
@@ -5342,7 +5340,7 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.3
-  m_Center: {x: 0.000000017533125, y: 0.4826206, z: 0.00000006431258}
+  m_Center: {x: 0.000000017533125, y: 0.7, z: 0.00000006431258}
 --- !u!114 &946080179533227084
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5360,10 +5358,8 @@ MonoBehaviour:
   throwOrigin: {fileID: 6969783007314517662}
   identity: {fileID: 6867432515056353932}
   limbManager: {fileID: 2006456812837842975}
-  breakForce: 100000
-  massScale: 10
-  throwImpulse: 300
-  throwCD: 0.5
+  throwImpulse: 30
+  maxGrabVelocity: 0
   throwInput: 324
 --- !u!1 &9145220627082699169
 GameObject:
