@@ -3,24 +3,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Respawn : NetworkBehaviour
+public class RespawnObject : MonoBehaviour
 {
     private Vector3 initialPos;
-    private Rigidbody rb;
+    private NetworkRespawn netRespawn;
 
     private void Start()
     {
         initialPos = transform.position;
-        rb = GetComponent<Rigidbody>();
+        netRespawn = FindAnyObjectByType<NetworkRespawn>();
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Respawn"))
         {
-            Debug.Log("Respawn object replaced");
-            transform.position = initialPos;
-            rb.velocity = Vector3.zero;
+            Debug.Log("Respawn object replaced on client");
+            netRespawn.CmdRespawn(transform, initialPos);
         }
         
     }

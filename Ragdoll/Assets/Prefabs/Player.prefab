@@ -1662,6 +1662,7 @@ GameObject:
   - component: {fileID: 6557273064735454367}
   - component: {fileID: 2117823763698456710}
   - component: {fileID: 7965009215676120300}
+  - component: {fileID: 513005486165635953}
   m_Layer: 6
   m_Name: Hips
   m_TagString: Untagged
@@ -1838,6 +1839,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eac5a71c5abd2624d8644ba6ab3e96c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &513005486165635953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3530918482159371022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4ca3e265257f7145af63dc0bd4062df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  netID: {fileID: 6867432515056353932}
 --- !u!1 &4170840716267446913
 GameObject:
   m_ObjectHideFlags: 0
@@ -4554,7 +4568,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7407185904715938456}
-  m_LocalRotation: {x: 0.047631975, y: -0.0000000021483564, z: 1.02446746e-10, w: 0.99886495}
+  m_LocalRotation: {x: 0.047631975, y: 0.0000000021483564, z: -1.02446746e-10, w: 0.99886495}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
