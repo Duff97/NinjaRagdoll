@@ -352,6 +352,7 @@ GameObject:
   - component: {fileID: 1383850810606532317}
   - component: {fileID: 6442413349823254905}
   - component: {fileID: 1506863665441967333}
+  - component: {fileID: 2831099829127601295}
   m_Layer: 6
   m_Name: Head
   m_TagString: Untagged
@@ -514,6 +515,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetLimb: {fileID: 6473391712746779381}
   addParentRotation: 0
+--- !u!114 &2831099829127601295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 417752162710080533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64d11ff99f840d84fbaf9d5205afbc60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  forceDetected: 0
 --- !u!1 &644922897077194870
 GameObject:
   m_ObjectHideFlags: 0
@@ -623,6 +637,7 @@ GameObject:
   - component: {fileID: 2211288500240947525}
   - component: {fileID: 9162036766363883718}
   - component: {fileID: 3462625567208636791}
+  - component: {fileID: 3156900061253678427}
   m_Layer: 6
   m_Name: RightUpLeg
   m_TagString: Untagged
@@ -786,6 +801,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetLimb: {fileID: 5463970461439530000}
   addParentRotation: 0
+--- !u!114 &3156900061253678427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 753473826261305274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64d11ff99f840d84fbaf9d5205afbc60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  forceDetected: 0
 --- !u!1 &1328642435944680398
 GameObject:
   m_ObjectHideFlags: 0
@@ -1662,6 +1690,7 @@ GameObject:
   - component: {fileID: 6557273064735454367}
   - component: {fileID: 2117823763698456710}
   - component: {fileID: 7965009215676120300}
+  - component: {fileID: 5522423744228694609}
   m_Layer: 6
   m_Name: Hips
   m_TagString: Untagged
@@ -1838,6 +1867,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eac5a71c5abd2624d8644ba6ab3e96c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5522423744228694609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3530918482159371022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64d11ff99f840d84fbaf9d5205afbc60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  forceDetected: 0
 --- !u!1 &4170840716267446913
 GameObject:
   m_ObjectHideFlags: 0
@@ -1851,6 +1893,7 @@ GameObject:
   - component: {fileID: 7647366985031661080}
   - component: {fileID: 6436201180351260107}
   - component: {fileID: 2725992043000619727}
+  - component: {fileID: 5056443636722837697}
   m_Layer: 6
   m_Name: LeftArm
   m_TagString: Untagged
@@ -2014,6 +2057,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetLimb: {fileID: 889024203064020419}
   addParentRotation: 0
+--- !u!114 &5056443636722837697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4170840716267446913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64d11ff99f840d84fbaf9d5205afbc60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  forceDetected: 0
 --- !u!1 &4170840718202385083
 GameObject:
   m_ObjectHideFlags: 0
@@ -2478,8 +2534,8 @@ MonoBehaviour:
   kneeL: {fileID: 2357602434281474501}
   legR: {fileID: 9162036766363883718}
   kneeR: {fileID: 2163021721597200643}
-  maxVelocity: 10
-  maxDrive: 600
+  maxForce: 150
+  maxDrive: 500
   driveResetCooldown: 3
   driveResetVelocity: 3
 --- !u!1 &5240628662762537141
@@ -2847,6 +2903,7 @@ GameObject:
   - component: {fileID: 3599808153292656596}
   - component: {fileID: 5630000619534113337}
   - component: {fileID: 5333661476442504106}
+  - component: {fileID: 913958135591669044}
   m_Layer: 6
   m_Name: LeftUpLeg
   m_TagString: Untagged
@@ -3010,6 +3067,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetLimb: {fileID: 8661758561468576944}
   addParentRotation: 0
+--- !u!114 &913958135591669044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5886240470448852236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64d11ff99f840d84fbaf9d5205afbc60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  forceDetected: 0
 --- !u!1 &5982376326355722437
 GameObject:
   m_ObjectHideFlags: 0
@@ -3119,6 +3189,7 @@ GameObject:
   - component: {fileID: 406889222771352494}
   - component: {fileID: 2357602434281474501}
   - component: {fileID: 6157404159250916505}
+  - component: {fileID: 988443875292224212}
   m_Layer: 6
   m_Name: LeftLeg
   m_TagString: Untagged
@@ -3282,6 +3353,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetLimb: {fileID: 5174032219716931722}
   addParentRotation: 0
+--- !u!114 &988443875292224212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6011042092793075814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64d11ff99f840d84fbaf9d5205afbc60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  forceDetected: 0
 --- !u!1 &6084250872208617857
 GameObject:
   m_ObjectHideFlags: 0
@@ -4672,6 +4756,7 @@ GameObject:
   - component: {fileID: 6054065243970650888}
   - component: {fileID: 2163021721597200643}
   - component: {fileID: 4210279631896150416}
+  - component: {fileID: 1960163902479168011}
   m_Layer: 6
   m_Name: RightLeg
   m_TagString: Untagged
@@ -4835,6 +4920,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetLimb: {fileID: 8158377979525419540}
   addParentRotation: 0
+--- !u!114 &1960163902479168011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8236118685950656815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64d11ff99f840d84fbaf9d5205afbc60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  forceDetected: 0
 --- !u!1 &8525414752145768973
 GameObject:
   m_ObjectHideFlags: 0
@@ -4880,6 +4978,7 @@ GameObject:
   - component: {fileID: 293982525203775354}
   - component: {fileID: 7671170082797876403}
   - component: {fileID: 5567209975618305384}
+  - component: {fileID: 7499277312580269249}
   m_Layer: 9
   m_Name: RightArm
   m_TagString: Untagged
@@ -5043,6 +5142,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetLimb: {fileID: 5054220041632496426}
   addParentRotation: 0
+--- !u!114 &7499277312580269249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8525414753016566327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64d11ff99f840d84fbaf9d5205afbc60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  forceDetected: 0
 --- !u!1 &8528347247779417620
 GameObject:
   m_ObjectHideFlags: 0
@@ -5459,6 +5571,7 @@ GameObject:
   - component: {fileID: 6837085972197459737}
   - component: {fileID: 2133676894139336421}
   - component: {fileID: 782755276041367615}
+  - component: {fileID: 4788580027829267965}
   m_Layer: 6
   m_Name: Spine2
   m_TagString: Untagged
@@ -5623,3 +5736,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetLimb: {fileID: 6733541554836370014}
   addParentRotation: 1
+--- !u!114 &4788580027829267965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9166933681250037256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64d11ff99f840d84fbaf9d5205afbc60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  forceDetected: 0

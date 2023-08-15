@@ -19,20 +19,21 @@ public class LimbManager : MonoBehaviour
     [SerializeField] private ConfigurableJoint kneeR;
 
     [Header("Parameters")]
-    [SerializeField] private float maxVelocity;
+    [SerializeField] private float maxForce;
     [SerializeField] private float maxDrive;
     [SerializeField] private float driveResetCooldown;
     [SerializeField] private float driveResetVelocity;
 
-
-
     private ConfigurableJoint[] joints;
+    private ForceDetector[] detectors;
+
+
     [HideInInspector] public Rigidbody rootBody {
         get { return pelvis.GetComponent<Rigidbody>(); }
     }
     [HideInInspector] public bool movementDisabled { get; private set; }
     private float currentDriveResetCd;
-    private float maxRecordedVelocity = 0;
+    private float totalForce;
     
 
     // Start is called before the first frame update
@@ -51,33 +52,38 @@ public class LimbManager : MonoBehaviour
         joints[9] = legR;
         joints[10] = kneeR;
 
-        SetAngularDrive(maxDrive);
+        detectors = new ForceDetector[9];
+        detectors[0] = pelvis.GetComponent<ForceDetector>();
+        detectors[1] = torso.GetComponent<ForceDetector>();
+        detectors[2] = head.GetComponent<ForceDetector>();
+        detectors[3] = armL.GetComponent<ForceDetector>();
+        detectors[4] = armR.GetComponent<ForceDetector>();
+        detectors[5] = legL.GetComponent<ForceDetector>();
+        detectors[6] = kneeL.GetComponent<ForceDetector>();
+        detectors[7] = legR.GetComponent<ForceDetector>();
+        detectors[8] = kneeR.GetComponent<ForceDetector>();
     }
 
     // Update is called once per frame
     void Update()
     {
         ResetDrive();
-        float velocity = rootBody.velocity.magnitude;
-        if (velocity > maxRecordedVelocity)
+    }
+
+    private void FixedUpdate()
+    {
+        FetchDetectorData();
+        if (totalForce > maxForce)
         {
+            movementDisabled = true;
+            EnableAngularDrive(false);
             currentDriveResetCd = driveResetCooldown;
-            maxRecordedVelocity = velocity;
-            float ratio = velocity / maxVelocity;
-
-            if (ratio >= 1.0f)
-            {
-                ratio = 1.0f;
-                movementDisabled = true;
-            }
-                
-
-            SetAngularDrive((1.0f - ratio) * maxDrive);
         }
     }
 
-    private void SetAngularDrive(float angularDrive)
+    private void EnableAngularDrive(bool enabled)
     {
+        float angularDrive = enabled ? maxDrive : 0f;
         JointDrive drive;
         foreach (var joint in joints)
         {
@@ -99,21 +105,8 @@ public class LimbManager : MonoBehaviour
             if (currentDriveResetCd <= 0)
             {
                 currentDriveResetCd = 0;
-                SetAngularDrive(maxDrive);
-                maxRecordedVelocity = 0;
+                EnableAngularDrive(true);
                 movementDisabled = false;
-            }
-        }
-    }
-
-    public void IgnoreCollision(Collider collider, bool ignore)
-    {
-        foreach (var joint in joints)
-        {
-            if (joint.gameObject.layer == LayerMask.NameToLayer("Character"))
-            {
-                Collider limb = joint.GetComponent<Collider>();
-                Physics.IgnoreCollision(collider, limb, ignore);
             }
         }
     }
@@ -123,6 +116,16 @@ public class LimbManager : MonoBehaviour
         foreach(var joint in joints)
         {
             joint.GetComponent<Rigidbody>().velocity = velocity;
+        }
+    }
+
+    private void FetchDetectorData()
+    {
+        totalForce = 0;
+        foreach(var detector in detectors)
+        {
+            totalForce += detector.forceDetected;
+            detector.forceDetected = 0;
         }
     }
 }
