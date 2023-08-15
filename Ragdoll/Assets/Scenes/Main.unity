@@ -899,7 +899,7 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  velocityMultiplicator: 1000
+  velocityMultiplicator: 500
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1445,7 +1445,7 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  velocityMultiplicator: 1000
+  velocityMultiplicator: 500
 --- !u!1 &1782268715
 GameObject:
   m_ObjectHideFlags: 0

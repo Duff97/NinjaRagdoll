@@ -1662,7 +1662,6 @@ GameObject:
   - component: {fileID: 6557273064735454367}
   - component: {fileID: 2117823763698456710}
   - component: {fileID: 7965009215676120300}
-  - component: {fileID: 513005486165635953}
   m_Layer: 6
   m_Name: Hips
   m_TagString: Untagged
@@ -1839,19 +1838,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eac5a71c5abd2624d8644ba6ab3e96c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &513005486165635953
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3530918482159371022}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4ca3e265257f7145af63dc0bd4062df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  netID: {fileID: 6867432515056353932}
 --- !u!1 &4170840716267446913
 GameObject:
   m_ObjectHideFlags: 0
@@ -3895,6 +3881,7 @@ GameObject:
   - component: {fileID: 3828128439761883354}
   - component: {fileID: 281143934846524413}
   - component: {fileID: 4309398887505804141}
+  - component: {fileID: 1025848238179412900}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -4039,6 +4026,24 @@ MonoBehaviour:
   positionSensitivity: 0.01
   rotationSensitivity: 0.01
   scaleSensitivity: 0.01
+--- !u!114 &1025848238179412900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7407185904065085319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94de4c019a95e1e41a2e988e66533e93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  ragdollPosition: {fileID: 5528603532362550324}
+  ragdollBody: {fileID: 5195302214525057573}
+  maxDistance: 50
 --- !u!1 &7407185904136490876
 GameObject:
   m_ObjectHideFlags: 0
