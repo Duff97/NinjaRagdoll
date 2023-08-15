@@ -25,7 +25,7 @@ public class LimbManager : MonoBehaviour
     [SerializeField] private float driveResetVelocity;
 
     private ConfigurableJoint[] joints;
-    private ForceDetector[] detectors;
+    private Dictionary<string, ForceDetector> detectors;
 
 
     [HideInInspector] public Rigidbody rootBody {
@@ -52,16 +52,19 @@ public class LimbManager : MonoBehaviour
         joints[9] = legR;
         joints[10] = kneeR;
 
-        detectors = new ForceDetector[9];
-        detectors[0] = pelvis.GetComponent<ForceDetector>();
-        detectors[1] = torso.GetComponent<ForceDetector>();
-        detectors[2] = head.GetComponent<ForceDetector>();
-        detectors[3] = armL.GetComponent<ForceDetector>();
-        detectors[4] = armR.GetComponent<ForceDetector>();
-        detectors[5] = legL.GetComponent<ForceDetector>();
-        detectors[6] = kneeL.GetComponent<ForceDetector>();
-        detectors[7] = legR.GetComponent<ForceDetector>();
-        detectors[8] = kneeR.GetComponent<ForceDetector>();
+        detectors = new Dictionary<string, ForceDetector>
+        {
+            { pelvis.gameObject.name, pelvis.GetComponent<ForceDetector>() },
+            { torso.gameObject.name, torso.GetComponent<ForceDetector>() },
+            { head.gameObject.name, head.GetComponent<ForceDetector>() },
+            { armL.gameObject.name, armL.GetComponent<ForceDetector>() },
+            { armR.gameObject.name, armR.GetComponent<ForceDetector>() },
+            { legL.gameObject.name, legL.GetComponent<ForceDetector>() },
+            { kneeL.gameObject.name, legL.GetComponent <ForceDetector>() },
+            { legR.gameObject.name, legR.GetComponent<ForceDetector>() },
+            { kneeR.gameObject.name, kneeR.GetComponent<ForceDetector>() }
+        };
+
     }
 
     // Update is called once per frame
@@ -124,8 +127,13 @@ public class LimbManager : MonoBehaviour
         totalForce = 0;
         foreach(var detector in detectors)
         {
-            totalForce += detector.forceDetected;
-            detector.forceDetected = 0;
+            totalForce += detector.Value.forceDetected;
+            detector.Value.forceDetected = 0;
         }
+    }
+
+    public ForceDetector findDetectorByName(string name)
+    {
+        return detectors[name];
     }
 }

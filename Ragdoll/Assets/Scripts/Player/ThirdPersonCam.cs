@@ -149,6 +149,7 @@ public class ThirdPersonCam : MonoBehaviour
         if (hasAuthority)
         {
             animator.SetBool("IsRunning", horizontalInput != 0 || verticalInput != 0);
+            animator.SetBool("IsGrounded", grounded);
         }
     }
 

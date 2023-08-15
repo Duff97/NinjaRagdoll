@@ -214,4 +214,4 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  velocityMultiplicator: 500
+  forceMultiplicator: 35

@@ -1,10 +1,19 @@
+using Mirror;
+using Mirror.Examples.RigidbodyBenchmark;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ForceDetector : MonoBehaviour
 {
+    public NetworkIdentity netId;
     public float forceDetected = 0f;
+    private Rigidbody rb;
+
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -12,5 +21,11 @@ public class ForceDetector : MonoBehaviour
         {
             forceDetected += collision.impulse.magnitude;
         }
+    }
+
+    public void AddImpulse(Vector3 impulse)
+    {
+        rb.AddForce(impulse, ForceMode.Impulse);
+        forceDetected += impulse.magnitude;
     }
 }
