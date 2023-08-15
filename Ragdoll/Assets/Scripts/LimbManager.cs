@@ -117,4 +117,12 @@ public class LimbManager : MonoBehaviour
             }
         }
     }
+
+    public void SetVelocity(Vector3 velocity)
+    {
+        foreach(var joint in joints)
+        {
+            joint.GetComponent<Rigidbody>().velocity = velocity;
+        }
+    }
 }

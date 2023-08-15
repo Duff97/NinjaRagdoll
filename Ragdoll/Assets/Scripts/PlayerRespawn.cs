@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerRespawn : NetworkBehaviour
 {
     public Transform ragdollPosition;
-    public Rigidbody ragdollBody;
+    public LimbManager limbManagager;
     public float maxDistance;
     
 
@@ -18,7 +18,7 @@ public class PlayerRespawn : NetworkBehaviour
             if (distance > maxDistance)
             {
                 ragdollPosition.position = transform.position;
-                ragdollBody.velocity = Vector3.zero;
+                limbManagager.SetVelocity(Vector3.zero);
             }
         }
     }
