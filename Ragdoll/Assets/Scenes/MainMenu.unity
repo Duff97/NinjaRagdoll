@@ -195,6 +195,8 @@ MonoBehaviour:
   playerSpawnMethod: 0
   spawnPrefabs:
   - {fileID: 536342107360672105, guid: 255bd50c0b57afc4489a3dad8dd9d0a7, type: 3}
+  - {fileID: 7407185904065085319, guid: dbd6065fd7640204da3fbaa1ef88f1b9, type: 3}
+  - {fileID: 5517070588673000172, guid: 3af41e3198c113249b67ef6faefde976, type: 3}
   snapshotSettings:
     bufferTimeMultiplier: 2
     bufferLimit: 32
@@ -210,12 +212,9 @@ MonoBehaviour:
   timeInterpolationGui: 0
   minPlayers: 2
   menuScene: MainMenu
-  numberOfRounds: 1
-  mapSet: {fileID: 0}
   roomPlayerPrefab: {fileID: 5494571419773178487, guid: 255bd50c0b57afc4489a3dad8dd9d0a7, type: 3}
-  gamePlayerPrefab: {fileID: 0}
-  playerSpawnSystem: {fileID: 0}
-  roundSystem: {fileID: 0}
+  gamePlayerPrefab: {fileID: 3828128439761883354, guid: dbd6065fd7640204da3fbaa1ef88f1b9, type: 3}
+  playerSpawnSystem: {fileID: 5517070588673000172, guid: 3af41e3198c113249b67ef6faefde976, type: 3}
 --- !u!4 &214066867
 Transform:
   m_ObjectHideFlags: 0

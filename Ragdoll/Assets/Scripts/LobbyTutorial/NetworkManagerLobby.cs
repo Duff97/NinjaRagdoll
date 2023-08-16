@@ -1,12 +1,10 @@
-﻿using DapperDino.Tutorials.Lobby;
-using Mirror;
+﻿using Mirror;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEditorInternal.Profiling;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Networking;
 
 namespace DapperDino.Mirror.Tutorials.Lobby
 {
@@ -15,19 +13,12 @@ namespace DapperDino.Mirror.Tutorials.Lobby
         [SerializeField] private int minPlayers = 2;
         [SerializeField] private string menuScene = string.Empty;
 
-        [Header("Maps")]
-        [SerializeField] private int numberOfRounds = 1;
-        [SerializeField] private MapSet mapSet = null;
-
         [Header("Room")]
         [SerializeField] private NetworkRoomPlayerLobby roomPlayerPrefab = null;
 
         [Header("Game")]
-        [SerializeField] private NetworkGamePlayerLobby gamePlayerPrefab = null;
+        [SerializeField] private Player gamePlayerPrefab = null;
         [SerializeField] private GameObject playerSpawnSystem = null;
-        [SerializeField] private GameObject roundSystem = null;
-
-        private MapHandler mapHandler;
 
         public static event Action OnClientConnected;
         public static event Action OnClientDisconnected;
@@ -35,7 +26,7 @@ namespace DapperDino.Mirror.Tutorials.Lobby
         public static event Action OnServerStopped;
 
         public List<NetworkRoomPlayerLobby> RoomPlayers { get; } = new List<NetworkRoomPlayerLobby>();
-        public List<NetworkGamePlayerLobby> GamePlayers { get; } = new List<NetworkGamePlayerLobby>();
+        public List<Player> GamePlayers { get; } = new List<Player>();
 
         public override void OnClientConnect()
         {
@@ -46,7 +37,6 @@ namespace DapperDino.Mirror.Tutorials.Lobby
         public override void OnClientDisconnect()
         {
             base.OnClientDisconnect();
-
             OnClientDisconnected?.Invoke();
         }
 
@@ -129,16 +119,14 @@ namespace DapperDino.Mirror.Tutorials.Lobby
             {
                 if (!IsReadyToStart()) { return; }
 
-                mapHandler = new MapHandler(mapSet, numberOfRounds);
-
-                ServerChangeScene(mapHandler.NextMap);
+                ServerChangeScene("Arena1");
             }
         }
 
         public override void ServerChangeScene(string newSceneName)
         {
             // From menu to game
-            if (SceneManager.GetActiveScene().name == menuScene && newSceneName.StartsWith("Scene_Map"))
+            if (SceneManager.GetActiveScene().name == menuScene)
             {
                 for (int i = RoomPlayers.Count - 1; i >= 0; i--)
                 {
@@ -161,9 +149,6 @@ namespace DapperDino.Mirror.Tutorials.Lobby
             {
                 GameObject playerSpawnSystemInstance = Instantiate(playerSpawnSystem);
                 NetworkServer.Spawn(playerSpawnSystemInstance);
-
-                GameObject roundSystemInstance = Instantiate(roundSystem);
-                NetworkServer.Spawn(roundSystemInstance);
             }
         }
 
