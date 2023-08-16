@@ -197,6 +197,8 @@ MonoBehaviour:
   - {fileID: 536342107360672105, guid: 255bd50c0b57afc4489a3dad8dd9d0a7, type: 3}
   - {fileID: 7407185904065085319, guid: dbd6065fd7640204da3fbaa1ef88f1b9, type: 3}
   - {fileID: 5517070588673000172, guid: 3af41e3198c113249b67ef6faefde976, type: 3}
+  - {fileID: 130906666326681748, guid: 64b12d0c243c12a45a6a313e3b26bb01, type: 3}
+  - {fileID: 1366627117398234358, guid: 5df2146a56fccf04a8288f2b660795fd, type: 3}
   snapshotSettings:
     bufferTimeMultiplier: 2
     bufferLimit: 32
@@ -458,8 +460,24 @@ PrefabInstance:
       value: -1183493901
       objectReference: {fileID: 0}
     - target: {fileID: 3680616506041721918, guid: 550b06e28221ae64ca5d2a1fbcf77040, type: 3}
+      propertyPath: m_text
+      value: Ninja Ragdoll
+      objectReference: {fileID: 0}
+    - target: {fileID: 3680616506041721918, guid: 550b06e28221ae64ca5d2a1fbcf77040, type: 3}
+      propertyPath: m_textAlignment
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 3680616506041721918, guid: 550b06e28221ae64ca5d2a1fbcf77040, type: 3}
       propertyPath: m_TextStyleHashCode
       value: -1183493901
+      objectReference: {fileID: 0}
+    - target: {fileID: 3680616506041721918, guid: 550b06e28221ae64ca5d2a1fbcf77040, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 3680616506041721918, guid: 550b06e28221ae64ca5d2a1fbcf77040, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6998497965460702155, guid: 550b06e28221ae64ca5d2a1fbcf77040, type: 3}
       propertyPath: m_TextStyleHashCode

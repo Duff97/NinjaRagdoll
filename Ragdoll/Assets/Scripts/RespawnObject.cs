@@ -18,7 +18,6 @@ public class RespawnObject : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Respawn"))
         {
-            Debug.Log("Respawn object replaced on client");
             netRespawn.CmdRespawn(transform, initialPos);
         }
         

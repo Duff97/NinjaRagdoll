@@ -37,13 +37,11 @@ public class Grab : MonoBehaviour
         if (!animator.GetBool("IsGrabbing"))
         {
             if (targetObj!= null) 
-                Debug.Log("Object released because animation stop");
             targetObj = null;
         }
 
         if (targetObj != grabbedObj)
         {
-            Debug.Log("Object released because targetObj != grabbedObj");
             ReleaseObj();
             GrabObj(targetObj);
         }
@@ -67,7 +65,6 @@ public class Grab : MonoBehaviour
             GrabAuthority grabAuthority = go.GetComponent<GrabAuthority>();
             if (!grabAuthority.grabDisabled)
             {
-                Debug.Log("Object grabbed");
                 grabbedObj = go;
                 joint = go.AddComponent<FixedJoint>();
                 joint.connectedBody = rb;
@@ -79,7 +76,6 @@ public class Grab : MonoBehaviour
     private void ReleaseObj() { 
         if (grabbedObj != null)
         {
-            Debug.Log("Object released function");
             Destroy(joint);
             grabbedObj = null;
             targetObj = null;

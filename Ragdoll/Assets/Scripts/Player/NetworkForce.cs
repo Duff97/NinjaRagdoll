@@ -12,9 +12,8 @@ public class NetworkForce : NetworkBehaviour
     {
         if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Character") && isOwned)
         {
-            Debug.Log("Networked collision enter");
             ForceDetector detector = collision.collider.GetComponent<ForceDetector>();
-            if (detector != null) 
+            if (detector != null && !detector.netId.isOwned) 
             {
                 Debug.Log("Networked collision detected unowned collision");
                 CmdApplyForce(detector.netId, collision.impulse, collision.collider.gameObject.name);
@@ -30,9 +29,8 @@ public class NetworkForce : NetworkBehaviour
         LimbManager lm = targetId.GetComponentInChildren<LimbManager>();
         if (lm != null)
         {
-            Debug.Log("Force applied on server");
             ForceDetector detector = lm.findDetectorByName(limbName);
-            detector.AddImpulse(impulse * forceMultiplicator);
+            detector.AddImpulse(impulse * -forceMultiplicator);
             RpcApplyForce(targetId, impulse, limbName);
         }
     }
@@ -44,15 +42,14 @@ public class NetworkForce : NetworkBehaviour
         LimbManager lm = targetId.GetComponentInChildren<LimbManager>();
         if (lm != null)
         {
-            Debug.Log("Force applied on client");
             ForceDetector detector = lm.findDetectorByName(limbName);
             if (isOwned)
             {
-                detector.forceDetected = (impulse * forceMultiplicator).magnitude;
+                detector.forceDetected = (impulse * -forceMultiplicator).magnitude;
             }
             else
             {
-                detector.AddImpulse(impulse * forceMultiplicator);
+                detector.AddImpulse(impulse * -forceMultiplicator);
             }
                 
         }
