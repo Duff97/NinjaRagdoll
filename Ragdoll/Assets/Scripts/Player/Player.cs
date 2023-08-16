@@ -21,13 +21,13 @@ public class Player : NetworkBehaviour
     [SyncVar]
     private string displayName = "Loading...";
 
-    private NetworkManagerLobby room;
-    private NetworkManagerLobby Room
+    private NetworkManagerNinjaRagdoll room;
+    private NetworkManagerNinjaRagdoll Room
     {
         get
         {
             if (room != null) { return room; }
-            return room = NetworkManager.singleton as NetworkManagerLobby;
+            return room = NetworkManager.singleton as NetworkManagerNinjaRagdoll;
         }
     }
 

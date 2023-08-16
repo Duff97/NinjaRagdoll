@@ -6,7 +6,7 @@ namespace DapperDino.Mirror.Tutorials.Lobby
 {
     public class JoinLobbyMenu : MonoBehaviour
     {
-        [SerializeField] private NetworkManagerLobby networkManager = null;
+        [SerializeField] private NetworkManagerNinjaRagdoll networkManager = null;
 
         [Header("UI")]
         [SerializeField] private GameObject landingPagePanel = null;
@@ -15,14 +15,14 @@ namespace DapperDino.Mirror.Tutorials.Lobby
 
         private void OnEnable()
         {
-            NetworkManagerLobby.OnClientConnected += HandleClientConnected;
-            NetworkManagerLobby.OnClientDisconnected += HandleClientDisconnected;
+            NetworkManagerNinjaRagdoll.OnClientConnected += HandleClientConnected;
+            NetworkManagerNinjaRagdoll.OnClientDisconnected += HandleClientDisconnected;
         }
 
         private void OnDisable()
         {
-            NetworkManagerLobby.OnClientConnected -= HandleClientConnected;
-            NetworkManagerLobby.OnClientDisconnected -= HandleClientDisconnected;
+            NetworkManagerNinjaRagdoll.OnClientConnected -= HandleClientConnected;
+            NetworkManagerNinjaRagdoll.OnClientDisconnected -= HandleClientDisconnected;
         }
 
         public void JoinLobby()

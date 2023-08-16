@@ -4,7 +4,7 @@ namespace DapperDino.Mirror.Tutorials.Lobby
 {
     public class MainMenu : MonoBehaviour
     {
-        [SerializeField] private NetworkManagerLobby networkManager = null;
+        [SerializeField] private NetworkManagerNinjaRagdoll networkManager = null;
 
         [Header("UI")]
         [SerializeField] private GameObject landingPagePanel = null;
