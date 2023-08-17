@@ -19,7 +19,7 @@ public class Player : NetworkBehaviour
     }
 
     [SyncVar]
-    private string displayName = "Loading...";
+    public string displayName = "Loading...";
 
     private NetworkManagerNinjaRagdoll room;
     private NetworkManagerNinjaRagdoll Room
