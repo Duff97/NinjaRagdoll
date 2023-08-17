@@ -5,8 +5,13 @@ using UnityEngine;
 
 public class NetworkForce : NetworkBehaviour
 {
-
+    public NetworkIdentity identity;
     public float forceMultiplicator;
+
+    private void Start()
+    {
+        identity = GetComponent<NetworkIdentity>();
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -30,6 +35,7 @@ public class NetworkForce : NetworkBehaviour
         if (lm != null)
         {
             ForceDetector detector = lm.findDetectorByName(limbName);
+            targetId.GetComponent<PlayerRespawn>().SetLastAttacker(identity.connectionToClient);
             detector.AddImpulse(impulse * -forceMultiplicator);
             RpcApplyForce(targetId, impulse, limbName);
         }
@@ -50,8 +56,7 @@ public class NetworkForce : NetworkBehaviour
             else
             {
                 detector.AddImpulse(impulse * -forceMultiplicator);
-            }
-                
+            } 
         }
     }
 }

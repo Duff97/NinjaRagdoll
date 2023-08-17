@@ -1,10 +1,11 @@
+using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Score : ScriptableObject
+public struct Score
 {
     public string playerName;
     public int score;
-    public int indice;
+    public NetworkIdentity netId;
 }

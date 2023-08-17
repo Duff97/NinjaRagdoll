@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static UnityEditor.Progress;
 
 public class ScoreBoard : NetworkBehaviour
 {
-    [SyncVar(hook = nameof(HandleScoreChanged))] private List<Score> scores = new List<Score>();
+    private readonly SyncList<Score> scores = new SyncList<Score>();
     [SerializeField] private KeyCode scoreKey = KeyCode.Tab;
     [SerializeField] private GameObject scoreBoardPanel;
     [SerializeField] private ScoreDisplay scoreDisplayPrefab;
@@ -22,26 +23,50 @@ public class ScoreBoard : NetworkBehaviour
         }
     }
 
-    public void HandleScoreChanged(List<Score> oldValue, List<Score> newValue) => UpdateDisplay();
+    public void HandleScoreChanged(SyncList<Score>.Operation op, int index, Score oldScore, Score newScore) => UpdateDisplay();
 
     public override void OnStartServer()
     {
         base.OnStartServer();
-        int i = 0;
         foreach(var player in Room.GamePlayers)
         {
             Debug.Log("Score instancated on server");
-            Score score = ScriptableObject.CreateInstance("Score") as Score;
-            score.indice = i;
+            Score score = new Score();
             score.playerName = player.displayName;
+            score.netId = player.connectionToClient.identity;
             scores.Add(score);
             
         }
         UpdateDisplay();
+        PlayerRespawn.OnPlayerRespawn += HandlePoints;
+    }
+
+    public override void OnStopServer()
+    {
+        PlayerRespawn.OnPlayerRespawn -= HandlePoints;
+        base.OnStopServer();
+        
+    }
+
+    public override void OnStartClient()
+    {
+        base.OnStartClient();
+        scores.Callback += HandleScoreChanged;
+        UpdateDisplay();
+    }
+
+    public override void OnStopClient()
+    {
+        base.OnStopClient();
+        scores.Callback -= HandleScoreChanged;
     }
 
     private void UpdateDisplay()
     {
+        foreach(Transform child in scoreBoardPanel.transform)
+        {
+            Destroy(child.gameObject);
+        }
         foreach (var score in scores)
         {
             Debug.Log("Score display updated on client");
@@ -56,4 +81,27 @@ public class ScoreBoard : NetworkBehaviour
     {
         scoreBoardPanel.SetActive(Input.GetKey(scoreKey));
     }
+
+    private void HandlePoints(NetworkConnectionToClient victimConn, NetworkConnectionToClient attackerConn)
+    {
+        Debug.Log("Handling points");
+        int pointGain = attackerConn == null ? -1 : 0;
+        int victimScoreIndex = scores.FindIndex(Score => Score.netId.connectionToClient == victimConn);
+        Score victimScore = scores[victimScoreIndex];
+        victimScore.score += pointGain;
+        scores[victimScoreIndex] = victimScore;
+        
+        if (attackerConn != null)
+        {
+            int attackerScoreIndex = scores.FindIndex(Score => Score.netId.connectionToClient == attackerConn);
+            Score attackerScore = scores[attackerScoreIndex];
+            attackerScore.score += 1;
+            scores[attackerScoreIndex] = attackerScore;
+        }
+        
+        
+
+    }
+
+
 }
