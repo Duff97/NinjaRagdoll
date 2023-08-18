@@ -1,19 +1,32 @@
 ﻿using UnityEngine;
 
-namespace DapperDino.Mirror.Tutorials.Lobby
+
+public class MainMenu : MonoBehaviour
 {
-    public class MainMenu : MonoBehaviour
+    [SerializeField] private NetworkManagerNinjaRagdoll networkManager;
+
+    [Header("UI")]
+    [SerializeField] private GameObject landingPagePanel;
+    [SerializeField] private GameObject playerInputPage;
+
+    public void HostLobby()
     {
-        [SerializeField] private NetworkManagerNinjaRagdoll networkManager = null;
+        networkManager.StartHost();
 
-        [Header("UI")]
-        [SerializeField] private GameObject landingPagePanel = null;
+        landingPagePanel.SetActive(false);
+    }
 
-        public void HostLobby()
-        {
-            networkManager.StartHost();
+    public void Start()
+    {
+        landingPagePanel.SetActive(PlayerNameInput.DisplayName != "");
+        playerInputPage.SetActive(PlayerNameInput.DisplayName == "");
+    }
 
-            landingPagePanel.SetActive(false);
-        }
+    public void QuitGame()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
+        Application.Quit();
     }
 }

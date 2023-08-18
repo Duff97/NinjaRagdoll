@@ -6,10 +6,18 @@ using UnityEngine.UI;
 public class PlayerNameInput : MonoBehaviour
 {
     [Header("UI")]
-    [SerializeField] private TMP_InputField nameInputField = null;
-    [SerializeField] private Button continueButton = null;
+    [SerializeField] private TMP_InputField nameInputField;
+    [SerializeField] private Button continueButton;
+    [SerializeField] private int maxNameLenght;
 
-    public static string DisplayName { get; private set; }
+    public static string DisplayName { 
+        get 
+        {
+            return PlayerPrefs.HasKey(PlayerPrefsNameKey) ? 
+                PlayerPrefs.GetString(PlayerPrefsNameKey) : 
+                "";
+        } 
+    }
 
     private const string PlayerPrefsNameKey = "PlayerName";
 
@@ -17,9 +25,9 @@ public class PlayerNameInput : MonoBehaviour
 
     private void SetUpInputField()
     {
-        if (!PlayerPrefs.HasKey(PlayerPrefsNameKey)) { return; }
+        if (DisplayName == "") { return; }
 
-        string defaultName = PlayerPrefs.GetString(PlayerPrefsNameKey);
+        string defaultName = DisplayName;
 
         nameInputField.text = defaultName;
 
@@ -28,13 +36,11 @@ public class PlayerNameInput : MonoBehaviour
 
     public void SetPlayerName(string name)
     {
-        continueButton.interactable = !string.IsNullOrEmpty(name);
+        continueButton.interactable = !(string.IsNullOrEmpty(name) || name.Length > maxNameLenght);
     }
 
     public void SavePlayerName()
     {
-        DisplayName = nameInputField.text;
-
-        PlayerPrefs.SetString(PlayerPrefsNameKey, DisplayName);
+        PlayerPrefs.SetString(PlayerPrefsNameKey, nameInputField.text);
     }
 }

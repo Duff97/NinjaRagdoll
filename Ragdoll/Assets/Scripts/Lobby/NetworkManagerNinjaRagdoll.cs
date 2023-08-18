@@ -15,7 +15,6 @@ public class NetworkManagerNinjaRagdoll : NetworkManager
 
     [Header("Game")]
     [SerializeField] private Player gamePlayerPrefab = null;
-    [SerializeField] private GameObject playerSpawnSystem = null;
     [SerializeField] private GameObject gameMode = null;
     [SerializeField] public int GameTime = 5;
 
