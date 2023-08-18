@@ -50,6 +50,7 @@ public class RoomPlayer : NetworkBehaviour
 
     public override void OnStartClient()
     {
+        //TODO FIX THIS
         if (SceneManager.GetActiveScene().name == "MainMenu")
         {
             Debug.Log("OnStartClient");
