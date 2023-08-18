@@ -30,7 +30,6 @@ public class ScoreBoard : NetworkBehaviour
         base.OnStartServer();
         foreach(var player in Room.GamePlayers)
         {
-            Debug.Log("Score instancated on server");
             Score score = new Score();
             score.playerName = player.displayName;
             score.netId = player.connectionToClient.identity;
@@ -69,7 +68,6 @@ public class ScoreBoard : NetworkBehaviour
         }
         foreach (var score in scores)
         {
-            Debug.Log("Score display updated on client");
             ScoreDisplay scoreInstance = Instantiate(scoreDisplayPrefab);
             scoreInstance.score = score;
             scoreInstance.transform.SetParent(scoreBoardPanel.transform, false);
@@ -84,7 +82,6 @@ public class ScoreBoard : NetworkBehaviour
 
     private void HandlePoints(NetworkConnectionToClient victimConn, NetworkConnectionToClient attackerConn)
     {
-        Debug.Log("Handling points");
         int pointGain = attackerConn == null ? -1 : 0;
         int victimScoreIndex = scores.FindIndex(Score => Score.netId.connectionToClient == victimConn);
         Score victimScore = scores[victimScoreIndex];

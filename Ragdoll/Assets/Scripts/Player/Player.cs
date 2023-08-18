@@ -40,6 +40,7 @@ public class Player : NetworkBehaviour
 
     public override void OnStopClient()
     {
+        Debug.Log("Client stop");
         Room.GamePlayers.Remove(this);
     }
 

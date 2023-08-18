@@ -43,7 +43,6 @@ public class PlayerRespawn : NetworkBehaviour
     [Command]
     private void CmdRespawnEvent()
     {
-        Debug.Log("OnPLayerRespawn event fired");
         OnPlayerRespawn?.Invoke(connectionToClient, lastAttacker);
         lastAttacker = null;
     }

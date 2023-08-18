@@ -44,7 +44,6 @@ public class GrabAuthority : NetworkBehaviour
         {
             // Add client as owner
             identity.AssignClientAuthority(clientId.connectionToClient);
-            Debug.Log("Authority assigned to " + clientId.connectionToClient.ToString());
         }
     }
 

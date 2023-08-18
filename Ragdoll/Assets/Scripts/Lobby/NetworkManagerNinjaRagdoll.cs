@@ -136,18 +136,21 @@ public class NetworkManagerNinjaRagdoll : NetworkManager
 
     public void EndGame()
     {
-        if (SceneManager.GetActiveScene().name.StartsWith("Arena"))
+        
+        for (int i = GamePlayers.Count - 1; i >= 0; i--)
         {
-            for (int i = GamePlayers.Count - 1; i >= 0; i--)
-            {
-                var conn = GamePlayers[i].connectionToClient;
-                var roomPlayerInstance = Instantiate(roomPlayerPrefab);
-                NetworkServer.Destroy(conn.identity.gameObject);
-                NetworkServer.ReplacePlayerForConnection(conn, roomPlayerInstance.gameObject);
-                ServerChangeScene(menuScene);
-            }
+            var conn = GamePlayers[i].connectionToClient;
+            var roomPlayerInstance = Instantiate(roomPlayerPrefab);
+            NetworkServer.Destroy(conn.identity.gameObject);
+            Debug.Log("ReplacingConnection");
+            NetworkServer.ReplacePlayerForConnection(conn, roomPlayerInstance.gameObject);
+            Debug.Log("ReplacedConnection");
         }
+        ServerChangeScene(menuScene);
+
     }
+
+    
 
     public override void ServerChangeScene(string newSceneName)
     {
@@ -171,11 +174,9 @@ public class NetworkManagerNinjaRagdoll : NetworkManager
 
     public override void OnServerSceneChanged(string sceneName)
     {
+        Debug.Log("Scene changed");
         if (sceneName.StartsWith("Arena"))
         {
-            GameObject playerSpawnSystemInstance = Instantiate(playerSpawnSystem);
-            NetworkServer.Spawn(playerSpawnSystemInstance);
-
             var gameModeInstance = Instantiate(gameMode);
             NetworkServer.Spawn(gameModeInstance.gameObject);
         }

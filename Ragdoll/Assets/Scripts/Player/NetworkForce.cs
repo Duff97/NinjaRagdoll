@@ -20,7 +20,6 @@ public class NetworkForce : NetworkBehaviour
             ForceDetector detector = collision.collider.GetComponent<ForceDetector>();
             if (detector != null && !detector.netId.isOwned) 
             {
-                Debug.Log("Networked collision detected unowned collision");
                 CmdApplyForce(detector.netId, collision.impulse, collision.collider.gameObject.name);
             }
         }

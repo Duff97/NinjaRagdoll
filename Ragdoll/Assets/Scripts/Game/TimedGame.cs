@@ -10,6 +10,8 @@ public class TimedGame : NetworkBehaviour
 
     [SerializeField] TMP_Text timeText;
 
+    private bool gameEnded = false;
+
     private NetworkManagerNinjaRagdoll room;
     private NetworkManagerNinjaRagdoll Room
     {
@@ -26,19 +28,16 @@ public class TimedGame : NetworkBehaviour
         TimeLeft = Room.GameTime * 60;
     }
 
-
-
     // Update is called once per frame
     void Update()
     {
-        if (isServer)
+        if (isServer && !gameEnded)
         {
             TimeLeft -= Time.deltaTime;
             if (TimeLeft <= 0)
             {
-                //EndGame
-                Cursor.lockState = CursorLockMode.None;
-                Cursor.visible = true;
+                RpcUnlockCursor();
+                gameEnded = true;
                 Room.EndGame();
             }
         }
@@ -53,5 +52,12 @@ public class TimedGame : NetworkBehaviour
 
             timeText.text = string.Format("{0:0}:{1:00}", minutes, seconds);
         }
+    }
+
+    [ClientRpc]
+    private void RpcUnlockCursor()
+    {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 }

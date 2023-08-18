@@ -1,6 +1,7 @@
 ﻿using Mirror;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
@@ -49,18 +50,24 @@ public class RoomPlayer : NetworkBehaviour
 
     public override void OnStartClient()
     {
-        Room.RoomPlayers.Add(this);
-
-        if (!isLeader)
+        if (SceneManager.GetActiveScene().name == "MainMenu")
         {
-            TimeInput.enabled = false;
-        }
+            Debug.Log("OnStartClient");
+            Room.RoomPlayers.Add(this);
 
-        UpdateDisplay();
+            if (!isLeader)
+            {
+                TimeInput.enabled = false;
+            }
+
+            UpdateDisplay();
+        }
+        
     }
 
     public override void OnStopClient()
     {
+        Debug.Log("OnStopClient");
         Room.RoomPlayers.Remove(this);
 
         UpdateDisplay();
@@ -91,9 +98,9 @@ public class RoomPlayer : NetworkBehaviour
             playerNameTexts[i].text = "Waiting For Player...";
             playerReadyTexts[i].text = string.Empty;
         }
-
         for (int i = 0; i < Room.RoomPlayers.Count; i++)
         {
+           
             playerNameTexts[i].text = Room.RoomPlayers[i].DisplayName;
             playerReadyTexts[i].text = Room.RoomPlayers[i].IsReady ?
                 "<color=green>Ready</color>" :
