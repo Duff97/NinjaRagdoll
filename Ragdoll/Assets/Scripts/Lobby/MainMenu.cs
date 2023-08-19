@@ -29,14 +29,13 @@ public class MainMenu : MonoBehaviour
     {
         landingPagePanel.SetActive(PlayerNameInput.DisplayName != "");
         playerInputPage.SetActive(PlayerNameInput.DisplayName == "");
-        NetworkManagerNinjaRagdoll.OnClientDisconnected += showLandingPage;
+        NetworkManagerNinjaRagdoll.OnClientDisconnected += ReloadScene;
     }
 
 
-    private void showLandingPage()
+    private void ReloadScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        //landingPagePanel.SetActive(true);
     }
 
     public void QuitGame()

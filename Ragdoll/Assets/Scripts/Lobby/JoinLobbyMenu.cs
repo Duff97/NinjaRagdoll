@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using Mirror;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,12 +7,19 @@ namespace DapperDino.Mirror.Tutorials.Lobby
 {
     public class JoinLobbyMenu : MonoBehaviour
     {
-        [SerializeField] private NetworkManagerNinjaRagdoll networkManager = null;
 
         [Header("UI")]
         [SerializeField] private GameObject landingPagePanel = null;
         [SerializeField] private TMP_InputField ipAddressInputField = null;
         [SerializeField] private Button joinButton = null;
+
+        private NetworkManagerNinjaRagdoll Room
+        {
+            get
+            {
+                return NetworkManager.singleton as NetworkManagerNinjaRagdoll;
+            }
+        }
 
         private void OnEnable()
         {
@@ -29,8 +37,8 @@ namespace DapperDino.Mirror.Tutorials.Lobby
         {
             string ipAddress = ipAddressInputField.text;
 
-            networkManager.networkAddress = ipAddress;
-            networkManager.StartClient();
+            Room.networkAddress = ipAddress;
+            Room.StartClient();
 
             joinButton.interactable = false;
         }
