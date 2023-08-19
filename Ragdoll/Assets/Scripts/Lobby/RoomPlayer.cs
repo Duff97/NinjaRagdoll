@@ -78,6 +78,15 @@ public class RoomPlayer : NetworkBehaviour
     public void HandleDisplayNameChanged(string oldValue, string newValue) => UpdateDisplay();
     public void HandleGameTimeChanged(int oldValue, int newValue) => UpdateDisplay();
 
+    public void QuitLobby()
+    {
+        //connectionToServer.Disconnect();
+        if (isLeader)
+            Room.StopHost();
+        else
+            Room.StopClient();
+    }
+
     private void UpdateDisplay()
     {
         if (!isOwned)

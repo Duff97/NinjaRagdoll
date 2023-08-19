@@ -1,5 +1,6 @@
-﻿using UnityEngine;
-
+﻿using Mirror;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
@@ -9,9 +10,17 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private GameObject landingPagePanel;
     [SerializeField] private GameObject playerInputPage;
 
+    private NetworkManagerNinjaRagdoll Room
+    {
+        get
+        {
+            return NetworkManager.singleton as NetworkManagerNinjaRagdoll;
+        }
+    }
+
     public void HostLobby()
     {
-        networkManager.StartHost();
+        Room.StartHost();
 
         landingPagePanel.SetActive(false);
     }
@@ -20,6 +29,14 @@ public class MainMenu : MonoBehaviour
     {
         landingPagePanel.SetActive(PlayerNameInput.DisplayName != "");
         playerInputPage.SetActive(PlayerNameInput.DisplayName == "");
+        NetworkManagerNinjaRagdoll.OnClientDisconnected += showLandingPage;
+    }
+
+
+    private void showLandingPage()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        //landingPagePanel.SetActive(true);
     }
 
     public void QuitGame()

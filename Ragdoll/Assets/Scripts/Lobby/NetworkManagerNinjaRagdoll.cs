@@ -76,7 +76,7 @@ public class NetworkManagerNinjaRagdoll : NetworkManager
         if (conn.identity != null)
         {
             var player = conn.identity.GetComponent<RoomPlayer>();
-
+            
             RoomPlayers.Remove(player);
 
             NotifyPlayersOfReadyState();
@@ -88,6 +88,8 @@ public class NetworkManagerNinjaRagdoll : NetworkManager
     public override void OnStopServer()
     {
         OnServerStopped?.Invoke();
+
+        NetworkServer.Shutdown();
 
         RoomPlayers.Clear();
         GamePlayers.Clear();
@@ -139,9 +141,7 @@ public class NetworkManagerNinjaRagdoll : NetworkManager
             var conn = GamePlayers[i].connectionToClient;
             var roomPlayerInstance = Instantiate(roomPlayerPrefab);
             NetworkServer.Destroy(conn.identity.gameObject);
-            Debug.Log("ReplacingConnection");
             NetworkServer.ReplacePlayerForConnection(conn, roomPlayerInstance.gameObject);
-            Debug.Log("ReplacedConnection");
         }
         ServerChangeScene(menuScene);
 
