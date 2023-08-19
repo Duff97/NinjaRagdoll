@@ -200,6 +200,7 @@ MonoBehaviour:
   - {fileID: 130906666326681748, guid: 64b12d0c243c12a45a6a313e3b26bb01, type: 3}
   - {fileID: 1366627117398234358, guid: 5df2146a56fccf04a8288f2b660795fd, type: 3}
   - {fileID: 6133013627313051885, guid: b7f0be27f36885949a4ce013ea1fa324, type: 3}
+  - {fileID: 8994257049712391163, guid: 0e3aaa713211ecf458b588f48e3b7542, type: 3}
   snapshotSettings:
     bufferTimeMultiplier: 2
     bufferLimit: 32
@@ -218,6 +219,7 @@ MonoBehaviour:
   roomPlayerPrefab: {fileID: 5494571419773178487, guid: 255bd50c0b57afc4489a3dad8dd9d0a7, type: 3}
   gamePlayerPrefab: {fileID: 3828128439761883354, guid: dbd6065fd7640204da3fbaa1ef88f1b9, type: 3}
   gameMode: {fileID: 6133013627313051885, guid: b7f0be27f36885949a4ce013ea1fa324, type: 3}
+  gameMenu: {fileID: 8994257049712391163, guid: 0e3aaa713211ecf458b588f48e3b7542, type: 3}
   GameTime: 5
 --- !u!4 &214066867
 Transform:

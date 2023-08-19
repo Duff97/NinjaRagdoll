@@ -7,15 +7,16 @@ using UnityEngine.SceneManagement;
 
 public class NetworkManagerNinjaRagdoll : NetworkManager
 {
-    [SerializeField] private int minPlayers = 2;
-    [SerializeField] private string menuScene = string.Empty;
+    [SerializeField] private int minPlayers;
+    [SerializeField] private string menuScene;
 
     [Header("Room")]
-    [SerializeField] private RoomPlayer roomPlayerPrefab = null;
+    [SerializeField] private RoomPlayer roomPlayerPrefab;
 
     [Header("Game")]
-    [SerializeField] private Player gamePlayerPrefab = null;
-    [SerializeField] private GameObject gameMode = null;
+    [SerializeField] private Player gamePlayerPrefab;
+    [SerializeField] private GameObject gameMode;
+    [SerializeField] private GameObject gameMenu;
     [SerializeField] public int GameTime = 5;
 
     public static event Action OnClientConnected;
@@ -171,11 +172,13 @@ public class NetworkManagerNinjaRagdoll : NetworkManager
 
     public override void OnServerSceneChanged(string sceneName)
     {
-        Debug.Log("Scene changed");
         if (sceneName.StartsWith("Arena"))
         {
             var gameModeInstance = Instantiate(gameMode);
             NetworkServer.Spawn(gameModeInstance.gameObject);
+
+            var gameMenuInstance = Instantiate(gameMenu);
+            NetworkServer.Spawn(gameMenuInstance.gameObject);
         }
     }
 
