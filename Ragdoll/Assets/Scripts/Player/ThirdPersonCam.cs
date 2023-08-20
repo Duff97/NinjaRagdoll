@@ -102,8 +102,6 @@ public class ThirdPersonCam : MonoBehaviour
 
                 Invoke(nameof(ResetJump), jumpCooldown);
             }
-
-            animator.SetBool("IsGrabbing", Input.GetKey(grabKey));
         }
     }
 
@@ -150,7 +148,10 @@ public class ThirdPersonCam : MonoBehaviour
         {
             animator.SetBool("IsRunning", horizontalInput != 0 || verticalInput != 0);
             animator.SetBool("IsGrounded", grounded);
+            animator.SetBool("IsGrabbing", Input.GetKey(grabKey) && !ragdoll.movementDisabled);
         }
+
+        
     }
 
     private void ToggleCameraRotation()

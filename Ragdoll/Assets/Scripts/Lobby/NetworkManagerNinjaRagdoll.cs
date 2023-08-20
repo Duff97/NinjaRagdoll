@@ -130,7 +130,7 @@ public class NetworkManagerNinjaRagdoll : NetworkManager
         {
             if (!IsReadyToStart()) { return; }
 
-            ServerChangeScene("Arena1");
+            ServerChangeScene("Game_BallArena");
         }
     }
 
@@ -172,7 +172,7 @@ public class NetworkManagerNinjaRagdoll : NetworkManager
 
     public override void OnServerSceneChanged(string sceneName)
     {
-        if (sceneName.StartsWith("Arena"))
+        if (sceneName.StartsWith("Game_"))
         {
             var gameModeInstance = Instantiate(gameMode);
             NetworkServer.Spawn(gameModeInstance.gameObject);
