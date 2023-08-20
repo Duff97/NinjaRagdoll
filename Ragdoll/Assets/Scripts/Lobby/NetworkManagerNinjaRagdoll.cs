@@ -15,9 +15,10 @@ public class NetworkManagerNinjaRagdoll : NetworkManager
 
     [Header("Game")]
     [SerializeField] private Player gamePlayerPrefab;
-    [SerializeField] private GameObject gameMode;
     [SerializeField] private GameObject gameMenu;
-    [SerializeField] public int GameTime = 5;
+    [SerializeField] public int gameTime;
+    [SerializeField] public int selectedGameMode;
+    [SerializeField] public List<GameMode> gameModes;
 
     public static event Action OnClientConnected;
     public static event Action OnClientDisconnected;
@@ -36,6 +37,8 @@ public class NetworkManagerNinjaRagdoll : NetworkManager
     public override void OnClientDisconnect()
     {
         base.OnClientDisconnect();
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         OnClientDisconnected?.Invoke();
     }
 
@@ -66,7 +69,8 @@ public class NetworkManagerNinjaRagdoll : NetworkManager
 
             roomPlayerInstance.IsLeader = isLeader;
 
-            roomPlayerInstance.GameTime = GameTime;
+            roomPlayerInstance.gameTime = gameTime;
+            roomPlayerInstance.gameMode = selectedGameMode;
 
             NetworkServer.AddPlayerForConnection(conn, roomPlayerInstance.gameObject);
         }
@@ -108,7 +112,15 @@ public class NetworkManagerNinjaRagdoll : NetworkManager
     {
         foreach(var player in RoomPlayers)
         {
-            player.GameTime = GameTime;
+            player.gameTime = gameTime;
+        }
+    }
+
+    public void NotifyPlayersOfGameMode()
+    {
+        foreach (var player in RoomPlayers)
+        {
+            player.gameMode = selectedGameMode;
         }
     }
 
@@ -130,7 +142,7 @@ public class NetworkManagerNinjaRagdoll : NetworkManager
         {
             if (!IsReadyToStart()) { return; }
 
-            ServerChangeScene("Game_BallArena");
+            ServerChangeScene(gameModes[selectedGameMode].sceneName);
         }
     }
 
@@ -174,9 +186,6 @@ public class NetworkManagerNinjaRagdoll : NetworkManager
     {
         if (sceneName.StartsWith("Game_"))
         {
-            var gameModeInstance = Instantiate(gameMode);
-            NetworkServer.Spawn(gameModeInstance.gameObject);
-
             var gameMenuInstance = Instantiate(gameMenu);
             NetworkServer.Spawn(gameMenuInstance.gameObject);
         }

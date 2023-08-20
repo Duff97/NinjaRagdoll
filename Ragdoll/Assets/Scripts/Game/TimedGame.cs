@@ -25,7 +25,7 @@ public class TimedGame : NetworkBehaviour
     public override void OnStartServer()
     {
         base.OnStartServer();
-        TimeLeft = Room.GameTime * 60;
+        TimeLeft = Room.gameTime * 60;
     }
 
     // Update is called once per frame

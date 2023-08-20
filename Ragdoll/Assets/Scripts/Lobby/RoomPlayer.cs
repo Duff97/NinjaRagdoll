@@ -11,15 +11,18 @@ public class RoomPlayer : NetworkBehaviour
     [SerializeField] private GameObject lobbyUI = null;
     [SerializeField] private TMP_Text[] playerNameTexts = new TMP_Text[4];
     [SerializeField] private TMP_Text[] playerReadyTexts = new TMP_Text[4];
+    [SerializeField] private TMP_Dropdown gameModeDropdown;
+    [SerializeField] private Image gameModeImage;
     [SerializeField] private Button startGameButton = null;
     [SerializeField] private TMP_InputField TimeInput;
 
     [SyncVar(hook = nameof(HandleDisplayNameChanged))]
     public string DisplayName = "Loading...";
-    [SyncVar(hook = nameof(HandleReadyStatusChanged))]
+    [HideInInspector][SyncVar(hook = nameof(HandleReadyStatusChanged))]
     public bool IsReady = false;
 
-    [SyncVar(hook = nameof(HandleGameTimeChanged))] public int GameTime;
+    [HideInInspector][SyncVar(hook = nameof(HandleGameTimeChanged))] public int gameTime;
+    [HideInInspector][SyncVar(hook = nameof(HandleGameModeChanged))] public int gameMode;
 
     private bool isLeader;
     public bool IsLeader
@@ -59,6 +62,7 @@ public class RoomPlayer : NetworkBehaviour
             if (!isLeader)
             {
                 TimeInput.enabled = false;
+                gameModeDropdown.enabled = false;
             }
 
             UpdateDisplay();
@@ -77,6 +81,7 @@ public class RoomPlayer : NetworkBehaviour
     public void HandleReadyStatusChanged(bool oldValue, bool newValue) => UpdateDisplay();
     public void HandleDisplayNameChanged(string oldValue, string newValue) => UpdateDisplay();
     public void HandleGameTimeChanged(int oldValue, int newValue) => UpdateDisplay();
+    public void HandleGameModeChanged(int oldValue, int newValue) => UpdateDisplay();
 
     public void QuitLobby()
     {
@@ -117,7 +122,9 @@ public class RoomPlayer : NetworkBehaviour
                 "<color=red>Not Ready</color>";
         }
 
-        TimeInput.text = GameTime.ToString();
+        TimeInput.text = gameTime.ToString();
+        gameModeDropdown.value = gameMode;
+        gameModeImage.sprite = Room.gameModes[gameMode].sprite;
 
     }
 
@@ -161,12 +168,24 @@ public class RoomPlayer : NetworkBehaviour
         }
     }
 
+    public void GameModeChange()
+    {
+        CmdGameModeChange(gameModeDropdown.value);
+    }
+
+    [Command]
+    public void CmdGameModeChange(int gameMode)
+    {
+        Room.selectedGameMode = gameMode;
+        Room.NotifyPlayersOfGameMode();
+    }
+
     [Command]
     public void CmdTimeChange(int time)
     {
         if (time > 0)
         {
-            Room.GameTime = time;
+            Room.gameTime = time;
             Room.NotifyPlayersOfGameTime();
         }
     }
