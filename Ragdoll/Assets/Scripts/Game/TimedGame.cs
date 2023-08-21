@@ -6,11 +6,13 @@ using UnityEngine;
 
 public class TimedGame : NetworkBehaviour
 {
-    [SyncVar][SerializeField] private float TimeLeft;
-
-    [SerializeField] TMP_Text timeText;
-
+    [SyncVar][SerializeField] private float timeLeft;
     private bool gameEnded = false;
+    [SerializeField] TMP_Text timeText;
+    [SerializeField] GameObject scoreBoardObj;
+    [SerializeField] GameObject endgameObj;
+    
+
 
     private NetworkManagerNinjaRagdoll room;
     private NetworkManagerNinjaRagdoll Room
@@ -25,7 +27,7 @@ public class TimedGame : NetworkBehaviour
     public override void OnStartServer()
     {
         base.OnStartServer();
-        TimeLeft = Room.gameTime * 60;
+        timeLeft = Room.gameTime * 60;
     }
 
     // Update is called once per frame
@@ -33,10 +35,10 @@ public class TimedGame : NetworkBehaviour
     {
         if (isServer && !gameEnded)
         {
-            TimeLeft -= Time.deltaTime;
-            if (TimeLeft <= 0)
+            timeLeft -= Time.deltaTime;
+            if (timeLeft <= 0)
             {
-                RpcUnlockCursor();
+                RpcEndGame();
                 gameEnded = true;
                 Room.EndGame();
             }
@@ -47,17 +49,19 @@ public class TimedGame : NetworkBehaviour
     {
         if (isClient)
         {
-            int minutes = Mathf.FloorToInt(TimeLeft / 60F);
-            int seconds = Mathf.FloorToInt(TimeLeft - minutes * 60);
+            int minutes = Mathf.FloorToInt(timeLeft / 60F);
+            int seconds = Mathf.FloorToInt(timeLeft - minutes * 60);
 
             timeText.text = string.Format("{0:0}:{1:00}", minutes, seconds);
         }
     }
 
     [ClientRpc]
-    private void RpcUnlockCursor()
+    private void RpcEndGame()
     {
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+        scoreBoardObj.SetActive(true);
+        endgameObj.SetActive(true);
     }
 }
