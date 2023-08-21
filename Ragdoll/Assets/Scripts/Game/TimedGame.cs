@@ -7,10 +7,10 @@ using UnityEngine;
 public class TimedGame : NetworkBehaviour
 {
     [SyncVar][SerializeField] private float timeLeft;
-    private bool gameEnded = false;
     [SerializeField] TMP_Text timeText;
     [SerializeField] GameObject scoreBoardObj;
     [SerializeField] GameObject endgameObj;
+    private EndGame endGame;
     
 
 
@@ -24,23 +24,29 @@ public class TimedGame : NetworkBehaviour
         }
     }
 
+    private void Awake()
+    {
+        endGame = GetComponent<EndGame>();
+    }
+
     public override void OnStartServer()
     {
         base.OnStartServer();
         timeLeft = Room.gameTime * 60;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (isServer && !gameEnded)
+        if (isServer)
         {
             timeLeft -= Time.deltaTime;
             if (timeLeft <= 0)
             {
                 RpcEndGame();
-                gameEnded = true;
-                Room.EndGame();
+                endGame.gameEnded = true;
+                
             }
         }
     }
@@ -63,5 +69,6 @@ public class TimedGame : NetworkBehaviour
         Cursor.lockState = CursorLockMode.None;
         scoreBoardObj.SetActive(true);
         endgameObj.SetActive(true);
+        timeText.gameObject.SetActive(false);
     }
 }
