@@ -39,7 +39,7 @@ public class TimedGame : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isServer)
+        if (isServer && !endGame.gameEnded)
         {
             timeLeft -= Time.deltaTime;
             if (timeLeft <= 0)
@@ -67,6 +67,7 @@ public class TimedGame : NetworkBehaviour
     {
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+        GetComponent<ScoreBoard>().enabled = false;
         scoreBoardObj.SetActive(true);
         endgameObj.SetActive(true);
         timeText.gameObject.SetActive(false);

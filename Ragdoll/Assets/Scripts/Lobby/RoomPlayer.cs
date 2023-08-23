@@ -1,4 +1,5 @@
 ﻿using Mirror;
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -23,6 +24,8 @@ public class RoomPlayer : NetworkBehaviour
 
     [HideInInspector][SyncVar(hook = nameof(HandleGameTimeChanged))] public int gameTime;
     [HideInInspector][SyncVar(hook = nameof(HandleGameModeChanged))] public int gameMode;
+
+    public static event Action OnLocalPlayerStarted;
 
     private bool isLeader;
     public bool IsLeader
@@ -51,6 +54,23 @@ public class RoomPlayer : NetworkBehaviour
         lobbyUI.SetActive(true);
     }
 
+    public override void OnStopLocalPlayer()
+    {
+        if (OnLocalPlayerStarted != null)
+            foreach(var client in OnLocalPlayerStarted.GetInvocationList())
+            {
+                OnLocalPlayerStarted -= client as Action;
+            }
+        base.OnStopLocalPlayer();
+
+    }
+
+    public override void OnStartLocalPlayer()
+    {
+        base.OnStartLocalPlayer();
+        OnLocalPlayerStarted?.Invoke();
+    }
+
     public override void OnStartClient()
     {
         //TODO FIX THIS
@@ -66,6 +86,7 @@ public class RoomPlayer : NetworkBehaviour
             }
 
             UpdateDisplay();
+                
         }
         
     }

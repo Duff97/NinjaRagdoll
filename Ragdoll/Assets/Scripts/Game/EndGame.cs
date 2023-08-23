@@ -7,10 +7,12 @@ using UnityEngine.UI;
 
 public class EndGame : NetworkBehaviour
 {
-    public bool gameEnded;
+    [SyncVar] public bool gameEnded;
     [SerializeField][SyncVar] float timeUntilGameCloses;
     [SerializeField] private TMP_Text timeUntilGameClosesText;
+    [SerializeField] private TMP_Text outcomeText;
     [SerializeField] private Button quitToLobbyBtn;
+    private ScoreBoard scoreBoard;
 
     private NetworkManagerNinjaRagdoll room;
     private NetworkManagerNinjaRagdoll Room
@@ -20,6 +22,11 @@ public class EndGame : NetworkBehaviour
             if (room != null) { return room; }
             return room = NetworkManager.singleton as NetworkManagerNinjaRagdoll;
         }
+    }
+
+    private void Awake()
+    {
+        scoreBoard = GetComponent<ScoreBoard>();
     }
 
     private void Start()
@@ -44,8 +51,13 @@ public class EndGame : NetworkBehaviour
             }
 
             if (isClient)
-                timeUntilGameClosesText.text = Mathf.Ceil(timeUntilGameCloses).ToString();
+            {
+                timeUntilGameClosesText.text = Mathf.Ceil(timeUntilGameCloses).ToString() + " seconds until game closes";
+                outcomeText.text = scoreBoard.GetWinnerName() + " wins!";
+            }
         }
+
+        
     }
 
     public void QuitToMainMenu()

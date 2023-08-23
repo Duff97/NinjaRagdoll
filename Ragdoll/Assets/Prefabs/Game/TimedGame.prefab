@@ -1066,7 +1066,8 @@ MonoBehaviour:
   gameEnded: 0
   timeUntilGameCloses: 10
   timeUntilGameClosesText: {fileID: 571885730404325478}
-  quitToLobbyBtn: {fileID: 0}
+  outcomeText: {fileID: 6741644888061259027}
+  quitToLobbyBtn: {fileID: 657867784117193315}
 --- !u!1 &7420309779555010032
 GameObject:
   m_ObjectHideFlags: 0

@@ -21,8 +21,7 @@ public class MainMenu : MonoBehaviour
     public void HostLobby()
     {
         Room.StartHost();
-
-        landingPagePanel.SetActive(false);
+        HideLandingPage();
     }
 
     public void Start()
@@ -30,11 +29,18 @@ public class MainMenu : MonoBehaviour
         landingPagePanel.SetActive(PlayerNameInput.DisplayName != "");
         playerInputPage.SetActive(PlayerNameInput.DisplayName == "");
         NetworkManagerNinjaRagdoll.OnClientDisconnected += ReloadScene;
+        RoomPlayer.OnLocalPlayerStarted += HideLandingPage;
+    }
+
+    private void HideLandingPage()
+    {
+        landingPagePanel.SetActive(false);
     }
 
 
     private void ReloadScene()
     {
+        NetworkManagerNinjaRagdoll.OnClientDisconnected -= ReloadScene;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
