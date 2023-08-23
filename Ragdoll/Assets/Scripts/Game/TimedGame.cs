@@ -6,11 +6,13 @@ using UnityEngine;
 
 public class TimedGame : NetworkBehaviour
 {
-    [SyncVar][SerializeField] private float TimeLeft;
-
+    [SyncVar][SerializeField] private float timeLeft;
     [SerializeField] TMP_Text timeText;
+    [SerializeField] GameObject scoreBoardObj;
+    [SerializeField] GameObject endgameObj;
+    private EndGame endGame;
+    
 
-    private bool gameEnded = false;
 
     private NetworkManagerNinjaRagdoll room;
     private NetworkManagerNinjaRagdoll Room
@@ -22,23 +24,29 @@ public class TimedGame : NetworkBehaviour
         }
     }
 
+    private void Awake()
+    {
+        endGame = GetComponent<EndGame>();
+    }
+
     public override void OnStartServer()
     {
         base.OnStartServer();
-        TimeLeft = Room.gameTime * 60;
+        timeLeft = Room.gameTime * 60;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (isServer && !gameEnded)
+        if (isServer && !endGame.gameEnded)
         {
-            TimeLeft -= Time.deltaTime;
-            if (TimeLeft <= 0)
+            timeLeft -= Time.deltaTime;
+            if (timeLeft <= 0)
             {
-                RpcUnlockCursor();
-                gameEnded = true;
-                Room.EndGame();
+                RpcEndGame();
+                endGame.gameEnded = true;
+                
             }
         }
     }
@@ -47,17 +55,21 @@ public class TimedGame : NetworkBehaviour
     {
         if (isClient)
         {
-            int minutes = Mathf.FloorToInt(TimeLeft / 60F);
-            int seconds = Mathf.FloorToInt(TimeLeft - minutes * 60);
+            int minutes = Mathf.FloorToInt(timeLeft / 60F);
+            int seconds = Mathf.FloorToInt(timeLeft - minutes * 60);
 
             timeText.text = string.Format("{0:0}:{1:00}", minutes, seconds);
         }
     }
 
     [ClientRpc]
-    private void RpcUnlockCursor()
+    private void RpcEndGame()
     {
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+        GetComponent<ScoreBoard>().enabled = false;
+        scoreBoardObj.SetActive(true);
+        endgameObj.SetActive(true);
+        timeText.gameObject.SetActive(false);
     }
 }

@@ -77,23 +77,48 @@ public class ScoreBoard : NetworkBehaviour
 
     private void HandlePoints(NetworkConnectionToClient victimConn, NetworkConnectionToClient attackerConn)
     {
-        int pointGain = attackerConn == null ? -1 : 0;
-        int victimScoreIndex = scores.FindIndex(Score => Score.netId.connectionToClient == victimConn);
-        Score victimScore = scores[victimScoreIndex];
-        victimScore.score += pointGain;
-        scores[victimScoreIndex] = victimScore;
-        
-        if (attackerConn != null)
+        if (attackerConn == null)
         {
+            Debug.Log("Null attacker");
+            int victimScoreIndex = scores.FindIndex(Score => Score.netId.connectionToClient == victimConn);
+            Score victimScore = scores[victimScoreIndex];
+            victimScore.score -= 1;
+            scores[victimScoreIndex] = victimScore;
+            ReorganizeScoreDownward(victimScoreIndex);
+        }
+        else
+        {
+            Debug.Log("Not Null attacker");
             int attackerScoreIndex = scores.FindIndex(Score => Score.netId.connectionToClient == attackerConn);
             Score attackerScore = scores[attackerScoreIndex];
             attackerScore.score += 1;
             scores[attackerScoreIndex] = attackerScore;
+            ReorganizeScoreUpward(attackerScoreIndex);
         }
-        
-        
-
     }
 
+    private void ReorganizeScoreUpward(int i)
+    {
+        if (i > 0 && scores[i].score >= scores[i - 1].score)
+            SwapScores(i, i - 1);
+    }
+
+    private void ReorganizeScoreDownward(int i)
+    {
+        if (i < scores.Count - 1 && scores[i].score < scores[i + 1].score)
+            SwapScores(i, i + 1);
+    }
+
+    private void SwapScores(int i1, int i2)
+    {
+        Score tmpScore = scores[i1];
+        scores[i1] = scores[i2];
+        scores[i2] = tmpScore;
+    }
+
+    public string GetWinnerName()
+    {
+        return scores[0].playerName;
+    }
 
 }
