@@ -4135,7 +4135,7 @@ MonoBehaviour:
   ragdollPosition: {fileID: 5528603532362550324}
   limbManagager: {fileID: 2006456812837842975}
   maxDistance: 50
-  clearAttackerCD: 4
+  clearAttackerCD: 8
 --- !u!1 &7407185904136490876
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,7 +10,7 @@ public class PlayerRespawn : NetworkBehaviour
     public LimbManager limbManagager;
     public float maxDistance;
     public NetworkConnectionToClient lastAttacker;
-    public int clearAttackerCD = 4;
+    public int clearAttackerCD;
 
     public static event Action<NetworkConnectionToClient, NetworkConnectionToClient> OnPlayerRespawn;
 
