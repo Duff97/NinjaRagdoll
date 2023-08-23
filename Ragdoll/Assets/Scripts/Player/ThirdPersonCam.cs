@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 public class ThirdPersonCam : MonoBehaviour
 {
@@ -20,9 +21,7 @@ public class ThirdPersonCam : MonoBehaviour
     [HideInInspector] public float sprintSpeed;
 
     [Header("Keybinds")]
-    public KeyCode jumpKey = KeyCode.Space;
     public KeyCode grabKey = KeyCode.Mouse0;
-    public KeyCode spineControlKey = KeyCode.LeftShift;
 
     [Header("Ground Check")]
     public float playerHeight;
@@ -67,41 +66,42 @@ public class ThirdPersonCam : MonoBehaviour
         // ground check
         grounded = Physics.Raycast(playerObj.transform.position, Vector3.down, playerHeight * 0.5f + 0.3f, whatIsGround);
 
-        
-        MyInput();
-        Animate();
-
-
         // handle drag
         if (grounded)
             rb.drag = groundDrag;
         else
             rb.drag = 0;
-            
+
+
+        Animate();
+
     }
 
     private void FixedUpdate()
     {
-        ToggleCameraRotation();
         MovePlayer();
     }
 
-    private void MyInput()
+    
+
+    private void OnMove(InputValue inputValue)
     {
         if (hasAuthority && !ragdoll.movementDisabled)
         {
-            horizontalInput = Input.GetAxisRaw("Horizontal");
-            verticalInput = Input.GetAxisRaw("Vertical");
+            Vector2 vect = inputValue.Get<Vector2>();
+            verticalInput = vect.y;
+            horizontalInput = vect.x;
+        }
+    }
 
-            // when to jump
-            if (Input.GetKey(jumpKey) && readyToJump && grounded)
-            {
-                readyToJump = false;
-
-                Jump();
-
-                Invoke(nameof(ResetJump), jumpCooldown);
-            }
+    private void OnJump()
+    {
+        if (hasAuthority && !ragdoll.movementDisabled && readyToJump && grounded)
+        {
+            readyToJump = false;
+            rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+            rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+            Invoke(nameof(ResetJump), jumpCooldown);
         }
     }
 
@@ -130,13 +130,6 @@ public class ThirdPersonCam : MonoBehaviour
         }
     }
 
-    private void Jump()
-    {
-        // reset y velocity
-        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
-
-        rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
-    }
     private void ResetJump()
     {
         readyToJump = true;
@@ -146,7 +139,7 @@ public class ThirdPersonCam : MonoBehaviour
     {
         if (hasAuthority)
         {
-            animator.SetBool("IsRunning", horizontalInput != 0 || verticalInput != 0);
+            animator.SetBool("IsRunning", moveDirection != Vector3.zero);
             animator.SetBool("IsGrounded", grounded);
             animator.SetBool("IsGrabbing", Input.GetKey(grabKey) && !ragdoll.movementDisabled);
         }
@@ -154,19 +147,25 @@ public class ThirdPersonCam : MonoBehaviour
         
     }
 
-    private void ToggleCameraRotation()
+    private void OnSpineControl(InputValue inputValue)
     {
-        if (Input.GetKey(spineControlKey))
-        {
-            cinemachine.m_YAxis.m_InputAxisName = "";
-            cinemachine.m_XAxis.m_InputAxisName = "";
-            cinemachine.m_YAxis.m_InputAxisValue = 0f;
-            cinemachine.m_XAxis.m_InputAxisValue = 0f;
-        }
+        if (inputValue.isPressed)
+            DisableCameraControl();
         else
-        {
-            cinemachine.m_YAxis.m_InputAxisName = "Mouse Y";
-            cinemachine.m_XAxis.m_InputAxisName = "Mouse X";
-        }
+            EnableCameraControl();
+    }
+
+    private void EnableCameraControl()
+    {
+        cinemachine.m_YAxis.m_InputAxisName = "Mouse Y";
+        cinemachine.m_XAxis.m_InputAxisName = "Mouse X";
+    }
+
+    private void DisableCameraControl()
+    {
+        cinemachine.m_YAxis.m_InputAxisName = "";
+        cinemachine.m_XAxis.m_InputAxisName = "";
+        cinemachine.m_YAxis.m_InputAxisValue = 0f;
+        cinemachine.m_XAxis.m_InputAxisValue = 0f;
     }
 }
