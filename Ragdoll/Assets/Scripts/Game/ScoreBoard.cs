@@ -1,10 +1,10 @@
 using Mirror;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class ScoreBoard : NetworkBehaviour
 {
     private readonly SyncList<Score> scores = new SyncList<Score>();
-    [SerializeField] private KeyCode scoreKey = KeyCode.Tab;
     [SerializeField] private GameObject scoreBoardPanel;
     [SerializeField] private ScoreDisplay scoreDisplayPrefab;
 
@@ -61,25 +61,33 @@ public class ScoreBoard : NetworkBehaviour
         {
             Destroy(child.gameObject);
         }
+
+        bool background = true;
         foreach (var score in scores)
         {
             ScoreDisplay scoreInstance = Instantiate(scoreDisplayPrefab);
             scoreInstance.score = score;
             scoreInstance.transform.SetParent(scoreBoardPanel.transform, false);
             scoreInstance.UpdateDisplay();
+
+            if (background)
+                scoreInstance.ShowBackground();
+            else
+                scoreInstance.HideBackground();
+
+            background = !background;
         }
     }
 
-    private void OnGUI()
+    private void OnOpenScoreboard(InputValue inputValue)
     {
-        scoreBoardPanel.SetActive(Input.GetKey(scoreKey));
+        scoreBoardPanel.SetActive(inputValue.isPressed);
     }
 
     private void HandlePoints(NetworkConnectionToClient victimConn, NetworkConnectionToClient attackerConn)
     {
         if (attackerConn == null)
         {
-            Debug.Log("Null attacker");
             int victimScoreIndex = scores.FindIndex(Score => Score.netId.connectionToClient == victimConn);
             Score victimScore = scores[victimScoreIndex];
             victimScore.score -= 1;
@@ -88,7 +96,6 @@ public class ScoreBoard : NetworkBehaviour
         }
         else
         {
-            Debug.Log("Not Null attacker");
             int attackerScoreIndex = scores.FindIndex(Score => Score.netId.connectionToClient == attackerConn);
             Score attackerScore = scores[attackerScoreIndex];
             attackerScore.score += 1;
