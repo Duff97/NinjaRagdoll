@@ -1,3 +1,4 @@
+using Cinemachine.Utility;
 using Mirror;
 using System.Collections;
 using System.Collections.Generic;
@@ -5,8 +6,7 @@ using UnityEngine;
 
 public class SpawnSystem : NetworkBehaviour
 {
-    private Transform[] spawnPoints;
-    private List<Transform> availableSpawnPoints = new List<Transform>();
+    private List<Vector3> availableSpawnPoints = new List<Vector3>();
 
     private NetworkManagerNinjaRagdoll room;
     private NetworkManagerNinjaRagdoll Room
@@ -20,10 +20,8 @@ public class SpawnSystem : NetworkBehaviour
 
     private void AssignSpawn(PlayerRespawn playerRespawn)
     {
-        Debug.Log("Spawn Assigned");
         playerRespawn.spawnPosition = availableSpawnPoints[0];
         availableSpawnPoints.RemoveAt(0);
-        TeleportPlayer(playerRespawn.netIdentity.connectionToClient, playerRespawn.spawnPosition.position);
     }
 
     private void AssignInitialSpawns()
@@ -43,10 +41,11 @@ public class SpawnSystem : NetworkBehaviour
     public override void OnStartServer()
     {
         base.OnStartServer();
-        spawnPoints = GetComponentsInChildren<Transform>();
+        Transform[] spawnPoints = GetComponentsInChildren<Transform>();
         foreach (Transform t in spawnPoints)
         {
-            availableSpawnPoints.Add(t);
+            if (t != this.transform)
+                availableSpawnPoints.Add(t.position);
         }
         AssignInitialSpawns();
         PlayerRespawn.OnServerStarted += AssignSpawn;
@@ -58,12 +57,5 @@ public class SpawnSystem : NetworkBehaviour
         PlayerRespawn.OnServerStarted -= AssignSpawn;
         PlayerRespawn.OnServerStopped -= FreeSpawn;
         base.OnStopServer();
-    }
-
-    [TargetRpc]
-    private void TeleportPlayer(NetworkConnectionToClient clientId, Vector3 spawnPosition)
-    {
-        PlayerRespawn playerRespawn = clientId.identity.GetComponent<PlayerRespawn>();
-        playerRespawn.Teleport(spawnPosition);
     }
 }

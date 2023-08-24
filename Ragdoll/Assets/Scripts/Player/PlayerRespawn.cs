@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class PlayerRespawn : NetworkBehaviour
 {
-    [HideInInspector] public Transform spawnPosition;
+    [HideInInspector][SyncVar(hook = nameof(HandleSpawnPositionChanged))] public Vector3 spawnPosition;
     public Transform ragdollPosition;
     public LimbManager limbManagager;
     public float maxDistance;
@@ -16,6 +16,8 @@ public class PlayerRespawn : NetworkBehaviour
     public static event Action<NetworkConnectionToClient, NetworkConnectionToClient> OnPlayerRespawn;
     public static event Action<PlayerRespawn> OnServerStarted;
     public static event Action<PlayerRespawn> OnServerStopped;
+
+    public void HandleSpawnPositionChanged(Vector3 oldValue, Vector3 newValue) => TeleportToSpawnPosition();
 
     public override void OnStartServer()
     {
@@ -39,7 +41,7 @@ public class PlayerRespawn : NetworkBehaviour
             float distance = ragdollPosition.position.magnitude;
             if (distance > maxDistance)
             {
-                Teleport(spawnPosition.position);
+                TeleportToSpawnPosition();
                 CmdRespawnEvent();
             }
         }
@@ -64,9 +66,9 @@ public class PlayerRespawn : NetworkBehaviour
         lastAttacker = null;
     }
 
-    public void Teleport(Vector3 pos)
+    public void TeleportToSpawnPosition()
     {
-        ragdollPosition.position = pos;
+        ragdollPosition.position = spawnPosition;
         limbManagager.SetVelocity(Vector3.zero);
     }
 
