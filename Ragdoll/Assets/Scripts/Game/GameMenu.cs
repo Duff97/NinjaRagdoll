@@ -2,10 +2,10 @@ using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GameMenu : NetworkBehaviour
 {
-    [SerializeField] private KeyCode menuKey = KeyCode.Escape;
     [SerializeField] private GameObject menuPanel;
 
     private NetworkManagerNinjaRagdoll Room
@@ -16,16 +16,13 @@ public class GameMenu : NetworkBehaviour
         }
     }
 
-    private void Update()
+    private void OnOpenMenu()
     {
-        if (Input.GetKeyDown(menuKey))
-        {
-            if (menuPanel.activeSelf)
-                HideMenu();
-            else
-                ShowMenu();
-            
-        }
+        if (menuPanel.activeSelf)
+            HideMenu();
+        else
+            ShowMenu();
+
     }
 
     public void ShowMenu()

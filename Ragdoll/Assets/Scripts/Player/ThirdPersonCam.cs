@@ -20,9 +20,6 @@ public class ThirdPersonCam : MonoBehaviour
     [HideInInspector] public float walkSpeed;
     [HideInInspector] public float sprintSpeed;
 
-    [Header("Keybinds")]
-    public KeyCode grabKey = KeyCode.Mouse0;
-
     [Header("Ground Check")]
     public float playerHeight;
     public LayerMask whatIsGround;
@@ -86,7 +83,7 @@ public class ThirdPersonCam : MonoBehaviour
 
     private void OnMove(InputValue inputValue)
     {
-        if (hasAuthority && !ragdoll.movementDisabled)
+        if (hasAuthority)
         {
             Vector2 vect = inputValue.Get<Vector2>();
             verticalInput = vect.y;
@@ -103,6 +100,12 @@ public class ThirdPersonCam : MonoBehaviour
             rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
             Invoke(nameof(ResetJump), jumpCooldown);
         }
+    }
+
+    private void OnGrab(InputValue inputValue)
+    {
+        if (hasAuthority)
+            animator.SetBool("IsGrabbing", inputValue.isPressed && !ragdoll.movementDisabled);
     }
 
     private void MovePlayer()
@@ -141,18 +144,18 @@ public class ThirdPersonCam : MonoBehaviour
         {
             animator.SetBool("IsRunning", moveDirection != Vector3.zero);
             animator.SetBool("IsGrounded", grounded);
-            animator.SetBool("IsGrabbing", Input.GetKey(grabKey) && !ragdoll.movementDisabled);
         }
-
-        
     }
 
     private void OnSpineControl(InputValue inputValue)
     {
-        if (inputValue.isPressed)
-            DisableCameraControl();
-        else
-            EnableCameraControl();
+        if (hasAuthority)
+        {
+            if (inputValue.isPressed)
+                DisableCameraControl();
+            else
+                EnableCameraControl();
+        }
     }
 
     private void EnableCameraControl()
