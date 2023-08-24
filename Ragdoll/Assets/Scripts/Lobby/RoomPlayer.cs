@@ -62,7 +62,6 @@ public class RoomPlayer : NetworkBehaviour
                 OnLocalPlayerStarted -= client as Action;
             }
         base.OnStopLocalPlayer();
-
     }
 
     public override void OnStartLocalPlayer()

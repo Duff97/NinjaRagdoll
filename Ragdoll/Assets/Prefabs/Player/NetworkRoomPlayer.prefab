@@ -2517,7 +2517,7 @@ MonoBehaviour:
     m_Options:
     - m_Text: Ball Arena
       m_Image: {fileID: 0}
-    - m_Text: Test mode
+    - m_Text: King of the hill
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
