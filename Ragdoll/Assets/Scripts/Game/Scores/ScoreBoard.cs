@@ -32,12 +32,12 @@ public class ScoreBoard : NetworkBehaviour
             
         }
         UpdateDisplay();
-        PlayerRespawn.OnPlayerRespawn += HandlePoints;
+        GameScore.OnPointGained += HandlePoints;
     }
 
     public override void OnStopServer()
     {
-        PlayerRespawn.OnPlayerRespawn -= HandlePoints;
+        GameScore.OnPointGained -= HandlePoints;
         base.OnStopServer();
         
     }
@@ -84,24 +84,17 @@ public class ScoreBoard : NetworkBehaviour
         scoreBoardPanel.SetActive(inputValue.isPressed);
     }
 
-    private void HandlePoints(NetworkConnectionToClient victimConn, NetworkConnectionToClient attackerConn)
+    private void HandlePoints(NetworkConnectionToClient playerConn, int points)
     {
-        if (attackerConn == null)
-        {
-            int victimScoreIndex = scores.FindIndex(Score => Score.netId.connectionToClient == victimConn);
-            Score victimScore = scores[victimScoreIndex];
-            victimScore.score -= 1;
-            scores[victimScoreIndex] = victimScore;
-            ReorganizeScoreDownward(victimScoreIndex);
-        }
+        int scoreIndex = scores.FindIndex(Score => Score.netId.connectionToClient == playerConn);
+        Score score = scores[scoreIndex];
+        score.score += points;
+        scores[scoreIndex] = score;
+
+        if (points >= 0)
+            ReorganizeScoreUpward(scoreIndex);
         else
-        {
-            int attackerScoreIndex = scores.FindIndex(Score => Score.netId.connectionToClient == attackerConn);
-            Score attackerScore = scores[attackerScoreIndex];
-            attackerScore.score += 1;
-            scores[attackerScoreIndex] = attackerScore;
-            ReorganizeScoreUpward(attackerScoreIndex);
-        }
+            ReorganizeScoreDownward(scoreIndex);
     }
 
     private void ReorganizeScoreUpward(int i)

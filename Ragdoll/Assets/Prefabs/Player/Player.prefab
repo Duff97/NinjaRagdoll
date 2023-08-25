@@ -1695,7 +1695,7 @@ GameObject:
   - component: {fileID: 5522423744228694609}
   m_Layer: 6
   m_Name: Hips
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4133,6 +4133,7 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
+  spawnPosition: {x: 0, y: 0, z: 0}
   ragdollPosition: {fileID: 5528603532362550324}
   limbManagager: {fileID: 2006456812837842975}
   maxDistance: 50
@@ -4658,9 +4659,6 @@ MonoBehaviour:
   airMultiplier: 0.05
   walkSpeed: 0
   sprintSpeed: 0
-  jumpKey: 32
-  grabKey: 323
-  spineControlKey: 304
   playerHeight: 3
   whatIsGround:
     serializedVersion: 2
