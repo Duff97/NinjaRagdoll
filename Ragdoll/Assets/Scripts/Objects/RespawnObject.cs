@@ -3,23 +3,49 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RespawnObject : MonoBehaviour
+public class RespawnObject : NetworkBehaviour
 {
     private Vector3 initialPos;
-    private NetworkRespawn netRespawn;
+    [SerializeField] private float maxDistance;
+    private Rigidbody rb;
 
     private void Start()
     {
-        initialPos = transform.position;
-        netRespawn = FindAnyObjectByType<NetworkRespawn>();
+        rb = GetComponent<Rigidbody>();
     }
 
-    private void OnTriggerExit(Collider other)
+    public override void OnStartServer()
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Respawn"))
-        {
-            netRespawn.CmdRespawn(transform, initialPos);
-        }
+        base.OnStartServer();
+        initialPos = transform.position;
         
+    }
+
+    private void Update()
+    {
+        if (isServer)
+        {
+            float distance = (transform.position - initialPos).magnitude;
+            if (distance > maxDistance)
+            {
+                Respawn();
+            }
+        }
+    }
+
+    [Server]
+    private void Respawn()
+    {
+        transform.position = initialPos;
+        rb.velocity = Vector3.zero;
+        RpcRespawn(initialPos);
+
+    }
+
+    [ClientRpc]
+    private void RpcRespawn(Vector3 position)
+    {
+        transform.position = position;
+        rb.velocity = Vector3.zero;
     }
 }

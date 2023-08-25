@@ -199,6 +199,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4ca3e265257f7145af63dc0bd4062df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  maxDistance: 50
 --- !u!114 &130906666326681728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -214,4 +218,5 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
+  identity: {fileID: 0}
   forceMultiplicator: 20
