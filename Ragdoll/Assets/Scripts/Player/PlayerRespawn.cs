@@ -21,11 +21,8 @@ public class PlayerRespawn : NetworkBehaviour
 
     public override void OnStartServer()
     {
-        Debug.Log("On start server on player respawn");
         base.OnStartServer();
         OnServerStarted?.Invoke(this);
-
-
     }
 
     public override void OnStopServer()
