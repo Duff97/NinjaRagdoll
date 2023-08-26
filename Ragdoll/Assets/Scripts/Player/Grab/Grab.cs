@@ -90,11 +90,8 @@ public class Grab : NetworkBehaviour
     private void ReleaseObj() {
         if (grabbedObj != null)
         {
-            CmdReleaseGrabbableAuth(grabbedObj.GetComponent<NetworkIdentity>());
-            foreach (FixedJoint j in grabbedObj.GetComponents<FixedJoint>())
-            {
-                Destroy(j);
-            }
+            RemoveJoints();
+            CmdReleaseGrabbableAuth(grabbedObj.GetComponent<NetworkIdentity>(), grabbedObj.GetComponent<Rigidbody>().velocity);
             grabbedObj = null;
             targetObj = null;
         }
@@ -104,9 +101,18 @@ public class Grab : NetworkBehaviour
     {
         if (grabbedObj != null)
         {
-            NetworkIdentity grabId = grabbedObj.GetComponent<NetworkIdentity>();
-            ReleaseObj();
-            CmdThrow(grabId);
+            RemoveJoints();
+            CmdThrow(grabbedObj.GetComponent<NetworkIdentity>(), grabbedObj.GetComponent<Rigidbody>().velocity);
+            grabbedObj = null;
+            targetObj = null;
+        }
+    }
+
+    private void RemoveJoints()
+    {
+        foreach (FixedJoint j in grabbedObj.GetComponents<FixedJoint>())
+        {
+            Destroy(j);
         }
     }
 
@@ -129,22 +135,33 @@ public class Grab : NetworkBehaviour
     }
 
     [Command]
-    private void CmdReleaseGrabbableAuth(NetworkIdentity grabbableId)
+    private void CmdReleaseGrabbableAuth(NetworkIdentity grabbableId, Vector3 velocity)
     {
         if (grabbableId.connectionToClient == connectionToClient)
         {
             grabbableId.RemoveClientAuthority();
+            NetworkGrabbable netGrab = grabbableId.GetComponent<NetworkGrabbable>();
+            netGrab.velocity = velocity;
         }
     }
 
     [Command]
-    private void CmdThrow(NetworkIdentity grabbableId)
+    private void CmdThrow(NetworkIdentity grabbableId, Vector3 velocity)
     {
         if (grabbableId.connectionToClient == connectionToClient)
         {
             grabbableId.RemoveClientAuthority();
-            Vector3 throwDirection = throwOrigin.forward;
-            grabbableId.GetComponent<Rigidbody>().AddForce(throwDirection * (-throwImpulse), ForceMode.Impulse);
+            NetworkGrabbable netGrab = grabbableId.GetComponent<NetworkGrabbable>();
+            Rigidbody grabRb = grabbableId.GetComponent<Rigidbody>();
+            netGrab.velocity = velocity + ThrowVelocity(grabRb.mass);
         }
+    }
+
+    [Server]
+    private Vector3 ThrowVelocity(float mass)
+    {
+        Vector3 throwDirection = throwOrigin.forward;
+        Vector3 force = throwDirection * (-throwImpulse);
+        return (1 / mass) * force;
     }
 }

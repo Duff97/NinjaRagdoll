@@ -4181,7 +4181,7 @@ MonoBehaviour:
   leftHand: {fileID: 4799467916903929218}
   rightHand: {fileID: 6903918650168172466}
   animator: {fileID: 1898732654248199796}
-  throwOrigin: {fileID: 1582224724665453279}
+  throwOrigin: {fileID: 6969783007314517662}
   limbManager: {fileID: 2006456812837842975}
   throwImpulse: 30
   maxGrabVelocity: 0
