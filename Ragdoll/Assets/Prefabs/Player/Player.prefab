@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 80798112065661616}
   - component: {fileID: 504305805093746038}
   - component: {fileID: 2120215094995352093}
-  - component: {fileID: 3593983913536286772}
+  - component: {fileID: 4799467916903929218}
   m_Layer: 9
   m_Name: LeftForeArm
   m_TagString: Untagged
@@ -191,7 +191,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.3
   m_Center: {x: 0.000000017533125, y: 0.7, z: 0.00000006431258}
---- !u!114 &3593983913536286772
+--- !u!114 &4799467916903929218
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -200,17 +200,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1842361455242549}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f30e9652dcd6c424eb73d93bde0b4e9d, type: 3}
+  m_Script: {fileID: 11500000, guid: e7f7953739880684689c13786244d2e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grabbedObj: {fileID: 0}
-  animator: {fileID: 1898732654248199796}
-  throwOrigin: {fileID: 6969783007314517662}
-  identity: {fileID: 6867432515056353932}
-  limbManager: {fileID: 2006456812837842975}
-  throwImpulse: 30
-  maxGrabVelocity: 0
-  throwInput: 324
+  rb: {fileID: 0}
 --- !u!1 &1842361671695631
 GameObject:
   m_ObjectHideFlags: 0
@@ -3973,6 +3966,7 @@ GameObject:
   - component: {fileID: 4309398887505804141}
   - component: {fileID: 1025848238179412900}
   - component: {fileID: 2649290166915418256}
+  - component: {fileID: 248297452811671294}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -4168,6 +4162,30 @@ MonoBehaviour:
   m_DefaultActionMap: Base
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &248297452811671294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7407185904065085319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f30e9652dcd6c424eb73d93bde0b4e9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  grabbedObj: {fileID: 0}
+  leftHand: {fileID: 4799467916903929218}
+  rightHand: {fileID: 6903918650168172466}
+  animator: {fileID: 1898732654248199796}
+  throwOrigin: {fileID: 1582224724665453279}
+  limbManager: {fileID: 2006456812837842975}
+  throwImpulse: 30
+  maxGrabVelocity: 0
+  throwInput: 324
 --- !u!1 &7407185904136490876
 GameObject:
   m_ObjectHideFlags: 0
@@ -5334,7 +5352,7 @@ GameObject:
   - component: {fileID: 1358316032357522091}
   - component: {fileID: 9117824283104296494}
   - component: {fileID: 7203670303604760899}
-  - component: {fileID: 946080179533227084}
+  - component: {fileID: 6903918650168172466}
   m_Layer: 9
   m_Name: RightForeArm
   m_TagString: Untagged
@@ -5511,7 +5529,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.3
   m_Center: {x: 0.000000017533125, y: 0.7, z: 0.00000006431258}
---- !u!114 &946080179533227084
+--- !u!114 &6903918650168172466
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5520,17 +5538,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 9145220625126502811}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f30e9652dcd6c424eb73d93bde0b4e9d, type: 3}
+  m_Script: {fileID: 11500000, guid: e7f7953739880684689c13786244d2e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grabbedObj: {fileID: 0}
-  animator: {fileID: 1898732654248199796}
-  throwOrigin: {fileID: 6969783007314517662}
-  identity: {fileID: 6867432515056353932}
-  limbManager: {fileID: 2006456812837842975}
-  throwImpulse: 30
-  maxGrabVelocity: 0
-  throwInput: 324
+  rb: {fileID: 0}
 --- !u!1 &9145220627082699169
 GameObject:
   m_ObjectHideFlags: 0

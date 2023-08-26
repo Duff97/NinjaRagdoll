@@ -23,7 +23,7 @@ public class GrabAuthority : NetworkBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("Hand") && !grabDisabled && isClient)
         {
             Grab grab = other.gameObject.GetComponent<Grab>();
-            CmdAssignNetworkAuthority(grab.identity);
+            CmdAssignNetworkAuthority(grab.netIdentity);
         }
     }
 
