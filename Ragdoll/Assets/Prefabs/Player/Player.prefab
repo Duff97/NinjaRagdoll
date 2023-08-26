@@ -4183,8 +4183,9 @@ MonoBehaviour:
   animator: {fileID: 1898732654248199796}
   throwOrigin: {fileID: 6969783007314517662}
   limbManager: {fileID: 2006456812837842975}
-  throwImpulse: 30
+  throwImpulse: 1000
   maxGrabVelocity: 0
+  grabMassFactor: 0.02
   throwInput: 324
 --- !u!1 &7407185904136490876
 GameObject:
