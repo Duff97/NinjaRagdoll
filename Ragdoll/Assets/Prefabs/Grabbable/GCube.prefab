@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 130906666326681730}
   - component: {fileID: 130906666326681731}
   - component: {fileID: 4454341327333617346}
+  - component: {fileID: 3696192461771161672}
   m_Layer: 10
   m_Name: GCube
   m_TagString: Untagged
@@ -201,5 +202,23 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   velocity: {x: 0, y: 0, z: 0}
-  syncDistance: 5
-  positionSyncInterval: 2
+  syncDistance: 0.5
+  positionSyncInterval: 0.2
+--- !u!114 &3696192461771161672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 130906666326681748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b9ff8901e0667044a7fda588ca2ff37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  identity: {fileID: 0}
+  forceMultiplicator: 10
+  minVelocity: 3

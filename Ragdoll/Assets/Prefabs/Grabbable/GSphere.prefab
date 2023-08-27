@@ -202,8 +202,8 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   velocity: {x: 0, y: 0, z: 0}
-  syncDistance: 5
-  positionSyncInterval: 2
+  syncDistance: 0.5
+  positionSyncInterval: 0.2
 --- !u!114 &138188868775358443
 MonoBehaviour:
   m_ObjectHideFlags: 0
