@@ -6,7 +6,7 @@ PhysicMaterial:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Foot
+  m_Name: Character
   dynamicFriction: 0.1
   staticFriction: 0.1
   bounciness: 0

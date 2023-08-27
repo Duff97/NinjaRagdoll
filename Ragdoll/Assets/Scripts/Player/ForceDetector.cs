@@ -17,7 +17,7 @@ public class ForceDetector : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.gameObject.layer != LayerMask.NameToLayer("Ground"))
+        if (collision.collider.gameObject.layer != LayerMask.NameToLayer("Player"))
         {
             forceDetected += collision.impulse.magnitude;
         }

@@ -5,57 +5,42 @@ using UnityEngine;
 
 public class NetworkForce : NetworkBehaviour
 {
-    public NetworkIdentity identity;
+    [HideInInspector] public NetworkIdentity identity;
     public float forceMultiplicator;
+    public float minVelocity;
+    private Rigidbody rb;
 
     private void Start()
     {
         identity = GetComponent<NetworkIdentity>();
+        rb = GetComponent<Rigidbody>();
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Character") && isOwned)
+        if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Player") 
+            && isServer && connectionToClient == null && rb.velocity.magnitude >= minVelocity)
         {
-            ForceDetector detector = collision.collider.GetComponent<ForceDetector>();
-            if (detector != null && !detector.netId.isOwned) 
+            VelocityTransfer vtransfer = collision.collider.GetComponent<VelocityTransfer>();
+            if (vtransfer != null) 
             {
-                CmdApplyForce(detector.netId, collision.impulse, collision.collider.gameObject.name);
+                // fix this
+                //ftransfer.netId.GetComponent<PlayerRespawn>().SetLastAttacker(identity.connectionToClient);
+                Vector3 newVelocity = vtransfer.AddVelocity(collision.impulse * -forceMultiplicator);
+                RpcApplyVelocity(vtransfer.netId, newVelocity);
             }
         }
         
-    }
-
-
-    [Command]
-    private void CmdApplyForce(NetworkIdentity targetId, Vector3 impulse, string limbName)
-    {
-        LimbManager lm = targetId.GetComponentInChildren<LimbManager>();
-        if (lm != null)
-        {
-            ForceDetector detector = lm.findDetectorByName(limbName);
-            targetId.GetComponent<PlayerRespawn>().SetLastAttacker(identity.connectionToClient);
-            detector.AddImpulse(impulse * -forceMultiplicator);
-            RpcApplyForce(targetId, impulse, limbName);
-        }
     }
 
     [ClientRpc]
-    private void RpcApplyForce(NetworkIdentity targetId, Vector3 impulse, string limbName)
+    private void RpcApplyVelocity(NetworkIdentity targetId, Vector3 velocity)
     {
         
-        LimbManager lm = targetId.GetComponentInChildren<LimbManager>();
-        if (lm != null)
+        VelocityTransfer vtransfer = targetId.GetComponentInChildren<VelocityTransfer>();
+        if (vtransfer != null)
         {
-            ForceDetector detector = lm.findDetectorByName(limbName);
-            if (isOwned)
-            {
-                detector.forceDetected = (impulse * -forceMultiplicator).magnitude;
-            }
-            else
-            {
-                detector.AddImpulse(impulse * -forceMultiplicator);
-            } 
+            vtransfer.SetVelocity(velocity);
         }
     }
 }

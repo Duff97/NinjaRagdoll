@@ -31,9 +31,9 @@ public class LimbManager : MonoBehaviour
     [HideInInspector] public Rigidbody rootBody {
         get { return pelvis.GetComponent<Rigidbody>(); }
     }
-    [HideInInspector] public bool movementDisabled { get; private set; }
+    [HideInInspector] public bool movementDisabled;
     private float currentDriveResetCd;
-    private float totalForce;
+    public float totalForce;
     
 
     // Start is called before the first frame update
@@ -78,10 +78,15 @@ public class LimbManager : MonoBehaviour
         FetchDetectorData();
         if (totalForce > maxForce)
         {
-            movementDisabled = true;
-            EnableAngularDrive(false);
-            currentDriveResetCd = driveResetCooldown;
+            DisableMovement();
         }
+    }
+
+    public void DisableMovement()
+    {
+        movementDisabled = true;
+        EnableAngularDrive(false);
+        currentDriveResetCd = driveResetCooldown;
     }
 
     private void EnableAngularDrive(bool enabled)

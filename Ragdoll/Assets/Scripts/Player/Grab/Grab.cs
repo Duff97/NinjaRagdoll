@@ -21,7 +21,6 @@ public class Grab : NetworkBehaviour
     [Header("Parameters")]
     [SerializeField] private int throwImpulse;
     [SerializeField] private float maxGrabVelocity;
-    [SerializeField] private float grabMassFactor;
 
     [Header("Inputs")]
     public KeyCode throwInput = KeyCode.Mouse1;
@@ -81,8 +80,6 @@ public class Grab : NetworkBehaviour
         {
             CmdTakeGrabbableAuth(go.GetComponent<NetworkIdentity>());
             grabbedObj = go;
-            Rigidbody grabbedRb = grabbedObj.GetComponent<Rigidbody>();
-            grabbedRb.mass = grabbedRb.mass * grabMassFactor;
             FixedJoint joint1 = go.AddComponent<FixedJoint>();
             joint1.connectedBody = leftHand.rb;
             FixedJoint joint2 = go.AddComponent<FixedJoint>();
@@ -95,7 +92,6 @@ public class Grab : NetworkBehaviour
         {
             RemoveJoints();
             Rigidbody grabbedRb = grabbedObj.GetComponent<Rigidbody>();
-            grabbedRb.mass = grabbedRb.mass / grabMassFactor;
             CmdReleaseGrabbableAuth(grabbedObj.GetComponent<NetworkIdentity>(), grabbedRb.velocity);
             grabbedObj = null;
             targetObj = null;
@@ -108,7 +104,6 @@ public class Grab : NetworkBehaviour
         {
             RemoveJoints();
             Rigidbody grabbedRb = grabbedObj.GetComponent<Rigidbody>();
-            grabbedRb.mass = grabbedRb.mass / grabMassFactor;
             CmdThrow(grabbedObj.GetComponent<NetworkIdentity>(), grabbedRb.velocity);
             grabbedObj = null;
             targetObj = null;
