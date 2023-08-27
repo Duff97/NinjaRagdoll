@@ -7,7 +7,7 @@ public class VelocityTransfer : MonoBehaviour
 {
     public NetworkIdentity netId;
     [SerializeField] private Rigidbody targetRb;
-    [SerializeField] private float upwardForce;
+    [SerializeField] private float upwardVelocity;
 
     private LimbManager limbManager;
 
@@ -20,7 +20,7 @@ public class VelocityTransfer : MonoBehaviour
     public Vector3 AddVelocity(Vector3 velocity)
     {
         //targetRb.AddForce(impulse, ForceMode.Impulse);
-        velocity.y += upwardForce;
+        velocity.y += upwardVelocity;
         targetRb.velocity += velocity;
         limbManager.DisableMovement();
         return targetRb.velocity;
