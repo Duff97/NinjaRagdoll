@@ -15,9 +15,8 @@ GameObject:
   - component: {fileID: 1366627117398234355}
   - component: {fileID: 1366627117398234352}
   - component: {fileID: 1366627117398234353}
-  - component: {fileID: 1366627117398234366}
   - component: {fileID: 1366627117398234360}
-  - component: {fileID: 1366627117398234363}
+  - component: {fileID: 3433036341348102892}
   m_Layer: 10
   m_Name: GSphere
   m_TagString: Untagged
@@ -162,31 +161,14 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1366627117398234358}
   serializedVersion: 2
-  m_Mass: 2
+  m_Mass: 500
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 1
---- !u!114 &1366627117398234366
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1366627117398234358}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6661ce7d0c13c8947bd821fb3fc110ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
-  grabbableCD: 3
-  grabDisabled: 0
+  m_CollisionDetection: 2
 --- !u!114 &1366627117398234360
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -203,7 +185,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   maxDistance: 50
---- !u!114 &1366627117398234363
+--- !u!114 &3433036341348102892
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -212,11 +194,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1366627117398234358}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b9ff8901e0667044a7fda588ca2ff37, type: 3}
+  m_Script: {fileID: 11500000, guid: f1affa48613e8e24ba1da2b0de79d6d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  identity: {fileID: 0}
-  forceMultiplicator: 20
+  velocity: {x: 0, y: 0, z: 0}
+  syncDistance: 5
+  positionSyncInterval: 2
