@@ -62,7 +62,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1.25
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0.2
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -392,7 +392,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1.25
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0.2
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -679,7 +679,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1.875
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0.2
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -1734,7 +1734,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 3.125
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0.1
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
@@ -1937,7 +1937,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1.25
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0.2
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -2948,7 +2948,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1.875
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0.2
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -3235,7 +3235,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1.875
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0.2
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -4860,7 +4860,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1.875
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0.2
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -5083,7 +5083,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1.25
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0.2
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -5401,7 +5401,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1.25
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0.2
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -5671,7 +5671,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 3.125
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0.2
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0

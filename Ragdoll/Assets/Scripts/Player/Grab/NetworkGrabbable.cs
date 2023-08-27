@@ -31,7 +31,7 @@ public class NetworkGrabbable : NetworkBehaviour
 
     private void Update()
     {
-        if (isServer)
+        if (isServer && connectionToClient == null)
         {
             timeUntilSync -= Time.deltaTime;
             if (timeUntilSync <= 0)
