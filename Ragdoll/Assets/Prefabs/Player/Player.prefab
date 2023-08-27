@@ -2531,8 +2531,8 @@ MonoBehaviour:
   kneeL: {fileID: 2357602434281474501}
   legR: {fileID: 9162036766363883718}
   kneeR: {fileID: 2163021721597200643}
-  maxForce: 150
-  maxDrive: 500
+  maxForce: 100
+  maxDrive: 450
   driveResetCooldown: 3
   driveResetVelocity: 3
 --- !u!1 &5240628662762537141
@@ -3218,7 +3218,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6011042092793075814}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: f7fa74cfd0820914c9d7f9e2e39c5bcd, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.10097721
@@ -4183,9 +4183,9 @@ MonoBehaviour:
   animator: {fileID: 1898732654248199796}
   throwOrigin: {fileID: 6969783007314517662}
   limbManager: {fileID: 2006456812837842975}
-  throwImpulse: 1000
+  throwImpulse: 5000
   maxGrabVelocity: 0
-  grabMassFactor: 0.02
+  grabMassFactor: 0.004
   throwInput: 324
 --- !u!1 &7407185904136490876
 GameObject:
@@ -4843,7 +4843,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8236118685950656815}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: f7fa74cfd0820914c9d7f9e2e39c5bcd, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.100817956
