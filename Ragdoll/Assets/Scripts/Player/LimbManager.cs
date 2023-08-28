@@ -89,6 +89,13 @@ public class LimbManager : MonoBehaviour
         currentDriveResetCd = driveResetCooldown;
     }
 
+    public void EnableMovement()
+    {
+        currentDriveResetCd = 0;
+        EnableAngularDrive(true);
+        movementDisabled = false;
+    }
+
     private void EnableAngularDrive(bool enabled)
     {
         float angularDrive = enabled ? maxDrive : 0f;
@@ -112,9 +119,7 @@ public class LimbManager : MonoBehaviour
             currentDriveResetCd -= Time.deltaTime;
             if (currentDriveResetCd <= 0)
             {
-                currentDriveResetCd = 0;
-                EnableAngularDrive(true);
-                movementDisabled = false;
+                EnableMovement();
             }
         }
     }

@@ -61,12 +61,20 @@ public class PlayerRespawn : NetworkBehaviour
     {
         OnPlayerRespawn?.Invoke(connectionToClient, lastAttacker);
         lastAttacker = null;
+        RpcEnableMovement();
+    }
+
+    [ClientRpc]
+    private void RpcEnableMovement()
+    {
+        limbManagager.EnableMovement();
     }
 
     public void TeleportToSpawnPosition()
     {
         ragdollPosition.position = spawnPosition;
         limbManagager.SetVelocity(Vector3.zero);
+        limbManagager.EnableMovement();
     }
 
     

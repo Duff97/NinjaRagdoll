@@ -9,23 +9,24 @@ public class NetworkForce : NetworkBehaviour
     public float forceMultiplicator;
     public float minVelocity;
     private Rigidbody rb;
+    private GrabbableAttack ga;
 
     private void Start()
     {
         identity = GetComponent<NetworkIdentity>();
         rb = GetComponent<Rigidbody>();
+        ga = GetComponent<GrabbableAttack>();
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Player") 
-            && isServer && connectionToClient == null && rb.velocity.magnitude >= minVelocity)
+            && isServer && rb.velocity.magnitude >= minVelocity)
         {
             VelocityTransfer vtransfer = collision.collider.GetComponent<VelocityTransfer>();
-            if (vtransfer != null) 
+            if (vtransfer != null && vtransfer.netId.connectionToClient != connectionToClient) 
             {
-                // fix this
-                //ftransfer.netId.GetComponent<PlayerRespawn>().SetLastAttacker(identity.connectionToClient);
+                ga.SetPlayerLastAttacker(collision.collider.GetComponentInParent<PlayerRespawn>());
                 Vector3 newVelocity = vtransfer.AddVelocity(collision.impulse * -forceMultiplicator);
                 RpcApplyVelocity(vtransfer.netId, newVelocity);
             }

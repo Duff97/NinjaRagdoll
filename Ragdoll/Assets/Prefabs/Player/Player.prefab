@@ -2534,7 +2534,7 @@ MonoBehaviour:
   legR: {fileID: 9162036766363883718}
   kneeR: {fileID: 2163021721597200643}
   maxForce: 100
-  maxDrive: 450
+  maxDrive: 600
   driveResetCooldown: 3
   driveResetVelocity: 3
   movementDisabled: 0
@@ -2567,7 +2567,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   netId: {fileID: 6867432515056353932}
   targetRb: {fileID: 5195302214525057573}
-  upwardForce: 300
+  maxVelocity: 425
 --- !u!1 &5240628662762537141
 GameObject:
   m_ObjectHideFlags: 0
