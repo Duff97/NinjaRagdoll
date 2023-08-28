@@ -22,7 +22,7 @@ public class VelocityTransfer : MonoBehaviour
         {
             Vector3 test = new Vector3();
             test.x = maxVelocity / 3;
-            test.y = maxVelocity / 3;
+            test.y = -maxVelocity / 3;
             test.z = maxVelocity / 3;
             SetVelocity(ControlVelocity(test));
         }
@@ -44,7 +44,7 @@ public class VelocityTransfer : MonoBehaviour
 
     private Vector3 ControlVelocity(Vector3 velocity)
     {
-        float y = velocity.y;
+        float y = Mathf.Abs(velocity.y);
         velocity.y = 0;
         velocity += velocity.normalized * y;
         velocity.y = velocity.magnitude;
