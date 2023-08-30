@@ -18,6 +18,7 @@ public class SelectableHat : MonoBehaviour
         background = GetComponent<Image>();
         defaultColor = background.color;
         OnHatSelected += HandleSelectedHatChanged;
+        ScrollHatSelection.OnResetSelection += HandleSelectedHatChanged;
     }
 
     public void SelectHat()
@@ -34,8 +35,13 @@ public class SelectableHat : MonoBehaviour
     private void HandleSelectedHatChanged(int hatIndex)
     {
         if (hatIndex != this.hatIndex)
-        {
             background.color = defaultColor;
-        }
+        else
+            background.color = selectedColor;
+    }
+
+    private void OnDestroy()
+    {
+        OnHatSelected -= HandleSelectedHatChanged;
     }
 }

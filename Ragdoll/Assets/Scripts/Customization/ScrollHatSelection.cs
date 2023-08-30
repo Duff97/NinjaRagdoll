@@ -9,6 +9,8 @@ public class ScrollHatSelection : MonoBehaviour
     [SerializeField] private SelectableHat[] selectableHatPrefabs;
     [SerializeField] private GameObject hatsContainer;
 
+    public static Action<int> OnResetSelection;
+
 
     private void Start()
     {
@@ -30,4 +32,10 @@ public class ScrollHatSelection : MonoBehaviour
         customizationApply.hatIndex = hatIndex;
         customizationApply.ApplyCustomization();
     }
+
+    public void ResetSelection()
+    {
+        OnResetSelection?.Invoke(customizationApply.hatIndex);
+    }
+
 }

@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 838035143783367484, guid: 1580ecd14d926f346a9511083d388eb5, type: 3}
       propertyPath: m_Name
-      value: SelectableHatBase (1)
+      value: SombreroHat
       objectReference: {fileID: 0}
     - target: {fileID: 838035143783367485, guid: 1580ecd14d926f346a9511083d388eb5, type: 3}
       propertyPath: m_Pivot.x
@@ -172,6 +172,10 @@ PrefabInstance:
     - target: {fileID: 4306935685042609138, guid: 44991d05d97248b48a4b3b08f395635e, type: 3}
       propertyPath: m_Layer
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4306935685042609138, guid: 44991d05d97248b48a4b3b08f395635e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 44991d05d97248b48a4b3b08f395635e, type: 3}

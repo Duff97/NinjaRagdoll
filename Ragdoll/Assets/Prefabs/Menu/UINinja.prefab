@@ -426,6 +426,8 @@ GameObject:
   - component: {fileID: 2551306164922558317}
   - component: {fileID: 8469058286753479959}
   - component: {fileID: 4998043119654143566}
+  - component: {fileID: 4276285240817911762}
+  - component: {fileID: 6342402080858242192}
   m_Layer: 5
   m_Name: UINinja
   m_TagString: Untagged
@@ -516,6 +518,33 @@ MonoBehaviour:
   hatIndex: 0
   headObj: {fileID: 2699213766662259832}
   loadOnStart: 1
+--- !u!114 &4276285240817911762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2892401522019761623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ae0b3b246c83dd4d91d02779f007d28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 1000
+--- !u!136 &6342402080858242192
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2892401522019761623}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.5707189
+  m_Height: 3.3258963
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.4733183, z: 0}
 --- !u!1 &2964706214525478534
 GameObject:
   m_ObjectHideFlags: 0
