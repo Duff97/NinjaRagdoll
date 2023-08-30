@@ -77,6 +77,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 416f34a2f0df14c4c84995881bcf01f1, type: 3}
+--- !u!1 &2572545146208539600 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 404535256170413259, guid: 416f34a2f0df14c4c84995881bcf01f1, type: 3}
+  m_PrefabInstance: {fileID: 2751337092557762331}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3988204486458667687
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -84,9 +89,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 838035142052016789, guid: 1580ecd14d926f346a9511083d388eb5, type: 3}
+      propertyPath: MaskedObj
+      value: 
+      objectReference: {fileID: 2572545146208539600}
     - target: {fileID: 838035143783367484, guid: 1580ecd14d926f346a9511083d388eb5, type: 3}
       propertyPath: m_Name
-      value: SelectableHatBase
+      value: BunnyearsHat
       objectReference: {fileID: 0}
     - target: {fileID: 838035143783367485, guid: 1580ecd14d926f346a9511083d388eb5, type: 3}
       propertyPath: m_Pivot.x

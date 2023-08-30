@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class SelectionHatMask : MonoBehaviour
 {
-    [SerializeField] private GameObject MaskedObj;
+    private GameObject MaskedObj;
+
+    private void Awake()
+    {
+        MaskedObj = transform.GetChild(0).gameObject;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
