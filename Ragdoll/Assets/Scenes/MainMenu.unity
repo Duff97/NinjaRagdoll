@@ -2958,10 +2958,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: UINinja
       objectReference: {fileID: 0}
-    - target: {fileID: 4276285240817911762, guid: 21b8a8f19d1f7c441bd1a30edf304081, type: 3}
-      propertyPath: rotationSpeed
-      value: 1000
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 21b8a8f19d1f7c441bd1a30edf304081, type: 3}
 --- !u!4 &1981693891 stripped
