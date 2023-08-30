@@ -4000,6 +4000,8 @@ GameObject:
   - component: {fileID: 1025848238179412900}
   - component: {fileID: 2649290166915418256}
   - component: {fileID: 248297452811671294}
+  - component: {fileID: 33617687073830337}
+  - component: {fileID: 5605269994963238091}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -4219,6 +4221,41 @@ MonoBehaviour:
   throwImpulse: 30
   maxGrabVelocity: 0
   throwInput: 324
+--- !u!114 &33617687073830337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7407185904065085319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9604aa080243cfe4dbe12e738e6c9799, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hats:
+  - {fileID: 1073627630280868919, guid: 2557be8c896f27947a8790a84dcb3ae7, type: 3}
+  - {fileID: 5707935763345722561, guid: 696b646dd990bf3448aebecbdc318634, type: 3}
+  - {fileID: 4034295398940763966, guid: dac964e02229d474b9f3b776968729ed, type: 3}
+  hatIndex: 0
+  headObj: {fileID: 5378437533882789665}
+  loadOnStart: 0
+--- !u!114 &5605269994963238091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7407185904065085319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cee1bef57041644897e863bbd91c222, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 1
+  syncMode: 0
+  syncInterval: 0
+  customizationApply: {fileID: 33617687073830337}
 --- !u!1 &7407185904136490876
 GameObject:
   m_ObjectHideFlags: 0

@@ -483,8 +483,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9604aa080243cfe4dbe12e738e6c9799, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hats:
+  - {fileID: 1073627630280868919, guid: 2557be8c896f27947a8790a84dcb3ae7, type: 3}
+  - {fileID: 5707935763345722561, guid: 696b646dd990bf3448aebecbdc318634, type: 3}
+  - {fileID: 4034295398940763966, guid: dac964e02229d474b9f3b776968729ed, type: 3}
   hatIndex: 0
   headObj: {fileID: 2699213766662259832}
+  loadOnStart: 1
 --- !u!1 &2964706214525478534
 GameObject:
   m_ObjectHideFlags: 0
