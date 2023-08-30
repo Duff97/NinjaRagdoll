@@ -43,6 +43,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: m_BeerHat01
       objectReference: {fileID: 0}
+    - target: {fileID: 1046007737318186546, guid: d131cf5556dd3c94590177285d80f9e7, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4098121344086961185, guid: d131cf5556dd3c94590177285d80f9e7, type: 3}
       propertyPath: m_RootOrder
       value: 0

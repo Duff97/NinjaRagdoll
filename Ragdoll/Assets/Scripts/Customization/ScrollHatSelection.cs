@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class ScrollHatSelection : MonoBehaviour
 {
+    [SerializeField] private CustomizationApply customizationApply;
     [SerializeField] private SelectableHat[] selectableHatPrefabs;
     [SerializeField] private GameObject hatsContainer;
 
@@ -26,6 +27,7 @@ public class ScrollHatSelection : MonoBehaviour
 
     private void HandleSelectedHatChanged(int hatIndex)
     {
-        // Wear hat
+        customizationApply.hatIndex = hatIndex;
+        customizationApply.ApplyCustomization();
     }
 }
