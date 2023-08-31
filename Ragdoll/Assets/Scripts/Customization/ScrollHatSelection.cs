@@ -38,4 +38,9 @@ public class ScrollHatSelection : MonoBehaviour
         OnResetSelection?.Invoke(customizationApply.hatIndex);
     }
 
+    private void OnDestroy()
+    {
+        SelectableHat.OnHatSelected -= HandleSelectedHatChanged;
+    }
+
 }

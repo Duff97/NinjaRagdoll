@@ -13,12 +13,19 @@ public class SelectableHat : MonoBehaviour
     private Image background;
     private Color defaultColor;
 
-    private void Start()
+    private const string PlayerPrefHatString = "CustomHat";
+
+    private void Awake()
     {
         background = GetComponent<Image>();
         defaultColor = background.color;
         OnHatSelected += HandleSelectedHatChanged;
         ScrollHatSelection.OnResetSelection += HandleSelectedHatChanged;
+    }
+
+    private void Start()
+    {
+        LoadFromPrefs();
     }
 
     public void SelectHat()
@@ -43,5 +50,12 @@ public class SelectableHat : MonoBehaviour
     private void OnDestroy()
     {
         OnHatSelected -= HandleSelectedHatChanged;
+        ScrollHatSelection.OnResetSelection -= HandleSelectedHatChanged;
+    }
+
+    private void LoadFromPrefs()
+    {
+        int hatIndex = PlayerPrefs.HasKey(PlayerPrefHatString) ? PlayerPrefs.GetInt(PlayerPrefHatString) : -1;
+        HandleSelectedHatChanged(hatIndex);
     }
 }
