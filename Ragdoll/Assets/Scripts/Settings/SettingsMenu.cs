@@ -93,9 +93,9 @@ public class SettingsMenu : MonoBehaviour
             SetResolution(resolutionDropdown.value);
         }
 
-        if (!PlayerPrefs.HasKey(PPFullScreen))
+        if (PlayerPrefs.HasKey(PPFullScreen))
         {
-            FullScreenToggle.SetIsOnWithoutNotify(PlayerPrefs.GetInt(PPFullScreen) == 1 ? true : false);
+            FullScreenToggle.isOn = PlayerPrefs.GetInt(PPFullScreen) == 1 ? true : false;
             SetFullScreen(FullScreenToggle.isOn);
         }
     }
