@@ -158,13 +158,13 @@ public class ThirdPersonCam : MonoBehaviour
         }
     }
 
-    private void EnableCameraControl()
+    public void EnableCameraControl()
     {
         cinemachine.m_YAxis.m_InputAxisName = "Mouse Y";
         cinemachine.m_XAxis.m_InputAxisName = "Mouse X";
     }
 
-    private void DisableCameraControl()
+    public void DisableCameraControl()
     {
         cinemachine.m_YAxis.m_InputAxisName = "";
         cinemachine.m_XAxis.m_InputAxisName = "";

@@ -16,6 +16,13 @@ public class NetworkPlayerSettings : NetworkBehaviour
     {
         base.OnStartLocalPlayer();
         LoadFromPrefs();
+        SettingsMenu.OnSettingsChanged += LoadFromPrefs;
+    }
+
+    public override void OnStopLocalPlayer()
+    {
+        SettingsMenu.OnSettingsChanged -= LoadFromPrefs;
+        base.OnStopLocalPlayer();
     }
 
     private void LoadFromPrefs()

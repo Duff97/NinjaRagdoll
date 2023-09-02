@@ -1,4 +1,5 @@
 using Mirror;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,9 @@ using UnityEngine.InputSystem;
 public class GameMenu : NetworkBehaviour
 {
     [SerializeField] private GameObject menuPanel;
+
+    public static event Action OnMenuOpened;
+    public static event Action OnMenuClosed;
 
     private NetworkManagerNinjaRagdoll Room
     {
@@ -30,6 +34,7 @@ public class GameMenu : NetworkBehaviour
         menuPanel.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+        OnMenuOpened?.Invoke();
     }
 
     public void HideMenu()
@@ -37,6 +42,7 @@ public class GameMenu : NetworkBehaviour
         menuPanel.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        OnMenuClosed?.Invoke();
     }
 
     public void QuitGame()

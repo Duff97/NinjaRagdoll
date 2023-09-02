@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -20,6 +21,8 @@ public class SettingsMenu : MonoBehaviour
     private const string PPFullScreen = "FullScreen";
     private const string PPResolution = "Resolution";
     private const string PPVolume = "Volume";
+
+    public static event Action OnSettingsChanged;
 
     private void Start()
     {
@@ -71,6 +74,8 @@ public class SettingsMenu : MonoBehaviour
         PlayerPrefs.SetFloat(PPVolume, VolumeSlider.value);
         PlayerPrefs.SetInt(PPFullScreen, FullScreenToggle.isOn ? 1 : 0);
         PlayerPrefs.SetInt(PPResolution, resolutionDropdown.value);
+
+        OnSettingsChanged?.Invoke();
     }
 
     public void LoadFromPrefs()
