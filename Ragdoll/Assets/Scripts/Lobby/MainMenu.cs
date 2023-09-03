@@ -40,7 +40,6 @@ public class MainMenu : MonoBehaviour
 
     private void ReloadScene()
     {
-        NetworkManagerNinjaRagdoll.OnClientDisconnected -= ReloadScene;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
@@ -50,5 +49,11 @@ public class MainMenu : MonoBehaviour
         UnityEditor.EditorApplication.isPlaying = false;
 #endif
         Application.Quit();
+    }
+
+    private void OnDestroy()
+    {
+        NetworkManagerNinjaRagdoll.OnClientDisconnected -= ReloadScene;
+        RoomPlayer.OnLocalPlayerStarted -= HideLandingPage;
     }
 }
