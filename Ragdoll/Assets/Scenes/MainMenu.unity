@@ -556,7 +556,8 @@ GameObject:
   m_Component:
   - component: {fileID: 214066867}
   - component: {fileID: 214066866}
-  - component: {fileID: 214066865}
+  - component: {fileID: 214066869}
+  - component: {fileID: 214066868}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -564,30 +565,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &214066865
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 214066864}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7424c1070fad4ba2a7a96b02fbeb4bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  port: 7777
-  NoDelay: 1
-  SendTimeout: 5000
-  ReceiveTimeout: 30000
-  serverMaxMessageSize: 16384
-  serverMaxReceivesPerTick: 10000
-  serverSendQueueLimitPerConnection: 10000
-  serverReceiveQueueLimitPerConnection: 10000
-  clientMaxMessageSize: 16384
-  clientMaxReceivesPerTick: 1000
-  clientSendQueueLimit: 10000
-  clientReceiveQueueLimit: 10000
 --- !u!114 &214066866
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -607,7 +584,7 @@ MonoBehaviour:
   sendRate: 60
   offlineScene: Assets/Scenes/MainMenu.unity
   onlineScene: 
-  transport: {fileID: 214066865}
+  transport: {fileID: 0}
   networkAddress: localhost
   maxConnections: 8
   disconnectInactiveConnections: 0
@@ -663,6 +640,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &214066868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 214066864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35c899e9638d4474d971a1844c717111, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &214066869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 214066864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6e55fca1f4e4844593a3dd65a3ecb39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Channels: 0200000001000000
+  Timeout: 25
+  AllowSteamRelay: 1
+  UseNextGenSteamNetworking: 1
 --- !u!222 &238083604
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3921,7 +3926,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a5e97ef2c59ee645ad55e90f56b624f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  networkManager: {fileID: 214066866}
+  steamLobby: {fileID: 214066868}
   landingPagePanel: {fileID: 7083987221477899349}
   playerInputPage: {fileID: 515614556070695037}
 --- !u!114 &1502556070364088310

@@ -4,23 +4,15 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    [SerializeField] private NetworkManagerNinjaRagdoll networkManager;
+    [SerializeField] private SteamLobby steamLobby;
 
     [Header("UI")]
     [SerializeField] private GameObject landingPagePanel;
     [SerializeField] private GameObject playerInputPage;
 
-    private NetworkManagerNinjaRagdoll Room
-    {
-        get
-        {
-            return NetworkManager.singleton as NetworkManagerNinjaRagdoll;
-        }
-    }
-
     public void HostLobby()
     {
-        Room.StartHost();
+        steamLobby.HostLobby();
         HideLandingPage();
     }
 
