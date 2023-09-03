@@ -35,6 +35,7 @@ public class ThirdPersonCam : MonoBehaviour
     public Transform orientation;
     public Transform playerObj;
     public LimbManager ragdoll;
+    public AudioSource jumpAudio;
     
     [SerializeField] private Animator animator;
     private CinemachineFreeLook cinemachine;
@@ -99,6 +100,7 @@ public class ThirdPersonCam : MonoBehaviour
             rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
             rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
             Invoke(nameof(ResetJump), jumpCooldown);
+            jumpAudio.Play();
         }
     }
 
