@@ -16,18 +16,6 @@ public class VelocityTransfer : MonoBehaviour
         limbManager = GetComponent<LimbManager>();
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            Vector3 test = new Vector3();
-            test.x = maxVelocity / 3;
-            test.y = -maxVelocity / 3;
-            test.z = maxVelocity / 3;
-            SetVelocity(ControlVelocity(test));
-        }
-    }
-
     [Server]
     public Vector3 AddVelocity(Vector3 velocity)
     {

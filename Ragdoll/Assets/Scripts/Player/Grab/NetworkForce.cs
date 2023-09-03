@@ -8,6 +8,7 @@ public class NetworkForce : NetworkBehaviour
     [HideInInspector] public NetworkIdentity identity;
     public float forceMultiplicator;
     public float minVelocity;
+    public AudioSource collisionAudio;
     private Rigidbody rb;
     private GrabbableAttack ga;
 
@@ -20,16 +21,18 @@ public class NetworkForce : NetworkBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Player") 
-            && isServer && rb.velocity.magnitude >= minVelocity)
-        {
-            VelocityTransfer vtransfer = collision.collider.GetComponent<VelocityTransfer>();
-            if (vtransfer != null && vtransfer.netId.connectionToClient != connectionToClient) 
+        if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Player") && rb.velocity.magnitude >= minVelocity) {
+            collisionAudio.Play();
+            if (isServer)
             {
-                ga.SetPlayerLastAttacker(collision.collider.GetComponentInParent<PlayerRespawn>());
-                Vector3 newVelocity = vtransfer.AddVelocity(collision.impulse * -forceMultiplicator);
-                RpcApplyVelocity(vtransfer.netId, newVelocity);
-            }
+                VelocityTransfer vtransfer = collision.collider.GetComponent<VelocityTransfer>();
+                if (vtransfer != null && vtransfer.netId.connectionToClient != connectionToClient)
+                {
+                    ga.SetPlayerLastAttacker(collision.collider.GetComponentInParent<PlayerRespawn>());
+                    Vector3 newVelocity = vtransfer.AddVelocity(collision.impulse * -forceMultiplicator);
+                    RpcApplyVelocity(vtransfer.netId, newVelocity);
+                }
+            } 
         }
         
     }
