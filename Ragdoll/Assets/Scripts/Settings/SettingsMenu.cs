@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
@@ -59,6 +60,10 @@ public class SettingsMenu : MonoBehaviour
 
     public void SetFullScreen(bool isFullSreen)
     {
+        if (isFullSreen)
+        {
+            SetResolution(resolutionDropdown.value);
+        }
         Screen.fullScreen = isFullSreen;
     }
 
