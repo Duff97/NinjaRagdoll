@@ -8,7 +8,7 @@ public class MainMenu : MonoBehaviour
 
     [Header("UI")]
     [SerializeField] private GameObject landingPagePanel;
-    [SerializeField] private GameObject playerInputPage;
+    [SerializeField] private GameObject steamErrorPanel;
 
     public void HostLobby()
     {
@@ -18,8 +18,12 @@ public class MainMenu : MonoBehaviour
 
     public void Start()
     {
-        landingPagePanel.SetActive(PlayerNameInput.DisplayName != "");
-        playerInputPage.SetActive(PlayerNameInput.DisplayName == "");
+        if (!SteamManager.Initialized)
+        {
+            steamErrorPanel.SetActive(true);
+            return;
+        }
+        landingPagePanel.SetActive(true);
         NetworkManagerNinjaRagdoll.OnClientDisconnected += ReloadScene;
         RoomPlayer.OnLocalPlayerStarted += HideLandingPage;
     }
