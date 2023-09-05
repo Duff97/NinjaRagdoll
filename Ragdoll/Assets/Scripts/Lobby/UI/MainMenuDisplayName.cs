@@ -1,3 +1,4 @@
+using Steamworks;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -7,8 +8,10 @@ public class MainMenuDisplayName : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI displayNameText;
 
-    private void OnGUI()
+    private void Start()
     {
-        displayNameText.text = "Playing as " + PlayerNameInput.DisplayName;
+        if (!SteamManager.Initialized) { return; }
+
+        displayNameText.text = "Playing as " + SteamFriends.GetPersonaName();
     }
 }

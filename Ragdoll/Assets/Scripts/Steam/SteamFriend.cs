@@ -12,6 +12,7 @@ public class SteamFriend : MonoBehaviour
     [SerializeField] private TMP_Text statusText;
     [SerializeField] private string steamAppId;
     [SerializeField] private RawImage profileImage;
+    [SerializeField] private Button joinButton;
     public void DisplaySteamInfo(CSteamID steamID)
     {
         nameText.text = SteamFriends.GetFriendPersonaName(steamID);
@@ -25,6 +26,7 @@ public class SteamFriend : MonoBehaviour
             {
                 transform.SetSiblingIndex(0);
                 statusText.text = "In game";
+                ToggleJoinButton(steamID);
             }
         }
 
@@ -58,5 +60,13 @@ public class SteamFriend : MonoBehaviour
         }
 
         return texture;
+    }
+
+    private void ToggleJoinButton(CSteamID steamId)
+    {
+        if (SteamFriends.GetFriendGamePlayed(steamId, out FriendGameInfo_t friendGameInfo) && friendGameInfo.m_steamIDLobby.IsValid())
+        {
+            Debug.Log("Friend is in a game");
+        }
     }
 }
