@@ -12,12 +12,18 @@ public class SteamLobby : MonoBehaviour
 
     private const string HostAddressKey = "HostAddress";
 
-    private NetworkManagerNinjaRagdoll networkManager;
+    private NetworkManagerNinjaRagdoll room;
+    private NetworkManagerNinjaRagdoll Room
+    {
+        get
+        {
+            if (room != null) { return room; }
+            return room = NetworkManager.singleton as NetworkManagerNinjaRagdoll;
+        }
+    }
 
     private void Start()
     {
-        networkManager = GetComponent<NetworkManagerNinjaRagdoll>();
-
         if (!SteamManager.Initialized) { return; }
 
         lobbyCreated = Callback<LobbyCreated_t>.Create(OnLobbyCreated);
@@ -27,7 +33,7 @@ public class SteamLobby : MonoBehaviour
 
     public void HostLobby()
     {
-        SteamMatchmaking.CreateLobby(ELobbyType.k_ELobbyTypeFriendsOnly, networkManager.maxConnections);
+        SteamMatchmaking.CreateLobby(ELobbyType.k_ELobbyTypeFriendsOnly, Room.maxConnections);
     }
 
     private void OnLobbyCreated(LobbyCreated_t callback)
@@ -37,7 +43,9 @@ public class SteamLobby : MonoBehaviour
             return;
         }
 
-        networkManager.StartHost();
+        Room.StartHost();
+
+        Room.steamLobbyId = callback.m_ulSteamIDLobby;
 
         SteamMatchmaking.SetLobbyData(
             new CSteamID(callback.m_ulSteamIDLobby),
@@ -58,8 +66,8 @@ public class SteamLobby : MonoBehaviour
             new CSteamID(callback.m_ulSteamIDLobby),
             HostAddressKey);
 
-        networkManager.steamLobbyId = callback.m_ulSteamIDLobby;
-        networkManager.networkAddress = hostAddress;
-        networkManager.StartClient();
+        Room.steamLobbyId = callback.m_ulSteamIDLobby;
+        Room.networkAddress = hostAddress;
+        Room.StartClient();
     }
 }
