@@ -13,24 +13,27 @@ public class SteamFriend : MonoBehaviour
     [SerializeField] private string steamAppId;
     [SerializeField] private RawImage profileImage;
     [SerializeField] private Button joinButton;
-    public void DisplaySteamInfo(CSteamID steamID)
+
+    private CSteamID steamId;
+    public void DisplaySteamInfo(CSteamID steamId)
     {
-        nameText.text = SteamFriends.GetFriendPersonaName(steamID);
+        this.steamId = steamId;
+        nameText.text = SteamFriends.GetFriendPersonaName(steamId);
         statusText.text = "Online";
 
         FriendGameInfo_t friendGameInfo;
         
-        if (SteamFriends.GetFriendGamePlayed(steamID, out friendGameInfo))
+        if (SteamFriends.GetFriendGamePlayed(steamId, out friendGameInfo))
         {
             if (friendGameInfo.m_gameID.ToString().Equals(steamAppId))
             {
                 transform.SetSiblingIndex(0);
-                statusText.text = "In game";
-                ToggleJoinButton(steamID);
+                statusText.text = "In menu";
+                ToggleJoinButton();
             }
         }
 
-        int imageId = SteamFriends.GetLargeFriendAvatar(steamID);
+        int imageId = SteamFriends.GetLargeFriendAvatar(steamId);
 
         if (imageId != -1)
         {
@@ -62,11 +65,22 @@ public class SteamFriend : MonoBehaviour
         return texture;
     }
 
-    private void ToggleJoinButton(CSteamID steamId)
+    private void ToggleJoinButton()
     {
         if (SteamFriends.GetFriendGamePlayed(steamId, out FriendGameInfo_t friendGameInfo) && friendGameInfo.m_steamIDLobby.IsValid())
         {
-            Debug.Log("Friend is in a game");
+            statusText.text = "In lobby";
+            joinButton.gameObject.SetActive(true);
+        }
+    }
+
+    public void JoinGame()
+    {
+        Debug.Log("Trying to join game");
+        if (SteamFriends.GetFriendGamePlayed(steamId, out FriendGameInfo_t friendGameInfo) && friendGameInfo.m_steamIDLobby.IsValid())
+        {
+            
+            SteamMatchmaking.JoinLobby(friendGameInfo.m_steamIDLobby);
         }
     }
 }
