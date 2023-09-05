@@ -1,4 +1,5 @@
 ﻿using Mirror;
+using Steamworks;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -39,6 +40,7 @@ public class NetworkManagerNinjaRagdoll : NetworkManager
     public override void OnClientDisconnect()
     {
         base.OnClientDisconnect();
+        SteamMatchmaking.LeaveLobby(new CSteamID(steamLobbyId));
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         OnClientDisconnected?.Invoke();

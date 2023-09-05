@@ -106,8 +106,6 @@ public class RoomPlayer : NetworkBehaviour
 
     public void QuitLobby()
     {
-        SteamMatchmaking.LeaveLobby(new CSteamID(Room.steamLobbyId));
-
         if (isLeader)
             Room.StopHost();
         else
