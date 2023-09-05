@@ -20,6 +20,8 @@ public class NetworkManagerNinjaRagdoll : NetworkManager
     [SerializeField] public int selectedGameMode;
     [SerializeField] public List<GameMode> gameModes;
 
+    [HideInInspector] public ulong steamLobbyId;
+
     public static event Action OnClientConnected;
     public static event Action OnClientDisconnected;
     public static event Action<NetworkConnection> OnServerReadied;

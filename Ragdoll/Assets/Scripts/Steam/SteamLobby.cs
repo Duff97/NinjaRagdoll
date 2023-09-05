@@ -12,11 +12,11 @@ public class SteamLobby : MonoBehaviour
 
     private const string HostAddressKey = "HostAddress";
 
-    private NetworkManager networkManager;
+    private NetworkManagerNinjaRagdoll networkManager;
 
     private void Start()
     {
-        networkManager = GetComponent<NetworkManager>();
+        networkManager = GetComponent<NetworkManagerNinjaRagdoll>();
 
         if (!SteamManager.Initialized) { return; }
 
@@ -58,6 +58,7 @@ public class SteamLobby : MonoBehaviour
             new CSteamID(callback.m_ulSteamIDLobby),
             HostAddressKey);
 
+        networkManager.steamLobbyId = callback.m_ulSteamIDLobby;
         networkManager.networkAddress = hostAddress;
         networkManager.StartClient();
     }

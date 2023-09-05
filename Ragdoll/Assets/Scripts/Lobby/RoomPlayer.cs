@@ -1,4 +1,5 @@
 ﻿using Mirror;
+using Steamworks;
 using System;
 using TMPro;
 using UnityEngine;
@@ -105,7 +106,8 @@ public class RoomPlayer : NetworkBehaviour
 
     public void QuitLobby()
     {
-        //connectionToServer.Disconnect();
+        SteamMatchmaking.LeaveLobby(new CSteamID(Room.steamLobbyId));
+
         if (isLeader)
             Room.StopHost();
         else
