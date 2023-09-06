@@ -50,7 +50,7 @@ public class RoomPlayer : NetworkBehaviour
 
     public override void OnStartAuthority()
     {
-        CmdSetDisplayName(PlayerNameInput.DisplayName);
+        CmdSetDisplayName(SteamFriends.GetPersonaName());
 
         lobbyUI.SetActive(true);
     }

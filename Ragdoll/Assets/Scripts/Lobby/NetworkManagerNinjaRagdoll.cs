@@ -152,7 +152,6 @@ public class NetworkManagerNinjaRagdoll : NetworkManager
 
     public void EndGame()
     {
-        
         for (int i = GamePlayers.Count - 1; i >= 0; i--)
         {
             var conn = GamePlayers[i].connectionToClient;
