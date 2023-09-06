@@ -24,21 +24,12 @@ public class MainMenu : MonoBehaviour
             return;
         }
         landingPagePanel.SetActive(true);
-        NetworkManagerNinjaRagdoll.OnClientDisconnected += ReloadScene;
-        NetworkManagerNinjaRagdoll.OnServerStopped += ReloadScene;
         RoomPlayer.OnLocalPlayerStarted += HideLandingPage;
     }
 
     private void HideLandingPage()
     {
         landingPagePanel.SetActive(false);
-    }
-
-
-    private void ReloadScene()
-    {
-        Debug.Log("ReloadScene");
-        SceneManager.LoadScene("Title");
     }
 
     public void QuitGame()
@@ -51,8 +42,6 @@ public class MainMenu : MonoBehaviour
 
     private void OnDestroy()
     {
-        NetworkManagerNinjaRagdoll.OnClientDisconnected -= ReloadScene;
-        NetworkManagerNinjaRagdoll.OnServerStopped -= ReloadScene;
         RoomPlayer.OnLocalPlayerStarted -= HideLandingPage;
     }
 }
