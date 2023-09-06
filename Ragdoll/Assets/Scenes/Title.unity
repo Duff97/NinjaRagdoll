@@ -292,7 +292,7 @@ MonoBehaviour:
   autoStartServerBuild: 1
   autoConnectClientBuild: 0
   sendRate: 60
-  offlineScene: Assets/Scenes/MainMenu.unity
+  offlineScene: Assets/Scenes/Title.unity
   onlineScene: 
   transport: {fileID: 0}
   networkAddress: localhost

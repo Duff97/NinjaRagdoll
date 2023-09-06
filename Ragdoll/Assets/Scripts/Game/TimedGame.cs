@@ -32,8 +32,8 @@ public class TimedGame : NetworkBehaviour
     public override void OnStartServer()
     {
         base.OnStartServer();
-        //timeLeft = Room.gameTime * 60;
-        timeLeft = 5;
+        timeLeft = Room.gameTime * 60;
+        //timeLeft = 5;
         
     }
 

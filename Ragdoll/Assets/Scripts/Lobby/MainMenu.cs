@@ -25,6 +25,7 @@ public class MainMenu : MonoBehaviour
         }
         landingPagePanel.SetActive(true);
         NetworkManagerNinjaRagdoll.OnClientDisconnected += ReloadScene;
+        NetworkManagerNinjaRagdoll.OnServerStopped += ReloadScene;
         RoomPlayer.OnLocalPlayerStarted += HideLandingPage;
     }
 
@@ -36,7 +37,8 @@ public class MainMenu : MonoBehaviour
 
     private void ReloadScene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Debug.Log("ReloadScene");
+        SceneManager.LoadScene("Title");
     }
 
     public void QuitGame()
@@ -50,6 +52,7 @@ public class MainMenu : MonoBehaviour
     private void OnDestroy()
     {
         NetworkManagerNinjaRagdoll.OnClientDisconnected -= ReloadScene;
+        NetworkManagerNinjaRagdoll.OnServerStopped -= ReloadScene;
         RoomPlayer.OnLocalPlayerStarted -= HideLandingPage;
     }
 }
