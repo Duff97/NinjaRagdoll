@@ -76,7 +76,6 @@ public class RoomPlayer : NetworkBehaviour
         //TODO FIX THIS
         if (SceneManager.GetActiveScene().name == "MainMenu")
         {
-            Debug.Log("OnStartClient");
             Room.RoomPlayers.Add(this);
 
             if (!isLeader)
@@ -93,7 +92,6 @@ public class RoomPlayer : NetworkBehaviour
 
     public override void OnStopClient()
     {
-        Debug.Log("OnStopClient");
         Room.RoomPlayers.Remove(this);
 
         UpdateDisplay();

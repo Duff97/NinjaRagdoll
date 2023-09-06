@@ -14,6 +14,8 @@ public class EndGame : NetworkBehaviour
     [SerializeField] private Button quitToLobbyBtn;
     private ScoreBoard scoreBoard;
 
+    private bool returningToLobby = false;
+
     private NetworkManagerNinjaRagdoll room;
     private NetworkManagerNinjaRagdoll Room
     {
@@ -39,13 +41,14 @@ public class EndGame : NetworkBehaviour
 
     private void Update()
     {
-        if (gameEnded)
+        if (gameEnded && !returningToLobby)
         {
             if (isServer)
             {
                 timeUntilGameCloses -= Time.deltaTime;
                 if (timeUntilGameCloses <= 0)
                 {
+                    returningToLobby = true;
                     QuitToLobby();
                 }
             }
