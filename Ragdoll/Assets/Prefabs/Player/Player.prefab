@@ -2534,7 +2534,7 @@ MonoBehaviour:
   legR: {fileID: 9162036766363883718}
   kneeR: {fileID: 2163021721597200643}
   maxForce: 100
-  maxDrive: 600
+  maxDrive: 800
   driveResetCooldown: 3
   driveResetVelocity: 3
   movementDisabled: 0
@@ -2964,7 +2964,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5886240470448852236}
-  m_Material: {fileID: 13400000, guid: f7fa74cfd0820914c9d7f9e2e39c5bcd, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.13309367
@@ -5071,7 +5071,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8236118685950656815}
-  m_Material: {fileID: 13400000, guid: f7fa74cfd0820914c9d7f9e2e39c5bcd, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.100817956

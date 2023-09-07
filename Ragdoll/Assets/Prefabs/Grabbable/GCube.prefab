@@ -223,7 +223,7 @@ MonoBehaviour:
   syncInterval: 0
   identity: {fileID: 0}
   forceMultiplicator: 10
-  minVelocity: 2
+  minVelocity: 2.5
   collisionAudio: {fileID: 6163893186063554909}
 --- !u!114 &4350366674423651730
 MonoBehaviour:
