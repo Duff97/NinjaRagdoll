@@ -1,4 +1,5 @@
 ﻿using Mirror;
+using Steamworks;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,6 +21,8 @@ public class NetworkManagerNinjaRagdoll : NetworkManager
     [SerializeField] public int selectedGameMode;
     [SerializeField] public List<GameMode> gameModes;
 
+    [HideInInspector] public ulong steamLobbyId;
+
     public static event Action OnClientConnected;
     public static event Action OnClientDisconnected;
     public static event Action<NetworkConnection> OnServerReadied;
@@ -37,6 +40,7 @@ public class NetworkManagerNinjaRagdoll : NetworkManager
     public override void OnClientDisconnect()
     {
         base.OnClientDisconnect();
+        SteamMatchmaking.LeaveLobby(new CSteamID(steamLobbyId));
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         OnClientDisconnected?.Invoke();
@@ -148,7 +152,6 @@ public class NetworkManagerNinjaRagdoll : NetworkManager
 
     public void EndGame()
     {
-        
         for (int i = GamePlayers.Count - 1; i >= 0; i--)
         {
             var conn = GamePlayers[i].connectionToClient;

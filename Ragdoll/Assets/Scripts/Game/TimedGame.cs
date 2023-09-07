@@ -33,6 +33,7 @@ public class TimedGame : NetworkBehaviour
     {
         base.OnStartServer();
         timeLeft = Room.gameTime * 60;
+        //timeLeft = 5;
         
     }
 

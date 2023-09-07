@@ -4,31 +4,26 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    [SerializeField] private NetworkManagerNinjaRagdoll networkManager;
+    [SerializeField] private SteamLobby steamLobby;
 
     [Header("UI")]
     [SerializeField] private GameObject landingPagePanel;
-    [SerializeField] private GameObject playerInputPage;
-
-    private NetworkManagerNinjaRagdoll Room
-    {
-        get
-        {
-            return NetworkManager.singleton as NetworkManagerNinjaRagdoll;
-        }
-    }
+    [SerializeField] private GameObject steamErrorPanel;
 
     public void HostLobby()
     {
-        Room.StartHost();
+        steamLobby.HostLobby();
         HideLandingPage();
     }
 
     public void Start()
     {
-        landingPagePanel.SetActive(PlayerNameInput.DisplayName != "");
-        playerInputPage.SetActive(PlayerNameInput.DisplayName == "");
-        NetworkManagerNinjaRagdoll.OnClientDisconnected += ReloadScene;
+        if (!SteamManager.Initialized)
+        {
+            steamErrorPanel.SetActive(true);
+            return;
+        }
+        landingPagePanel.SetActive(true);
         RoomPlayer.OnLocalPlayerStarted += HideLandingPage;
     }
 
@@ -37,18 +32,16 @@ public class MainMenu : MonoBehaviour
         landingPagePanel.SetActive(false);
     }
 
-
-    private void ReloadScene()
-    {
-        NetworkManagerNinjaRagdoll.OnClientDisconnected -= ReloadScene;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
-
     public void QuitGame()
     {
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #endif
         Application.Quit();
+    }
+
+    private void OnDestroy()
+    {
+        RoomPlayer.OnLocalPlayerStarted -= HideLandingPage;
     }
 }

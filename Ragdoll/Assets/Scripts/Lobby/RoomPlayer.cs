@@ -1,4 +1,5 @@
 ﻿using Mirror;
+using Steamworks;
 using System;
 using TMPro;
 using UnityEngine;
@@ -49,7 +50,7 @@ public class RoomPlayer : NetworkBehaviour
 
     public override void OnStartAuthority()
     {
-        CmdSetDisplayName(PlayerNameInput.DisplayName);
+        CmdSetDisplayName(SteamFriends.GetPersonaName());
 
         lobbyUI.SetActive(true);
     }
@@ -75,7 +76,6 @@ public class RoomPlayer : NetworkBehaviour
         //TODO FIX THIS
         if (SceneManager.GetActiveScene().name == "MainMenu")
         {
-            Debug.Log("OnStartClient");
             Room.RoomPlayers.Add(this);
 
             if (!isLeader)
@@ -92,7 +92,6 @@ public class RoomPlayer : NetworkBehaviour
 
     public override void OnStopClient()
     {
-        Debug.Log("OnStopClient");
         Room.RoomPlayers.Remove(this);
 
         UpdateDisplay();
@@ -105,7 +104,6 @@ public class RoomPlayer : NetworkBehaviour
 
     public void QuitLobby()
     {
-        //connectionToServer.Disconnect();
         if (isLeader)
             Room.StopHost();
         else
