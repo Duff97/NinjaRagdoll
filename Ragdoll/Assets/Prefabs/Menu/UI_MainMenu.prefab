@@ -1734,9 +1734,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a5e97ef2c59ee645ad55e90f56b624f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  networkManager: {fileID: 0}
+  steamLobby: {fileID: 0}
   landingPagePanel: {fileID: 7083987220435472504}
-  playerInputPage: {fileID: 515614554960657488}
+  steamErrorPanel: {fileID: 0}
 --- !u!1 &3478502766788406762
 GameObject:
   m_ObjectHideFlags: 0
@@ -3092,7 +3092,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf2686a6a225a304590ef349eefda934, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  networkManager: {fileID: 0}
   landingPagePanel: {fileID: 7083987220435472504}
   ipAddressInputField: {fileID: 2707727528792830603}
   joinButton: {fileID: 9057319430512412416}
