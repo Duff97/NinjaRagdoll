@@ -1046,7 +1046,6 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  scoreKey: 9
   scoreBoardPanel: {fileID: 717755090}
   scoreDisplayPrefab: {fileID: 1232593179507885013, guid: 4ab880b2c048a284f95b89162ba6a237, type: 3}
 --- !u!114 &6644532046317813094

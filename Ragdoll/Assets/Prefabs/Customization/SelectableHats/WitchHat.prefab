@@ -74,7 +74,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 838035143783367484, guid: 1580ecd14d926f346a9511083d388eb5, type: 3}
       propertyPath: m_Name
-      value: SelectableHatBase (1)
+      value: WitchHat
       objectReference: {fileID: 0}
     - target: {fileID: 838035143783367485, guid: 1580ecd14d926f346a9511083d388eb5, type: 3}
       propertyPath: m_Pivot.x

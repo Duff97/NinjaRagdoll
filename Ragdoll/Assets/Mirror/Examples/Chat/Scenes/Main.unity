@@ -3211,7 +3211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b0fecffa3f624585964b0d0eb21b18e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Port: 7777
+  port: 7777
   DualMode: 1
   NoDelay: 1
   Interval: 10
@@ -3223,8 +3223,8 @@ MonoBehaviour:
   SendWindowSize: 4096
   MaxRetransmit: 40
   MaximizeSocketBuffers: 1
-  ReliableMaxMessageSize: 298449
-  UnreliableMaxMessageSize: 1199
+  ReliableMaxMessageSize: 297433
+  UnreliableMaxMessageSize: 1195
   debugLog: 0
   statisticsGUI: 0
   statisticsLog: 0
@@ -3269,6 +3269,8 @@ MonoBehaviour:
   transport: {fileID: 1783103023}
   networkAddress: localhost
   maxConnections: 100
+  disconnectInactiveConnections: 0
+  disconnectInactiveTimeout: 60
   authenticator: {fileID: 1783103024}
   playerPrefab: {fileID: 5075528875289742095, guid: e5905ffa27de84009b346b49d518ba03, type: 3}
   autoCreatePlayer: 1
@@ -3276,6 +3278,7 @@ MonoBehaviour:
   spawnPrefabs: []
   snapshotSettings:
     bufferTimeMultiplier: 2
+    bufferLimit: 32
     catchupNegativeThreshold: -1
     catchupPositiveThreshold: 1
     catchupSpeed: 0.019999999552965164
@@ -3284,6 +3287,7 @@ MonoBehaviour:
     dynamicAdjustment: 1
     dynamicAdjustmentTolerance: 1
     deliveryTimeEmaDuration: 2
+  connectionQualityInterval: 3
   timeInterpolationGui: 0
 --- !u!4 &1783103026
 Transform:
