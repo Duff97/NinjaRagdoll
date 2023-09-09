@@ -4005,6 +4005,7 @@ GameObject:
   - component: {fileID: 3333586531115000406}
   - component: {fileID: 5742066560603425990}
   - component: {fileID: 8392001077791249137}
+  - component: {fileID: 9191278563084220771}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -4079,8 +4080,6 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  cameraHolder: {fileID: 7407185904698380854}
-  spineControl: {fileID: 136287082376609775}
   displayName: Loading...
 --- !u!114 &281143934846524413
 MonoBehaviour:
@@ -4197,7 +4196,7 @@ MonoBehaviour:
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: Base
+  m_DefaultActionMap: cad8a5f3-4c2e-46fb-85a7-becc8408b138
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!114 &248297452811671294
@@ -4414,6 +4413,23 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &9191278563084220771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7407185904065085319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8e636328ae8d59428e741619a926f8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  cameraHolder: {fileID: 7407185904698380854}
+  spineControl: {fileID: 136287082376609775}
 --- !u!1 &7407185904136490876
 GameObject:
   m_ObjectHideFlags: 0
@@ -4941,7 +4957,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7407185904715938456}
-  m_LocalRotation: {x: 0.047631975, y: 0.0000000021483564, z: -1.02446746e-10, w: 0.99886495}
+  m_LocalRotation: {x: 0.047631975, y: -0.00000047844424, z: 0.000000022815142, w: 0.99886495}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

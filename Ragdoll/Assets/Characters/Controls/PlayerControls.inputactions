@@ -2,7 +2,7 @@
     "name": "PlayerControls",
     "maps": [
         {
-            "name": "Ninja",
+            "name": "Base",
             "id": "cad8a5f3-4c2e-46fb-85a7-becc8408b138",
             "actions": [
                 {
