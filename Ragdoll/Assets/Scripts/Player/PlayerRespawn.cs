@@ -35,7 +35,7 @@ public class PlayerRespawn : NetworkBehaviour
     {
         if (isLocalPlayer)
         {
-            float distance = ragdollPosition.position.magnitude;
+            float distance = (ragdollPosition.position - spawnPosition).magnitude;
             if (distance > maxDistance)
             {
                 TeleportToSpawnPosition();
