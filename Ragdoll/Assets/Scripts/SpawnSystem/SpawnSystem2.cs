@@ -34,9 +34,8 @@ public class SpawnSystem2 : NetworkBehaviour
     {
         foreach(var player in Room.GamePlayers)
         {
-            
             PlayerSpawn playerRespawn = player.GetComponent<PlayerSpawn>();
-            if (playerRespawn.isServer)
+            if (playerRespawn.isHunter)
                 SpawnHunter(playerRespawn);
             else
                 SpawnNinja(playerRespawn);

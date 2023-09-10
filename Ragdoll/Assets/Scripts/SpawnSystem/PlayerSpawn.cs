@@ -8,6 +8,8 @@ public class PlayerSpawn : NetworkBehaviour
 {
     public Transform playerPosition;
 
+    public bool isHunter;
+
     [Server]
     public virtual void Spawn(Vector3 spawnPosition)
     {

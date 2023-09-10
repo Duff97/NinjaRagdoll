@@ -1977,6 +1977,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   playerPosition: {fileID: 4316995652190512198}
+  isHunter: 1
   rb: {fileID: 4316995652190512199}
 --- !u!1 &4316995652640220283
 GameObject:
