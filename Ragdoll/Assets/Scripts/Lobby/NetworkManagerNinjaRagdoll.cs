@@ -15,7 +15,8 @@ public class NetworkManagerNinjaRagdoll : NetworkManager
     [SerializeField] private RoomPlayer roomPlayerPrefab;
 
     [Header("Game")]
-    [SerializeField] private Player gamePlayerPrefab;
+    [SerializeField] private Player hunterPlayerPrefab;
+    [SerializeField] private Player ninjaPlayerPrefab;
     [SerializeField] private GameObject gameMenu;
     [SerializeField] public int gameTime;
     [SerializeField] public int selectedGameMode;
@@ -173,12 +174,19 @@ public class NetworkManagerNinjaRagdoll : NetworkManager
             for (int i = RoomPlayers.Count - 1; i >= 0; i--)
             {
                 var conn = RoomPlayers[i].connectionToClient;
-                var gameplayerInstance = Instantiate(gamePlayerPrefab);
-                gameplayerInstance.SetDisplayName(RoomPlayers[i].DisplayName);
+
+                Player gamePlayerInstance;
+                
+                if (i == 0)
+                    gamePlayerInstance = Instantiate(hunterPlayerPrefab);
+                else
+                    gamePlayerInstance = Instantiate(ninjaPlayerPrefab);
+
+                gamePlayerInstance.SetDisplayName(RoomPlayers[i].DisplayName);
 
                 NetworkServer.Destroy(conn.identity.gameObject);
 
-                NetworkServer.ReplacePlayerForConnection(conn, gameplayerInstance.gameObject);
+                NetworkServer.ReplacePlayerForConnection(conn, gamePlayerInstance.gameObject);
             }
         }
 

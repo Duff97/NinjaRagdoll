@@ -328,7 +328,8 @@ MonoBehaviour:
   minPlayers: 1
   menuScene: MainMenu
   roomPlayerPrefab: {fileID: 5494571419773178487, guid: 255bd50c0b57afc4489a3dad8dd9d0a7, type: 3}
-  gamePlayerPrefab: {fileID: 3828128439761883354, guid: dbd6065fd7640204da3fbaa1ef88f1b9, type: 3}
+  hunterPlayerPrefab: {fileID: 2903168959778367306, guid: ceb7a33f2419c1c4b826d796061d4dc7, type: 3}
+  ninjaPlayerPrefab: {fileID: 3828128439761883354, guid: dbd6065fd7640204da3fbaa1ef88f1b9, type: 3}
   gameMenu: {fileID: 8994257049712391163, guid: 0e3aaa713211ecf458b588f48e3b7542, type: 3}
   gameTime: 5
   selectedGameMode: 0
