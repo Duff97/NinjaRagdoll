@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class SpawnSystem : NetworkBehaviour
 {
-    private Vector3 hunterSpawnPoint;
     private List<Vector3> availableSpawnPoints = new List<Vector3>();
 
     private NetworkManagerNinjaRagdoll room;

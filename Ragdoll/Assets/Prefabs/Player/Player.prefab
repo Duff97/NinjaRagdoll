@@ -3997,7 +3997,6 @@ GameObject:
   - component: {fileID: 3828128439761883354}
   - component: {fileID: 281143934846524413}
   - component: {fileID: 4309398887505804141}
-  - component: {fileID: 1025848238179412900}
   - component: {fileID: 2649290166915418256}
   - component: {fileID: 248297452811671294}
   - component: {fileID: 33617687073830337}
@@ -4006,6 +4005,7 @@ GameObject:
   - component: {fileID: 5742066560603425990}
   - component: {fileID: 8392001077791249137}
   - component: {fileID: 9191278563084220771}
+  - component: {fileID: 2122439861093455987}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -4149,26 +4149,6 @@ MonoBehaviour:
   positionSensitivity: 0.01
   rotationSensitivity: 0.01
   scaleSensitivity: 0.01
---- !u!114 &1025848238179412900
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7407185904065085319}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94de4c019a95e1e41a2e988e66533e93, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
-  spawnPosition: {x: 0, y: 0, z: 0}
-  ragdollPosition: {fileID: 5528603532362550324}
-  limbManagager: {fileID: 2006456812837842975}
-  maxDistance: 50
-  clearAttackerCD: 8
 --- !u!114 &2649290166915418256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4196,7 +4176,7 @@ MonoBehaviour:
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: cad8a5f3-4c2e-46fb-85a7-becc8408b138
+  m_DefaultActionMap: Base
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!114 &248297452811671294
@@ -4430,6 +4410,23 @@ MonoBehaviour:
   syncInterval: 0
   cameraHolder: {fileID: 7407185904698380854}
   spineControl: {fileID: 136287082376609775}
+--- !u!114 &2122439861093455987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7407185904065085319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de5c3cf902905ed4793245cf925f9f8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  playerPosition: {fileID: 5530818588104510269}
+  limbManagager: {fileID: 2006456812837842975}
 --- !u!1 &7407185904136490876
 GameObject:
   m_ObjectHideFlags: 0
