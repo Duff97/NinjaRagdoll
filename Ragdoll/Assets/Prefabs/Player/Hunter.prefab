@@ -2160,7 +2160,7 @@ MonoBehaviour:
   m_StreamingVersion: 20170927
   m_Priority: 1
   m_StandbyUpdate: 2
-  m_LookAt: {fileID: 4316995652190512198}
+  m_LookAt: {fileID: 2133167881635731700}
   m_Follow: {fileID: 4316995652190512198}
   m_CommonLens: 1
   m_Lens:
@@ -2235,11 +2235,11 @@ MonoBehaviour:
   m_BindingMode: 4
   m_SplineCurvature: 0.2
   m_Orbits:
-  - m_Height: 6
+  - m_Height: 6.4
     m_Radius: 3
-  - m_Height: 2
+  - m_Height: 3.09
     m_Radius: 7
-  - m_Height: -1
+  - m_Height: 0
     m_Radius: 5
   m_LegacyHeadingBias: 3.4028235e+38
   m_Rigs:
