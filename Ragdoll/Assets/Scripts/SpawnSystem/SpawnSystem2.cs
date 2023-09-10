@@ -32,15 +32,12 @@ public class SpawnSystem2 : NetworkBehaviour
 
     private void InitialSpawns()
     {
-        bool hunter = true;
         foreach(var player in Room.GamePlayers)
         {
+            
             PlayerSpawn playerRespawn = player.GetComponent<PlayerSpawn>();
-            if (hunter)
-            {
+            if (playerRespawn.isServer)
                 SpawnHunter(playerRespawn);
-                hunter = false;
-            }
             else
                 SpawnNinja(playerRespawn);
         }
