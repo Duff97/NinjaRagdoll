@@ -62,14 +62,13 @@ public class HunterCam : MonoBehaviour
 
     private void FixedUpdate()
     {
-        MovePlayer();
+        if (!animator.GetBool("IsAiming"))
+            MovePlayer();
     }
-
     
 
     private void OnMove(InputValue inputValue)
     {
-        Debug.Log("On Move called");
         if (hasAuthority)
         {
             Vector2 vect = inputValue.Get<Vector2>();

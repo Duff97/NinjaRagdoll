@@ -152,14 +152,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 521604344519379604}
-  m_LocalRotation: {x: -0.23432462, y: 0.38190982, z: 0.82228523, w: 0.35083318}
-  m_LocalPosition: {x: -0.066, y: 0.293, z: 0.158}
+  m_LocalRotation: {x: -0.35919422, y: 0.4497693, z: 0.70229924, w: 0.41888306}
+  m_LocalPosition: {x: -0.081, y: 0.475, z: 0.288}
   m_LocalScale: {x: 1.5062443, y: 1.5062443, z: 1.5062443}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8990376620229744251}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: -52.419, y: -11.098, z: 139.264}
+  m_LocalEulerAnglesHint: {x: -68.854, y: -20.736, z: 132.667}
 --- !u!33 &6104159260503970025
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -466,7 +466,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2153399363488178173}
   - component: {fileID: 5404959036384609671}
-  - component: {fileID: 7319358014243400318}
   m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
@@ -504,7 +503,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 014ca2f453ae78f4da89593ec56cf096, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -512,18 +511,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &7319358014243400318
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1633040725630485831}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eac5a71c5abd2624d8644ba6ab3e96c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1706484547108331030
 GameObject:
   m_ObjectHideFlags: 0
@@ -1736,13 +1723,14 @@ GameObject:
   - component: {fileID: 4316995652190512197}
   - component: {fileID: 4316995652190512196}
   - component: {fileID: 4316995652190512199}
-  - component: {fileID: 4316995652190512202}
+  - component: {fileID: 6653495530938126478}
   - component: {fileID: 4316995652190512200}
   - component: {fileID: 4316995652190512203}
   - component: {fileID: 5563727874964803776}
   - component: {fileID: 7362400049118294572}
   - component: {fileID: 2903168959778367306}
   - component: {fileID: 1667579109731296261}
+  - component: {fileID: 914414320188680946}
   m_Layer: 0
   m_Name: Hunter
   m_TagString: Untagged
@@ -1827,14 +1815,14 @@ Rigidbody:
   m_GameObject: {fileID: 4316995652190512193}
   serializedVersion: 2
   m_Mass: 10
-  m_Drag: 0
+  m_Drag: 3
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 1
---- !u!136 &4316995652190512202
+--- !u!136 &6653495530938126478
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1844,10 +1832,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.66424483
-  m_Height: 3.232639
+  m_Radius: 0.80095744
+  m_Height: 3.2514067
   m_Direction: 1
-  m_Center: {x: -0.03190607, y: 1.5456096, z: 0}
+  m_Center: {x: 0.049844503, y: 1.5965099, z: -0.07628262}
 --- !u!114 &4316995652190512200
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1979,6 +1967,28 @@ MonoBehaviour:
   playerPosition: {fileID: 4316995652190512198}
   isHunter: 1
   rb: {fileID: 4316995652190512199}
+--- !u!114 &914414320188680946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4316995652190512193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b034fff8baa774f43a402e67967fe5eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  hunterTransform: {fileID: 4316995652190512198}
+  orientation: {fileID: 633503288691662650}
+  cameraTransform: {fileID: 4316995652813812907}
+  offsetTransform: {fileID: 2153399363488178173}
+  animator: {fileID: 5404959036384609671}
+  offsetValue: 40
+  aimSpeed: 0
 --- !u!1 &4316995652640220283
 GameObject:
   m_ObjectHideFlags: 0
