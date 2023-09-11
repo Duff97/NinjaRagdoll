@@ -22,13 +22,15 @@ public class NetworkForce : NetworkBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Player") && rb.velocity.magnitude >= minVelocity) {
-            collisionAudio.Play();
+            
+            if (collisionAudio != null)
+                collisionAudio.Play();
+
             if (isServer)
             {
                 VelocityTransfer vtransfer = collision.collider.GetComponent<VelocityTransfer>();
                 if (vtransfer != null && vtransfer.netId.connectionToClient != connectionToClient)
                 {
-                    ga.SetPlayerLastAttacker(collision.collider.GetComponentInParent<PlayerRespawn>());
                     Vector3 newVelocity = vtransfer.AddVelocity(collision.impulse * -forceMultiplicator);
                     RpcApplyVelocity(vtransfer.netId, newVelocity);
                 }

@@ -156,7 +156,8 @@ Transform:
   m_LocalPosition: {x: -0.081, y: 0.475, z: 0.288}
   m_LocalScale: {x: 1.5062443, y: 1.5062443, z: 1.5062443}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 6727168870012521466}
   m_Father: {fileID: 8990376620229744251}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: -68.854, y: -20.736, z: 132.667}
@@ -307,6 +308,37 @@ Transform:
   m_Children:
   - {fileID: 1740774099133959981}
   m_Father: {fileID: 1627550117210837881}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &920849202644766466
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6727168870012521466}
+  m_Layer: 0
+  m_Name: BulletStartPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6727168870012521466
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 920849202644766466}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: 0.102, z: 0.647}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8080277950995859862}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1293268296558045516
@@ -1985,9 +2017,11 @@ MonoBehaviour:
   orientation: {fileID: 633503288691662650}
   cameraTransform: {fileID: 4316995652813812907}
   offsetTransform: {fileID: 2153399363488178173}
+  shootTransform: {fileID: 6727168870012521466}
   animator: {fileID: 5404959036384609671}
   offsetValue: 40
   aimSpeed: 7
+  shootImpulse: 50
 --- !u!1 &4316995652640220283
 GameObject:
   m_ObjectHideFlags: 0

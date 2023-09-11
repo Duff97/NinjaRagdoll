@@ -11,14 +11,17 @@ public class HunterWeapon : NetworkBehaviour
     public Transform orientation;
     public Transform cameraTransform;
     public Transform offsetTransform;
+    public Transform shootTransform;
     public Animator animator;
 
     [Header("Parameters")]
     public float offsetValue;
     public float aimSpeed;
+    public float shootImpulse;
 
     private const string aimParam = "IsAiming";
-    private const string shootTrig = "Shoot";
+
+    private Bullet bullet;
 
     public void OnAim(InputValue inputValue)
     {
@@ -37,6 +40,11 @@ public class HunterWeapon : NetworkBehaviour
         if (isLocalPlayer && animator.GetBool(aimParam))
         {
             Debug.Log("Shoot");
+
+            if (bullet == null)
+                bullet = FindAnyObjectByType<Bullet>();
+
+            bullet.CmdShoot(shootTransform.position, transform.forward * shootImpulse);
         }
     }
 
