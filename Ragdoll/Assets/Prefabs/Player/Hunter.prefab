@@ -1982,13 +1982,12 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  hunterTransform: {fileID: 4316995652190512198}
   orientation: {fileID: 633503288691662650}
   cameraTransform: {fileID: 4316995652813812907}
   offsetTransform: {fileID: 2153399363488178173}
   animator: {fileID: 5404959036384609671}
   offsetValue: 40
-  aimSpeed: 0
+  aimSpeed: 7
 --- !u!1 &4316995652640220283
 GameObject:
   m_ObjectHideFlags: 0
