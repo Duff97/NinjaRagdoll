@@ -45,7 +45,6 @@ public class SpawnSystem2 : NetworkBehaviour
     public override void OnStartServer()
     {
         base.OnStartServer();
-        Transform[] spawnPoints = GetComponentsInChildren<Transform>();
         InitialSpawns();
     }
 }
