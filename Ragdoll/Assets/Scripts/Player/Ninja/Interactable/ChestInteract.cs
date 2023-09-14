@@ -4,16 +4,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class ChestInteract : NetworkBehaviour
+public class ChestInteract : MonoBehaviour
 {
 
     public float effortPerTick;
     public float tickInterval;
+    public NetworkIdentity netId;
 
     private Chest targetChest;
     private float timeUntilTick;
     private bool isInteracting;
 
+    private void Start()
+    {
+        enabled = !netId.isOwned;
+    }
 
     private void Update()
     {
@@ -48,7 +53,7 @@ public class ChestInteract : NetworkBehaviour
     {
         Debug.Log("On interact");
 
-        if (!isLocalPlayer || targetChest == null) { return; }
+        if (targetChest == null) { return; }
 
         isInteracting = inputValue.isPressed;
 
