@@ -1084,6 +1084,15 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
+  hunterSpawnPoint: {fileID: 697938734}
+  ninjaSpawnPoints:
+  - {fileID: 1271337539}
+  - {fileID: 1944607498}
+  - {fileID: 1317999457}
+  - {fileID: 994725878}
+  - {fileID: 228161829}
+  - {fileID: 88540068}
+  - {fileID: 925389592}
 --- !u!1001 &1558923928
 PrefabInstance:
   m_ObjectHideFlags: 0

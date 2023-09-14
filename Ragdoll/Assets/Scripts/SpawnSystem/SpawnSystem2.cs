@@ -6,8 +6,8 @@ using UnityEngine;
 
 public class SpawnSystem2 : NetworkBehaviour
 {
-    private Vector3 hunterSpawnPoint;
-    private List<Vector3> ninjaSpawnPoints = new List<Vector3>();
+    public Transform hunterSpawnPoint;
+    public List<Transform> ninjaSpawnPoints;
 
     private NetworkManagerNinjaRagdoll room;
     private NetworkManagerNinjaRagdoll Room
@@ -22,12 +22,12 @@ public class SpawnSystem2 : NetworkBehaviour
     private void SpawnNinja(PlayerSpawn playerSpawn)
     {
         int index = Random.Range(0, ninjaSpawnPoints.Count);
-        playerSpawn.Spawn(ninjaSpawnPoints[index]);
+        playerSpawn.Spawn(ninjaSpawnPoints[index].position);
     }
 
     private void SpawnHunter(PlayerSpawn playerSpawn)
     {
-        playerSpawn.Spawn(hunterSpawnPoint);
+        playerSpawn.Spawn(hunterSpawnPoint.position);
     }
 
     private void InitialSpawns()
@@ -46,20 +46,6 @@ public class SpawnSystem2 : NetworkBehaviour
     {
         base.OnStartServer();
         Transform[] spawnPoints = GetComponentsInChildren<Transform>();
-        bool first = true;
-        foreach (Transform t in spawnPoints)
-        {
-            if (t != this.transform)
-            {
-                if (first)
-                {
-                    hunterSpawnPoint = t.position;
-                    first = false;
-                }
-                else
-                    ninjaSpawnPoints.Add(t.position);
-            }
-        }
         InitialSpawns();
     }
 }
