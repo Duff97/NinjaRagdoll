@@ -9,6 +9,7 @@ public class Chest : NetworkBehaviour
     public float openingEffort;
     public GameObject lootPrefab;
     public Collider openingZone;
+    public Animator animator;
 
     private float currentEffortDone;
     [SyncVar] public bool isInteractable;
@@ -29,6 +30,8 @@ public class Chest : NetworkBehaviour
 
         if (currentEffortDone >= openingEffort)
             Open();
+        else
+            animator.SetTrigger("Effort");
     }
 
     [Server]
@@ -36,6 +39,7 @@ public class Chest : NetworkBehaviour
     {
         if (!isInteractable) { return;}
 
+        animator.SetTrigger("Open");
         isInteractable = false;
         GameObject loot = Instantiate(lootPrefab);
         loot.transform.position = lootSpawnPoint.position;

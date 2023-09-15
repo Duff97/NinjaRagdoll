@@ -1892,6 +1892,7 @@ MonoBehaviour:
   effortPerTick: 1
   tickInterval: 1
   netId: {fileID: 6867432515056353932}
+  animator: {fileID: 1898732654248199796}
 --- !u!1 &4170840716267446913
 GameObject:
   m_ObjectHideFlags: 0
@@ -4972,7 +4973,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7407185904715938456}
-  m_LocalRotation: {x: 0.047631975, y: -0.00000047414753, z: 0.00000002261025, w: 0.99886495}
+  m_LocalRotation: {x: 0.047631975, y: -0.00000047844424, z: 0.000000022815142, w: 0.99886495}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

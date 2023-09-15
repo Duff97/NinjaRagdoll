@@ -10,6 +10,7 @@ public class ChestInteract : MonoBehaviour
     public float effortPerTick;
     public float tickInterval;
     public NetworkIdentity netId;
+    public Animator animator;
 
     private Chest targetChest;
     private float timeUntilTick;
@@ -30,6 +31,7 @@ public class ChestInteract : MonoBehaviour
 
         if (timeUntilTick > 0) { return; }
 
+        timeUntilTick = tickInterval;
         applyEffortTick();
     }
 
@@ -55,6 +57,7 @@ public class ChestInteract : MonoBehaviour
         if (targetChest == null) { return; }
 
         isInteracting = inputValue.isPressed;
+        animator.SetBool("IsChestInteracting", isInteracting);
 
         if (!isInteracting ) { return; }
 
@@ -63,7 +66,7 @@ public class ChestInteract : MonoBehaviour
 
     private void applyEffortTick()
     {
-        Debug.Log("Apply effort tick");
         targetChest.addOpenEffort( effortPerTick );
+
     }
 }
