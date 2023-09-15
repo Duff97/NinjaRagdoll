@@ -37,8 +37,9 @@ public class Chest : NetworkBehaviour
         if (!isInteractable) { return;}
 
         isInteractable = false;
-        NetworkServer.Spawn(lootPrefab);
-        lootPrefab.transform.position = lootSpawnPoint.position;
+        GameObject loot = Instantiate(lootPrefab);
+        loot.transform.position = lootSpawnPoint.position;
+        NetworkServer.Spawn(loot);
         openingZone.enabled = false;
     }
 }

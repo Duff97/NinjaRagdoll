@@ -25,13 +25,14 @@ public class Player : NetworkBehaviour
     {
         DontDestroyOnLoad(gameObject);
 
-        Room.GamePlayers.Add(this);
+        if (Room != null)
+            Room.GamePlayers.Add(this);
     }
 
     public override void OnStopClient()
     {
-        Debug.Log("Client stop");
-        Room.GamePlayers.Remove(this);
+        if (Room != null)
+            Room.GamePlayers.Remove(this);
     }
 
     [Server]

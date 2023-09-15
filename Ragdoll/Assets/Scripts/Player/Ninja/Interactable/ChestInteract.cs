@@ -17,7 +17,9 @@ public class ChestInteract : MonoBehaviour
 
     private void Start()
     {
-        enabled = !netId.isOwned;
+        if (netId.isOwned) { return; }
+
+        enabled = false;
     }
 
     private void Update()
@@ -33,7 +35,6 @@ public class ChestInteract : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Chest trigger enter");
 
         if (other.gameObject.tag != "Chest") { return; }
 
@@ -42,7 +43,6 @@ public class ChestInteract : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        Debug.Log("Chest trigger exit");
 
         if (targetChest == null || other.gameObject != targetChest.gameObject) { return; }
 
@@ -51,7 +51,6 @@ public class ChestInteract : MonoBehaviour
 
     public void OnInteract(InputValue inputValue)
     {
-        Debug.Log("On interact");
 
         if (targetChest == null) { return; }
 
