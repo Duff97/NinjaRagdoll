@@ -4442,6 +4442,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   playerPosition: {fileID: 5530818588104510269}
+  waterLineHeight: 12
   isHunter: 0
   limbManagager: {fileID: 2006456812837842975}
 --- !u!1 &7407185904136490876

@@ -1997,6 +1997,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   playerPosition: {fileID: 4316995652190512198}
+  waterLineHeight: 12
   isHunter: 1
   rb: {fileID: 4316995652190512199}
 --- !u!114 &914414320188680946
