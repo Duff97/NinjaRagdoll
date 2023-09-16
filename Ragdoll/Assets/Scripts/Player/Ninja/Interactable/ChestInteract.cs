@@ -25,7 +25,7 @@ public class ChestInteract : MonoBehaviour
 
     private void Update()
     {
-        if (!isInteracting) { return; }
+        if (!isInteracting || targetChest == null) { return; }
 
         timeUntilTick -= Time.deltaTime;
 
@@ -48,6 +48,8 @@ public class ChestInteract : MonoBehaviour
 
         if (targetChest == null || other.gameObject != targetChest.gameObject) { return; }
 
+        isInteracting = false;
+        animator.SetBool("IsChestInteracting", isInteracting);
         targetChest = null;
     }
 
