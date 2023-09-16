@@ -214,6 +214,54 @@
             ]
         },
         {
+            "name": "NinjaInteracting",
+            "id": "49ea1a61-7139-4a91-bd9d-d0a8e4d800ce",
+            "actions": [
+                {
+                    "name": "OpenScoreboard",
+                    "type": "Value",
+                    "id": "0ba64ecb-18f8-440b-8eb7-8a716b003242",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "StopInteract",
+                    "type": "Value",
+                    "id": "ef459cfe-e0af-450d-834a-306b47704b9b",
+                    "expectedControlType": "Key",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "ecf14dc7-f619-4277-a4a1-f2492e837ad7",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OpenScoreboard",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c9d1589a-7d14-4068-b3fd-8e00adffe317",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "StopInteract",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
             "name": "Hunter",
             "id": "0d57b462-20b1-4e89-a1ef-54125dbe540a",
             "actions": [

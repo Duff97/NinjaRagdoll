@@ -1,6 +1,7 @@
 using Mirror;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,6 +12,8 @@ public class ChestInteract : MonoBehaviour
     public float tickInterval;
     public NetworkIdentity netId;
     public Animator animator;
+    public Transform ninjaTransform;
+    public PlayerInput playerInput;
 
     private Chest targetChest;
     private float timeUntilTick;
@@ -48,9 +51,9 @@ public class ChestInteract : MonoBehaviour
 
         if (targetChest == null || other.gameObject != targetChest.gameObject) { return; }
 
-        isInteracting = false;
-        animator.SetBool("IsChestInteracting", isInteracting);
         targetChest = null;
+        EndInteraction();
+        
     }
 
     public void OnInteract(InputValue inputValue)
@@ -58,17 +61,51 @@ public class ChestInteract : MonoBehaviour
 
         if (targetChest == null) { return; }
 
-        isInteracting = inputValue.isPressed;
-        animator.SetBool("IsChestInteracting", isInteracting);
+       if (inputValue.isPressed)
+            StartInteraction();
+    }
 
-        if (!isInteracting ) { return; }
+    public void OnStopInteract(InputValue input)
+    {
+        if (input.isPressed) { return; }
 
-        timeUntilTick = tickInterval;
+        EndInteraction();
     }
 
     private void applyEffortTick()
     {
-        targetChest.addOpenEffort( effortPerTick );
+        targetChest.addOpenEffort(effortPerTick);
 
+    }
+
+    private void rotateNinjaTowardsChest()
+    {
+        if (targetChest == null) { return; }
+
+        // Get the position of the chest
+        Vector3 chestPosition = targetChest.transform.position;
+
+        // Set the Y component of the chest position to be the same as the character's Y position
+        chestPosition.y = ninjaTransform.position.y;
+
+        // Rotate the character to look at the modified chest position
+        ninjaTransform.LookAt(chestPosition);
+    }
+
+    private void StartInteraction()
+    {
+        isInteracting = true;
+        rotateNinjaTowardsChest();
+        timeUntilTick = tickInterval;
+        animator.SetBool("IsChestInteracting", isInteracting);
+        playerInput.SwitchCurrentActionMap("NinjaInteracting");
+        
+    }
+
+    private void EndInteraction()
+    {
+        isInteracting = false;
+        animator.SetBool("IsChestInteracting", isInteracting);
+        playerInput.SwitchCurrentActionMap("Base");
     }
 }
