@@ -2515,11 +2515,9 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
-    - m_Text: Burglary at the lodge
+    - m_Text: Ninja Burglary
       m_Image: {fileID: 0}
     - m_Text: Ball Arena
-      m_Image: {fileID: 0}
-    - m_Text: King of the hill
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:

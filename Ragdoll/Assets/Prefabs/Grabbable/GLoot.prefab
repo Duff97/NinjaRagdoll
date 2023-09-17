@@ -18,9 +18,10 @@ GameObject:
   - component: {fileID: 3433036341348102892}
   - component: {fileID: 138188868775358443}
   - component: {fileID: 3884489106099692353}
+  - component: {fileID: 1533412246774555016}
   m_Layer: 10
   m_Name: GLoot
-  m_TagString: Untagged
+  m_TagString: Loot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -303,3 +304,16 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1533412246774555016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1366627117398234358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0694a852c1598fe46a780c5771189ebb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  value: 10
