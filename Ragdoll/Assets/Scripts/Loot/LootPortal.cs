@@ -1,10 +1,12 @@
 using Mirror;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class LootPortal : NetworkBehaviour
 {
+    public static event Action<int> OnLootReceived;
     private void OnTriggerEnter(Collider other)
     {
         if (!isServer || other.tag != "Loot") { return; }
@@ -18,6 +20,7 @@ public class LootPortal : NetworkBehaviour
     {
         if (loot == null) return;
 
+        OnLootReceived?.Invoke(loot.value);
         NetworkServer.Destroy(loot.gameObject);
     }
 }

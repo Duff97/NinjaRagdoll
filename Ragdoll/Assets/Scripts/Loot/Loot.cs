@@ -5,5 +5,5 @@ using UnityEngine;
 
 public class Loot : MonoBehaviour
 {
-    public float value;
+    public int value;
 }

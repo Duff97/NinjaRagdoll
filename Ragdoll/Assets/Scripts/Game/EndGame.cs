@@ -1,4 +1,5 @@
 using Mirror;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -7,57 +8,50 @@ using UnityEngine.UI;
 
 public class EndGame : NetworkBehaviour
 {
-    [SyncVar] public bool gameEnded;
-    [SerializeField][SyncVar] float timeUntilGameCloses;
+    private bool gameEnded;
+    [SerializeField][SyncVar(hook = nameof(HandleTimeChanged))] float timeUntilGameCloses;
+    [SyncVar(hook = nameof(HandleOutcomeChanged))] private string outcome;
+
+    [Header("Client")]
     [SerializeField] private TMP_Text timeUntilGameClosesText;
     [SerializeField] private TMP_Text outcomeText;
     [SerializeField] private Button quitToLobbyBtn;
-    private ScoreBoard scoreBoard;
+    [SerializeField] private GameObject endGamePanel;
 
-    private bool returningToLobby = false;
+    public static event Action OnGameEnded;
 
-    private NetworkManagerNinjaRagdoll room;
     private NetworkManagerNinjaRagdoll Room
     {
         get
         {
-            if (room != null) { return room; }
-            return room = NetworkManager.singleton as NetworkManagerNinjaRagdoll;
+            return NetworkManager.singleton as NetworkManagerNinjaRagdoll;
         }
     }
 
-    private void Awake()
+    public override void OnStartClient()
     {
-        scoreBoard = GetComponent<ScoreBoard>();
-    }
+        base.OnStartClient();
 
-    private void Start()
-    {
         if (!isServer)
-        {
             quitToLobbyBtn.interactable = false;
-        }
+    }
+
+    public override void OnStartServer()
+    {
+        base.OnStartServer();
+
     }
 
     private void Update()
     {
-        if (gameEnded && !returningToLobby)
-        {
-            if (isServer)
-            {
-                timeUntilGameCloses -= Time.deltaTime;
-                if (timeUntilGameCloses <= 0)
-                {
-                    returningToLobby = true;
-                    QuitToLobby();
-                }
-            }
+        if (!gameEnded || !isServer) { return; }
 
-            if (isClient)
-            {
-                timeUntilGameClosesText.text = Mathf.Ceil(timeUntilGameCloses).ToString() + " seconds until game closes";
-                outcomeText.text = scoreBoard.GetWinnerName() + " wins!";
-            }
+        timeUntilGameCloses -= Time.deltaTime;
+
+        if (timeUntilGameCloses <= 0)
+        {
+            gameEnded = false;
+            QuitToLobby();
         }
 
         
@@ -76,5 +70,45 @@ public class EndGame : NetworkBehaviour
     {
         Room.EndGame();
     }
+
+    [Server]
+    private void HandleTimeCounterFinished()
+    {
+        outcome = "The Hunter Wins!";
+    }
+
+    [Server]
+    private void HandleLootCounterFinished()
+    {
+        outcome = "The Ninjas Wins!";
+    }
+
+    private void InitializeEndGame()
+    {
+        RpcEndGame();
+        OnGameEnded?.Invoke();
+    }
+
+    [ClientRpc]
+    private void RpcEndGame()
+    {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        endGamePanel.SetActive(true);
+    }
+
+    [Client]
+    private void HandleOutcomeChanged(string oldVal, string newVal)
+    {
+        outcomeText.text = newVal;
+    }
+
+    [Client]
+    private void HandleTimeChanged(float oldVal, float newVal)
+    {
+        timeUntilGameClosesText.text = Mathf.Ceil(newVal) + " seconds until game closes";
+    }
+
+
 
 }
