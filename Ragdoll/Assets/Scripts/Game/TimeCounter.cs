@@ -33,7 +33,12 @@ public class TimeCounter : NetworkBehaviour
     {
         if (!isServer || timeLeft <= 0) { return; }
 
-        timeLeft -= Time.deltaTime;
+        float timeSpent = Time.deltaTime;
+
+        if (timeSpent > timeLeft)
+            timeLeft = 0;
+        else
+            timeLeft -= timeSpent;
 
         if (timeLeft <= 0)
             OnTimeCounterFinished?.Invoke();

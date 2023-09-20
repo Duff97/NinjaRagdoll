@@ -39,7 +39,17 @@ public class EndGame : NetworkBehaviour
     public override void OnStartServer()
     {
         base.OnStartServer();
+        LootCounter.OnLootLimit += HandleLootCounterFinished;
+        TimeCounter.OnTimeCounterFinished += HandleTimeCounterFinished;
 
+
+    }
+
+    public override void OnStopServer()
+    {
+        LootCounter.OnLootLimit -= HandleLootCounterFinished;
+        TimeCounter.OnTimeCounterFinished -= HandleTimeCounterFinished;
+        base.OnStopServer();
     }
 
     private void Update()
@@ -75,17 +85,20 @@ public class EndGame : NetworkBehaviour
     private void HandleTimeCounterFinished()
     {
         outcome = "The Hunter Wins!";
+        InitializeEndGame();
     }
 
     [Server]
     private void HandleLootCounterFinished()
     {
         outcome = "The Ninjas Wins!";
+        InitializeEndGame();
     }
 
     private void InitializeEndGame()
     {
         RpcEndGame();
+        gameEnded = true;
         OnGameEnded?.Invoke();
     }
 

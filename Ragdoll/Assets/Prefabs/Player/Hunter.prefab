@@ -2302,7 +2302,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7caffad4e26b5d48b0ffa2613ce3541, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 15
+  moveSpeed: 18
   groundDrag: 3
   orientation: {fileID: 633503288691662650}
   playerObj: {fileID: 4316995652190512198}

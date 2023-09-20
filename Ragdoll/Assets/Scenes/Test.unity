@@ -547,7 +547,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4598690649519157910, guid: 1911eadb95b931047a06f8c9181303db, type: 3}
       propertyPath: timeLeft
-      value: 20
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 6133013626387248145, guid: 1911eadb95b931047a06f8c9181303db, type: 3}
       propertyPath: m_AnchorMax.y

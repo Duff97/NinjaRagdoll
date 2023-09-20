@@ -38,7 +38,7 @@ public class LootCounter : NetworkBehaviour
     {
         lootValue += value;
 
-        if (lootValue > lootTreshold)
+        if (lootValue >= lootTreshold)
             OnLootLimit?.Invoke();
 
     }

@@ -337,7 +337,6 @@ MonoBehaviour:
   selectedGameMode: 0
   gameModes:
   - {fileID: 570305407817181616, guid: 43cc67731186cce4bbfb09cdb8e55ed8, type: 3}
-  - {fileID: 570305407817181616, guid: b46fdd1722e6b5a4a940069cd8fc5c7f, type: 3}
   steamLobbyId: 0
 --- !u!4 &214066867
 Transform:
