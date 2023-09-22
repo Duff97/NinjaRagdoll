@@ -18,6 +18,13 @@ public class HunterWeapon : NetworkBehaviour
     public float offsetValue;
     public float aimSpeed;
     public float shootImpulse;
+    public float shootCooldown;
+
+    private float shootCurrentCooldown;
+    private bool canShoot
+    {
+        get { return shootCurrentCooldown <= 0; }
+    }
 
     private const string aimParam = "IsAiming";
 
@@ -25,26 +32,23 @@ public class HunterWeapon : NetworkBehaviour
 
     public void OnAim(InputValue inputValue)
     {
-        if (isLocalPlayer)
-        {
-            animator.SetBool(aimParam, inputValue.isPressed);
-            Vector3 offset = offsetTransform.localEulerAngles;
-            offset.y = inputValue.isPressed ? offsetValue : 0;
-            offsetTransform.localRotation = Quaternion.Euler(offset);
+        if (!isLocalPlayer) {  return; }
             
-        }
+        animator.SetBool(aimParam, inputValue.isPressed);
+        Vector3 offset = offsetTransform.localEulerAngles;
+        offset.y = inputValue.isPressed ? offsetValue : 0;
+        offsetTransform.localRotation = Quaternion.Euler(offset);
     }
 
     public void OnShoot()
     {
-        if (isLocalPlayer && animator.GetBool(aimParam))
+        if (isLocalPlayer && animator.GetBool(aimParam) && canShoot)
         {
-            Debug.Log("Shoot");
-
             if (bullet == null)
                 bullet = FindAnyObjectByType<Bullet>();
 
             bullet.CmdShoot(shootTransform.position, transform.forward * shootImpulse);
+            shootCurrentCooldown = shootCooldown;
         }
     }
 
@@ -54,6 +58,13 @@ public class HunterWeapon : NetworkBehaviour
         {
             Aim();
         }
+    }
+
+    private void Update()
+    {
+        if (!isLocalPlayer || canShoot) {  return; }
+
+        shootCurrentCooldown -= Time.deltaTime;
     }
 
     private void Aim()

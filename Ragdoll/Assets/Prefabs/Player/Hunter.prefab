@@ -2023,6 +2023,7 @@ MonoBehaviour:
   offsetValue: 40
   aimSpeed: 7
   shootImpulse: 50
+  shootCooldown: 3
 --- !u!1 &4316995652640220283
 GameObject:
   m_ObjectHideFlags: 0
