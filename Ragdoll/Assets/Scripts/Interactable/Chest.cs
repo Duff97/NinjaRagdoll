@@ -31,7 +31,7 @@ public class Chest : NetworkBehaviour
         if (currentEffortDone >= openingEffort)
             Open();
         else
-            animator.SetTrigger("Effort");
+            RpcAnimatorTrigger("Effort");
     }
 
     [Server]
@@ -39,11 +39,24 @@ public class Chest : NetworkBehaviour
     {
         if (!isInteractable) { return;}
 
-        animator.SetTrigger("Open");
+        RpcAnimatorTrigger("Open");
         isInteractable = false;
         GameObject loot = Instantiate(lootPrefab);
         loot.transform.position = lootSpawnPoint.position;
         NetworkServer.Spawn(loot);
         openingZone.enabled = false;
+        Invoke("Despawn", 3);
+    }
+
+    [ClientRpc]
+    private void RpcAnimatorTrigger(string trigger)
+    {
+        animator.SetTrigger(trigger);
+    }
+
+    [Server]
+    private void Despawn()
+    {
+        NetworkServer.Destroy(gameObject);
     }
 }
