@@ -12,12 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 41b852bfe5fdf894ca929a3d5b2f96bf
   - enabled: 1
-    path: Assets/Scenes/Game_BallArena.unity
-    guid: 907defe65323cd5478e40ca75e63b0dc
-  - enabled: 1
-    path: Assets/Scenes/Game_KingHill.unity
-    guid: 94f2a209a29d9ad4aa396650cd8b08df
-  - enabled: 1
     path: Assets/Scenes/Game_Burglary.unity
     guid: a63ef611bb6735145b6c58a8ad9784d1
   m_configObjects: {}
