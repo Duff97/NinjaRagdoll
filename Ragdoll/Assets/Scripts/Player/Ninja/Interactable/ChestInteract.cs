@@ -70,7 +70,7 @@ public class ChestInteract : MonoBehaviour
     public void OnInteract(InputValue inputValue)
     {
 
-        if (targetChest == null) { return; }
+        if (targetChest == null || limbManager.movementDisabled) { return; }
 
        if (inputValue.isPressed)
             StartInteraction();
