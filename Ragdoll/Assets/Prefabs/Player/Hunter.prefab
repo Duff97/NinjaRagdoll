@@ -2315,7 +2315,7 @@ MonoBehaviour:
   grounded: 0
   animator: {fileID: 5404959036384609671}
   rotationSpeed: 10
-  hasAuthority: 1
+  hasAuthority: 0
 --- !u!1 &4840150863079409725
 GameObject:
   m_ObjectHideFlags: 0
