@@ -1895,6 +1895,7 @@ MonoBehaviour:
   animator: {fileID: 1898732654248199796}
   ninjaTransform: {fileID: 5528603532362550324}
   playerInput: {fileID: 2649290166915418256}
+  limbManager: {fileID: 2006456812837842975}
 --- !u!1 &4170840716267446913
 GameObject:
   m_ObjectHideFlags: 0
