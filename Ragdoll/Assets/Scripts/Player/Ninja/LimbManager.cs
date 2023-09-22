@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,6 +35,9 @@ public class LimbManager : MonoBehaviour
     [HideInInspector] public bool movementDisabled;
     private float currentDriveResetCd;
     public float totalForce;
+
+    public event Action OnMovementDisabled;
+    public event Action OnMovementEnabled;
     
 
     // Start is called before the first frame update
@@ -87,6 +91,7 @@ public class LimbManager : MonoBehaviour
         movementDisabled = true;
         EnableAngularDrive(false);
         currentDriveResetCd = driveResetCooldown;
+        OnMovementDisabled?.Invoke();
     }
 
     public void EnableMovement()
@@ -94,6 +99,7 @@ public class LimbManager : MonoBehaviour
         currentDriveResetCd = 0;
         EnableAngularDrive(true);
         movementDisabled = false;
+        OnMovementEnabled?.Invoke();
     }
 
     private void EnableAngularDrive(bool enabled)

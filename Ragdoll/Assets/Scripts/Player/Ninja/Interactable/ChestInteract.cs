@@ -14,6 +14,7 @@ public class ChestInteract : MonoBehaviour
     public Animator animator;
     public Transform ninjaTransform;
     public PlayerInput playerInput;
+    public LimbManager limbManager;
 
     private Chest targetChest;
     private float timeUntilTick;
@@ -21,9 +22,19 @@ public class ChestInteract : MonoBehaviour
 
     private void Start()
     {
-        if (netId.isOwned) { return; }
 
-        enabled = false;
+        if (netId.isOwned)
+            limbManager.OnMovementDisabled += EndInteraction;
+        else
+            enabled = false;
+
+    }
+
+    private void OnDestroy()
+    {
+        if (!netId.isOwned) { return; }
+
+        limbManager.OnMovementDisabled -= EndInteraction;
     }
 
     private void Update()
